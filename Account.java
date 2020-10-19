@@ -34,7 +34,7 @@ public class Account {
 	/**
 	 * Authenticates the User's account.
 	 * @param currentAccount -> The account being authenticated
-	 * @return -> Whether or not currentAccount matches username
+	 * @return Whether or not currentAccount matches username
 	 */
 	public boolean authenticate(String currentAccount) {
 	
@@ -116,7 +116,7 @@ public class Account {
 
 	/**
 	 * Return the average rating for all Reviews in reviews
-	 * @return -> The average rating
+	 * @return The average rating
 	 */
 	public int getAverageRating() {
 
@@ -125,7 +125,7 @@ public class Account {
 	/**
 	 * Returns a String interpretation of the Account.
 	 * @param currentAccount -> The account of the user
-	 * @return-> String interpretation of the account of the User.
+	 * @return String interpretation of the account of the User.
 	 */
 	public String toString(String currentAccount) {
 
@@ -151,7 +151,7 @@ public class Account {
 
 	/**
 	 * Returns the contents of Account in JSON format
-	 * @return -> The JSON interpretation of the Account content
+	 * @return The JSON interpretation of the Account content
 	 */
 	public String toJSON() {
 
