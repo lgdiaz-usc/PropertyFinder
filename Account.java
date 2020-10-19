@@ -2,6 +2,9 @@ package PropertyFinder;
 
 import java.util.ArrayList;
 
+/**
+ * Contains data and methods related to the User's account
+ */
 public class Account {
 	protected String name;
 	protected String dateOfBirth;
