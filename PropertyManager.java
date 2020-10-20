@@ -16,6 +16,7 @@ public class PropertyManager extends Account{
      */
     public PropertyManager(String username, String password, String name, String dateOfBirth,
                            String homeAddress, String email, String phoneNumber){
+        super(username, password, name, dateOfBirth, homeAddress, email, phoneNumber);
 
     }
 }

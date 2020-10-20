@@ -60,7 +60,7 @@ public class Property {
      * @return The average rating
      */
     public int getAverageRating(){
-
+        return 0;
     }
 
     /**
@@ -69,7 +69,7 @@ public class Property {
      * @return The average rating
      */
     public int getUnitAverageRating(String addressModifier){
-
+        return 0;
     }
 
     /**
@@ -77,7 +77,7 @@ public class Property {
      * @return
      */
     public boolean isAvailable() {
-
+        return false;
     }
 
     /**
@@ -86,7 +86,7 @@ public class Property {
      * @return Whether or not the current Account is the owner of this Property
      */
     public boolean isManager(String currentAccount) {
-
+        return false;
     }
 
     /**
@@ -95,7 +95,7 @@ public class Property {
      * @return Whether or not the current Account is a renter of this Property
      */
     public boolean isRenter(String renterName) {
-
+        return false;
     }
 
     /**
@@ -263,7 +263,7 @@ public class Property {
      * @return -> The description of the Property listing
      */
     public String toString(){
-
+        return null;
     }
 
     /**
@@ -271,6 +271,6 @@ public class Property {
      * @return -> The contents of this Property
      */
     public String toJSON(){
-
+        return null;
     }
 }

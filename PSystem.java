@@ -24,7 +24,7 @@ public class PSystem {
      * @param users A preexisting list of User's
      * @param propertyManagers A preexisting list of PropertyManager's
      */
-    public System(ArrayList<Property> properties, ArrayList<User> users,
+    public PSystem(ArrayList<Property> properties, ArrayList<User> users,
                   ArrayList<PropertyManager> propertyManagers){
 
     }
@@ -83,7 +83,7 @@ public class PSystem {
      * @return The Terms of Service
      */
     public String getTOS(){
-
+        return null;
     }
 
     /**
@@ -92,7 +92,7 @@ public class PSystem {
      * @return A list of all Property's that matched the query
      */
     public ArrayList<Property> searchProperty(String query){
-
+        return null;
     }
 
     /**
@@ -101,7 +101,7 @@ public class PSystem {
      * @return A list of all PropertyManager's that matched the query
      */
     public ArrayList<PropertyManager> searchManager(String query){
-
+        return null;
     }
 
     /**
@@ -110,7 +110,7 @@ public class PSystem {
      * @return A list of all User's that matched the query
      */
     public ArrayList<User> searchUser(String query){
-
+        return null;
     }
 
     /**
@@ -120,7 +120,7 @@ public class PSystem {
      * @return The sorted list of Property's
      */
     public ArrayList<Property> sortPropertyByTitle(ArrayList<Property> properties, boolean descending){
-
+        return null;
     }
 
     /**
@@ -130,7 +130,7 @@ public class PSystem {
      * @return The sorted list of Property's
      */
     public ArrayList<Property> sortPropertyByPrice(ArrayList<Property> properties, boolean descending){
-
+        return null;
     }
 
     /**
@@ -141,7 +141,7 @@ public class PSystem {
      */
     public ArrayList<Property> sortPropertyByRating(ArrayList<Property> properties,
                                                     boolean descending){
-
+        return null;
     }
 
     /**
@@ -152,7 +152,7 @@ public class PSystem {
      */
     public ArrayList<PropertyManager> sortManagerByName(ArrayList<PropertyManager> managers,
                                                         boolean descending){
-
+        return null;
     }
 
     /**
@@ -163,7 +163,7 @@ public class PSystem {
      */
     public ArrayList<PropertyManager> sortManagerByRating(ArrayList<PropertyManager> managers,
                                                           boolean descending){
-
+        return null;
     }
 
     /**
@@ -173,7 +173,7 @@ public class PSystem {
      * @return The sorted list of User's
      */
     public ArrayList<User> sortUserByName(ArrayList<User> users, boolean descending){
-
+        return null;
     }
 
     /**
@@ -183,7 +183,7 @@ public class PSystem {
      * @return The sorted list of User's
      */
     public ArrayList<User> sortUserByRating(ArrayList<User> users, boolean descending){
-
+        return null;
     }
 
     /**
@@ -192,7 +192,7 @@ public class PSystem {
      * @return The reversed list
      */
     private ArrayList descendSort(ArrayList list){
-
+        return null;
     }
 
     /**
@@ -219,7 +219,7 @@ public class PSystem {
      * @return The /string interpretation of the current user's Message's
      */
     public String getMessages(){
-
+        return null;
     }
 
     /**
@@ -358,7 +358,7 @@ public class PSystem {
      * @return The current Account
      */
     public User getUser() {
-
+        return null;
     }
 
     /**
@@ -366,7 +366,7 @@ public class PSystem {
      * @return The current Account
      */
     public PropertyManager getManager(){
-
+        return null;
     }
 
     /**
@@ -390,6 +390,6 @@ public class PSystem {
      * @return The Json interpretation of System's data
      */
     public String toJSON(){
-
+        return null;
     }
 }

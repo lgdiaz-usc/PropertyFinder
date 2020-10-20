@@ -20,7 +20,7 @@ public class Message {
 	 * Returns a String interpretation of the Message
 	 */
 	public String toString() {
-		
+		return null;
 	}
 	
 	/**
@@ -28,6 +28,6 @@ public class Message {
 	 * @return The JSON interpretation of the Message contents
 	 */
 	public String toJSON() {
-		
+		return null;
 	}
 }

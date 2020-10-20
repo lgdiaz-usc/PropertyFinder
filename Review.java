@@ -24,14 +24,14 @@ public class Review {
 	 * @return The rating of the review
 	 */
 	public int getRating() {
-		
+		return 0;
 	}
 	
 	/**
 	 * Returns a String interpretation of the User
 	 */
 	public String toString() {
-		
+		return null;
 	}
 	
 	/**
@@ -39,6 +39,6 @@ public class Review {
 	 * @return The JSON interpretation of the Review contents
 	 */
 	public String toJSON() {
-		
+		return null;
 	}
 }

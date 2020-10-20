@@ -37,7 +37,7 @@ public class Account {
 	 * @return Whether or not currentAccount matches username
 	 */
 	public boolean authenticate(String currentAccount) {
-	
+		return false;
 	}
 
 	/**
@@ -119,7 +119,7 @@ public class Account {
 	 * @return The average rating
 	 */
 	public int getAverageRating() {
-
+		return 0;
 	}
 
 	/**
@@ -128,7 +128,7 @@ public class Account {
 	 * @return String interpretation of the account of the User.
 	 */
 	public String toString(String currentAccount) {
-
+		return null;
 	}
 
 	/**
@@ -146,7 +146,7 @@ public class Account {
 	 * @return String representation of the messages of the User.
 	 */
 	public String getMessages(String currentAccount) {
-
+		return null;
 	}
 
 	/**
@@ -154,6 +154,6 @@ public class Account {
 	 * @return The JSON interpretation of the Account content
 	 */
 	public String toJSON() {
-
+		return null;
 	}
 }

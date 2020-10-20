@@ -58,7 +58,7 @@ public class User {
 	 * @return String interpretation of User
 	 */
 	public String toString(String currentAccount) {
-		
+		return null;
 	}
 	
 	/**
@@ -66,6 +66,6 @@ public class User {
 	 * @return The JSON interpretation of the User contents
 	 */
 	public String toJSON() {
-		
+		return null;
 	}
 }

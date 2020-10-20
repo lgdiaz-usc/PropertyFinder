@@ -36,7 +36,7 @@ public class Unit {
      * @return The average rating
      */
     public int getAverageRating() {
-
+        return 0;
     }
 
     /**
@@ -44,7 +44,7 @@ public class Unit {
      * @return Whether or not this Unit is available to rent
      */
     public boolean isAvailable() {
-
+        return false;
     }
 
     /**
@@ -52,7 +52,7 @@ public class Unit {
      * @return addressModifier
      */
     public String getAddressModifier() {
-
+        return null;
     }
 
     /**
@@ -76,7 +76,7 @@ public class Unit {
      * @return The description of this Unit
      */
     public String toString() {
-
+        return null;
     }
 
     /**
@@ -84,6 +84,6 @@ public class Unit {
      * @return The contents of this Unit
      */
     public String toJSON() {
-
+        return null;
     }
 }
