@@ -40,7 +40,7 @@ public class Property {
      * @param description The description for the Review
      * @param author The username of the Account that made the Review
      */
-    public void addReview(int rating, String title, String description, Account author){
+    public void addReview(int rating, String title, String description, String author){
 
     }
 
@@ -52,7 +52,7 @@ public class Property {
      * @param author The username of the Account that made the Review
      * @param addressModifier The addressModifier corresponding to the specified Unit
      */
-    public void addUnitReview(int rating, String title, String description, Account author,
+    public void addUnitReview(int rating, String title, String description, String author,
                               String addressModifier){
 
     }
@@ -76,7 +76,7 @@ public class Property {
 
     /**
      * Returns whether or not the Property is available for rent
-     * @return
+     * @return if the Property is available for rent
      */
     public boolean isAvailable() {
         return false;

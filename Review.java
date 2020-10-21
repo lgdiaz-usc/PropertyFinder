@@ -9,15 +9,16 @@ public class Review {
 	private int rating;
 	private String title;
 	private String description;
-	private Account author;
+	private String author;
 	
 	/**
 	 * The parameterized constructor for Review
 	 * @param rating -> The rating of the review
 	 * @param title -> The title of the review
 	 * @param description -> The description of the review
+	 * @param author -> The username of the Account that wrote the review
 	 */
-	public  Review(int rating, String title, String description) {
+	public Review(int rating, String title, String description, String author) {
 		
 	}
 	

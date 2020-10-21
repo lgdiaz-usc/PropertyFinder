@@ -112,7 +112,7 @@ public class Account {
 	 * @param description -> The description of the Review
 	 * @param author      -> The author of the Review
 	 */
-	public void addReview(int rating, String title, String description, Account author) {
+	public void addReview(int rating, String title, String description, String author) {
 
 	}
 

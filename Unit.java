@@ -30,7 +30,7 @@ public class Unit {
      * @param description The description for the Review
      * @param author The username of the Account that made the Review
      */
-    public void addReview(int rating, String title, String description, Account author){
+    public void addReview(int rating, String title, String description, String author){
 
     }
 

@@ -16,7 +16,39 @@ public class DataReader {
      * @return The PSystem object created from the data in the JSON file
      */
     public PSystem read(String fileName){
-        return null;
+        try{
+            FileReader reader = new FileReader(fileName);
+            JSONParser parser = new JSONParser();
+            JSONObject systemJSON = (JSONObject)parser.parse(reader);
+
+            //Parses User array
+            JSONArray userJArray = (JSONArray)systemJSON.get("users");
+            ArrayList<User> users = new ArrayList<User>();
+            for(Object user : userJArray){
+                users.add(toUser((JSONObject)user));
+            }
+
+            //Parse PropertyManager Array
+            JSONArray managerJArray = (JSONArray)systemJSON.get("managers");
+            ArrayList<PropertyManager> propertyManagers = new ArrayList<PropertyManager>();
+            for(Object manager : managerJArray){
+                propertyManagers.add(toManager((JSONObject)manager));
+            }
+
+            //Parses Property array
+            JSONArray propertyJArray = (JSONArray)systemJSON.get("properties");
+            ArrayList<Property> properties = new ArrayList<Property>();
+            for(Object property : propertyJArray){
+                properties.add(toProperty((JSONObject)property));
+            }
+
+            PSystem system = new PSystem(properties, users, propertyManagers);
+            return system;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
     }
 
     /**
@@ -25,7 +57,43 @@ public class DataReader {
      * @return The User object created from the JSONObject
      */
     private User toUser(JSONObject Juser){
-        return null;
+        String username = (String)Juser.get("username");
+        String password = (String)Juser.get("password");
+        String name = (String)Juser.get("name");
+        String dateOfBirth = (String)Juser.get("date of birth");
+        String homeAddress = (String)Juser.get("home address");
+        String email = (String)Juser.get("e-mail");
+        String phoneNumber = (String)Juser.get("phone number");
+        String studentID = (String)Juser.get("student ID");
+        int creditScore = (int)Juser.get("credit score");
+        User user = new User(username, password, name, dateOfBirth,
+                             homeAddress, email, phoneNumber, studentID);
+
+        JSONArray reviewArray = (JSONArray)Juser.get("reviews");
+        for(Object reviewObject : reviewArray){
+            JSONObject Jreview = (JSONObject)reviewObject;
+            int rating = (int)Jreview.get("rating");
+            String Rtitle = (String)Jreview.get("title");
+            String Rdescription = (String)Jreview.get("description");
+            String author = (String)Jreview.get("author");
+            user.addReview(rating, Rtitle, Rdescription, author);
+        }
+
+        JSONArray messageArray = (JSONArray)Juser.get("messages");
+        for(Object messageObject : messageArray){
+            JSONObject Jmessage = (JSONObject)messageObject;
+            String author = (String)Jmessage.get("author");
+            String description = (String)Jmessage.get("description");
+            user.addMessage(author, description);
+        }
+
+        for(String disablity : (String[])Juser.get("disabilities")){
+            user.addDisability(username, disablity);
+        }
+
+        user.updateCreditScore(username, creditScore);
+
+        return user;
     }
 
     /**
@@ -34,7 +102,35 @@ public class DataReader {
      * @return The PropertyManager object created from the JSONObject
      */
     private PropertyManager toManager(JSONObject Jmanager){
-        return null;
+        String username = (String)Jmanager.get("username");
+        String password = (String)Jmanager.get("password");
+        String name = (String)Jmanager.get("name");
+        String dateOfBirth = (String)Jmanager.get("date of birth");
+        String homeAddress = (String)Jmanager.get("home address");
+        String email = (String)Jmanager.get("e-mail");
+        String phoneNumber = (String)Jmanager.get("phone number");
+        PropertyManager manager = new PropertyManager(username, password, name, dateOfBirth,
+                homeAddress, email, phoneNumber);
+
+        JSONArray reviewArray = (JSONArray)Jmanager.get("reviews");
+        for(Object reviewObject : reviewArray){
+            JSONObject Jreview = (JSONObject)reviewObject;
+            int rating = (int)Jreview.get("rating");
+            String Rtitle = (String)Jreview.get("title");
+            String Rdescription = (String)Jreview.get("description");
+            String author = (String)Jreview.get("author");
+            manager.addReview(rating, Rtitle, Rdescription, author);
+        }
+
+        JSONArray messageArray = (JSONArray)Jmanager.get("messages");
+        for(Object messageObject : messageArray){
+            JSONObject Jmessage = (JSONObject)messageObject;
+            String author = (String)Jmessage.get("author");
+            String description = (String)Jmessage.get("description");
+            manager.addMessage(author, description);
+        }
+
+        return manager;
     }
 
     /**
@@ -43,6 +139,56 @@ public class DataReader {
      * @return The Property object created from the JSONObject
      */
     private Property toProperty(JSONObject Jproperty){
-        return null;
+        String manager = (String)Jproperty.get("manager");
+        String title = (String)Jproperty.get("title");
+        String description = (String)Jproperty.get("description");
+        String address = (String)Jproperty.get("address");
+        int capacity = (int)Jproperty.get("capacity");
+        double baseRent = (double)Jproperty.get("base rent");
+        Property property = new Property(manager, title, description, address, capacity, baseRent);
+
+        for(String extraFee : (String[])Jproperty.get("extra fees")){
+            String name = extraFee.split(":")[0];
+            double fee = Double.parseDouble(extraFee.split("$")[1]);
+            property.addFee(manager, name, fee);
+        }
+
+        for(String renter : (String[])Jproperty.get("renters")){
+            property.addRenter(renter, manager);
+        }
+
+        JSONArray unitArray = (JSONArray)Jproperty.get("units");
+        for(Object unitObject : unitArray){
+            JSONObject Junit = (JSONObject) unitObject;
+            String addressModifier = (String)Junit.get("address modifier");
+            int Ucapacity = (int)Junit.get("capacity");
+            property.addUnit(addressModifier, Ucapacity, manager);
+
+            for(String renter : (String[])Junit.get("renters")){
+                property.addUnitRenter(renter, addressModifier, manager);
+            }
+
+            JSONArray reviewArray = (JSONArray)Junit.get("reviews");
+            for(Object reviewObject : reviewArray){
+                JSONObject Jreview = (JSONObject)reviewObject;
+                int rating = (int)Jreview.get("rating");
+                String Rtitle = (String)Jreview.get("title");
+                String Rdescription = (String)Jreview.get("description");
+                String author = (String)Jreview.get("author");
+                property.addUnitReview(rating, Rtitle, Rdescription, author, addressModifier);
+            }
+        }
+
+        JSONArray reviewArray = (JSONArray)Jproperty.get("reviews");
+        for(Object reviewObject : reviewArray){
+            JSONObject Jreview = (JSONObject)reviewObject;
+            int rating = (int)Jreview.get("rating");
+            String Rtitle = (String)Jreview.get("title");
+            String Rdescription = (String)Jreview.get("description");
+            String author = (String)Jreview.get("author");
+            property.addReview(rating, Rtitle, Rdescription, author);
+        }
+
+        return property;
     }
 }
