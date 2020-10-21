@@ -21,5 +21,8 @@ public class Driver {
         EditType editT = EditType.RENT;
 
         System.out.println("Hooray! It compiles!");
+
+        //Saves data upon completion
+        DataWriter.write(system);
     }
 }
