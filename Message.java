@@ -1,5 +1,7 @@
 package PropertyFinder;
 
+import org.json.simple.JSONObject;
+
 /**
  * Contains data and methods related to User's messages
  */
@@ -27,7 +29,10 @@ public class Message {
 	 * Returns the contents of Message in JSON format
 	 * @return The JSON interpretation of the Message contents
 	 */
-	public String toJSON() {
-		return null;
+	public JSONObject toJSON() {
+		JSONObject message = new JSONObject();
+		message.put("author", author);
+		message.put("description", description);
+		return message;
 	}
 }

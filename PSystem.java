@@ -1,6 +1,8 @@
 package PropertyFinder;
 
 import java.util.ArrayList;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 /**
  * Contains the methods and data used by the driver to interact with user accounts and property listings.
@@ -389,7 +391,28 @@ public class PSystem {
      * Returns all of the data in users, propertyManagers, and properties in the JSON format
      * @return The Json interpretation of System's data
      */
-    public String toJSON(){
-        return null;
+    public JSONObject toJSON(){
+        JSONObject pSystem = new JSONObject();
+
+        JSONArray userArray = new JSONArray();
+        for(User user : users){
+            userArray.add(user.toJSON());
+        }
+
+        JSONArray managerArray = new JSONArray();
+        for(PropertyManager manager : propertyManagers){
+            managerArray.add(manager.toJSON());
+        }
+
+        JSONArray propertyArray = new JSONArray();
+        for(Property property : properties){
+            propertyArray.add(property.toJSON());
+        }
+
+        pSystem.put("users", userArray);
+        pSystem.put("property managers", managerArray);
+        pSystem.put("properties", propertyArray);
+
+        return pSystem;
     }
 }

@@ -1,6 +1,8 @@
 package PropertyFinder;
 
 import java.util.ArrayList;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONArray;
 
 /**
  * Contains data and methods related to the User's account
@@ -153,7 +155,30 @@ public class Account {
 	 * Returns the contents of Account in JSON format
 	 * @return The JSON interpretation of the Account content
 	 */
-	public String toJSON() {
-		return null;
+	public JSONObject toJSON() {
+		JSONObject account = new JSONObject();
+		account.put("username", username);
+		account.put("password", password);
+		account.put("name", name);
+		account.put("date of birth", dateOfBirth);
+		account.put("home address", homeAddress);
+		account.put("e-mail", email);
+		account.put("phone number", phoneNumber);
+
+
+		JSONArray reviewArray = new JSONArray();
+		for(Review review : reviews){
+			reviewArray.add(review.toJSON());
+		}
+
+		JSONArray messageArray = new JSONArray();
+		for(Message message : messages){
+			messageArray.add(message.toJSON());
+		}
+
+		account.put("reviews", reviewArray);
+		account.put("messages", messageArray);
+
+		return account;
 	}
 }

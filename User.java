@@ -1,11 +1,12 @@
 package PropertyFinder;
 
 import java.util.ArrayList;
+import org.json.simple.JSONObject;
 
 /**
  * Contains the information for an account for a student. 
  */
-public class User {
+public class User extends Account{
 	protected  String studentID;
 	protected  int creditScore;
 	protected  ArrayList<String> disablities;
@@ -22,7 +23,7 @@ public class User {
 	 * @param StudentID -> the student id of the student
 	 */
 	public User(String username, String password, String name, String dateOfBirth, String homeAddress, String email, String phoneNumber, String StudentID) {
-		
+		super(username, password, name, dateOfBirth, homeAddress, email, phoneNumber);
 	}
 	
 	/**
@@ -65,7 +66,12 @@ public class User {
 	 * Returns the contents of User in JSON format
 	 * @return The JSON interpretation of the User contents
 	 */
-	public String toJSON() {
-		return null;
+	public JSONObject toJSON() {
+		JSONObject user = super.toJSON();
+		user.put("student ID", studentID);
+		user.put("credit score", creditScore);
+		user.put("disabilities", disablities.toArray());
+
+		return user;
 	}
 }

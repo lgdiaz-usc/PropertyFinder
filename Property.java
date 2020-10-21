@@ -1,5 +1,7 @@
 package PropertyFinder;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import java.util.ArrayList;
 
 /**
@@ -267,10 +269,33 @@ public class Property {
     }
 
     /**
-     * Return the contents of this Property as a String in the JSON format
+     * Return the contents of this Property in the JSON format
      * @return -> The contents of this Property
      */
-    public String toJSON(){
-        return null;
+    public JSONObject toJSON(){
+        JSONObject property = new JSONObject();
+        property.put("manager", manager);
+        property.put("title", title);
+        property.put("description", description);
+        property.put("address", address);
+        property.put("capacity", capacity);
+        property.put("base rent", baseRent);
+        property.put("extra fees", extraFees.toArray());
+        property.put("renters", renters.toArray());
+
+        JSONArray unitArray = new JSONArray();
+        for(Unit unit : units){
+            unitArray.add(unit.toJSON());
+        }
+
+        JSONArray reviewArray = new JSONArray();
+        for(Review review : reviews){
+            reviewArray.add(review.toJSON());
+        }
+
+        property.put("reviews", reviewArray);
+        property.put("units", unitArray);
+
+        return property;
     }
 }

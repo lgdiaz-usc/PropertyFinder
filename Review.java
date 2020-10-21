@@ -1,5 +1,7 @@
 package PropertyFinder;
 
+import org.json.simple.JSONObject;
+
 /**
  * Contains data and methods related to reviews
  */
@@ -38,7 +40,12 @@ public class Review {
 	 * Returns the contents of Review in JSON format
 	 * @return The JSON interpretation of the Review contents
 	 */
-	public String toJSON() {
-		return null;
+	public JSONObject toJSON() {
+		JSONObject review = new JSONObject();
+		review.put("rating", rating);
+		review.put("title", title);
+		review.put("description", description);
+		review.put("author", author);
+		return review;
 	}
 }

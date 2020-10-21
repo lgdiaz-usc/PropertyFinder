@@ -2,6 +2,9 @@ package PropertyFinder;
 
 import java.util.ArrayList;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 /**
  * Contains data and methods relating to an individual unit listing
  */
@@ -80,10 +83,22 @@ public class Unit {
     }
 
     /**
-     * Returns the contents of this Unit as a String in the JSON format
+     * Returns the contents of this Unit in the JSON format
      * @return The contents of this Unit
      */
-    public String toJSON() {
-        return null;
+    public JSONObject toJSON() {
+        JSONObject unit = new JSONObject();
+        unit.put("address modifier", addressModifier);
+        unit.put("capacity", capacity);
+        unit.put("renters", renters.toArray());
+
+        JSONArray reviewArray = new JSONArray();
+        for(Review review : reviews){
+            reviewArray.add(review.toJSON());
+        }
+
+        unit.put("reviews", reviewArray);
+
+        return unit;
     }
 }
