@@ -24,8 +24,7 @@ public class User extends Account{
 	 */
 	public User(String username, String password, String name, String dateOfBirth, String homeAddress, String email, String phoneNumber, String StudentID) {
 		super(username, password, name, dateOfBirth, homeAddress, email, phoneNumber);
-		this.studentID = studentID;
-		this.creditScore = creditScore;
+		this.studentID = StudentID;
 		this.disablities = new ArrayList<String>();
 	}
 	
@@ -73,7 +72,7 @@ public class User extends Account{
 		JSONObject user = super.toJSON();
 		user.put("student ID", studentID);
 		user.put("credit score", creditScore);
-		user.put("disabilities", disablities.toArray());
+		user.put("disabilities", disablities);
 
 		return user;
 	}

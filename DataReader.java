@@ -15,7 +15,7 @@ public class DataReader {
      * @param fileName The name of the JSON file being read from
      * @return The PSystem object created from the data in the JSON file
      */
-    public PSystem read(String fileName){
+    public static PSystem read(String fileName){
         try{
             FileReader reader = new FileReader(fileName);
             JSONParser parser = new JSONParser();
@@ -29,7 +29,7 @@ public class DataReader {
             }
 
             //Parse PropertyManager Array
-            JSONArray managerJArray = (JSONArray)systemJSON.get("managers");
+            JSONArray managerJArray = (JSONArray)systemJSON.get("property managers");
             ArrayList<PropertyManager> propertyManagers = new ArrayList<PropertyManager>();
             for(Object manager : managerJArray){
                 propertyManagers.add(toManager((JSONObject)manager));
@@ -56,7 +56,7 @@ public class DataReader {
      * @param Juser The JSONObject being converted
      * @return The User object created from the JSONObject
      */
-    private User toUser(JSONObject Juser){
+    private static User toUser(JSONObject Juser){
         String username = (String)Juser.get("username");
         String password = (String)Juser.get("password");
         String name = (String)Juser.get("name");
@@ -65,7 +65,7 @@ public class DataReader {
         String email = (String)Juser.get("e-mail");
         String phoneNumber = (String)Juser.get("phone number");
         String studentID = (String)Juser.get("student ID");
-        int creditScore = (int)Juser.get("credit score");
+        int creditScore = Math.toIntExact((long)Juser.get("credit score"));
         User user = new User(username, password, name, dateOfBirth,
                              homeAddress, email, phoneNumber, studentID);
 
@@ -87,8 +87,9 @@ public class DataReader {
             user.addMessage(author, description);
         }
 
-        for(String disablity : (String[])Juser.get("disabilities")){
-            user.addDisability(username, disablity);
+        JSONArray disabilityArray = (JSONArray) Juser.get("disabilities");
+        for(int i=0; i < disabilityArray.size(); i++){
+            user.addDisability(username, (String)disabilityArray.get(i));
         }
 
         user.updateCreditScore(username, creditScore);
@@ -101,7 +102,7 @@ public class DataReader {
      * @param Jmanager The JSONObject being converted
      * @return The PropertyManager object created from the JSONObject
      */
-    private PropertyManager toManager(JSONObject Jmanager){
+    private static PropertyManager toManager(JSONObject Jmanager){
         String username = (String)Jmanager.get("username");
         String password = (String)Jmanager.get("password");
         String name = (String)Jmanager.get("name");
@@ -115,7 +116,7 @@ public class DataReader {
         JSONArray reviewArray = (JSONArray)Jmanager.get("reviews");
         for(Object reviewObject : reviewArray){
             JSONObject Jreview = (JSONObject)reviewObject;
-            int rating = (int)Jreview.get("rating");
+            int rating = Math.toIntExact((long)Jreview.get("rating"));
             String Rtitle = (String)Jreview.get("title");
             String Rdescription = (String)Jreview.get("description");
             String author = (String)Jreview.get("author");
@@ -138,22 +139,26 @@ public class DataReader {
      * @param Jproperty The JSONObject being converted
      * @return The Property object created from the JSONObject
      */
-    private Property toProperty(JSONObject Jproperty){
+    private static Property toProperty(JSONObject Jproperty){
         String manager = (String)Jproperty.get("manager");
         String title = (String)Jproperty.get("title");
         String description = (String)Jproperty.get("description");
         String address = (String)Jproperty.get("address");
-        int capacity = (int)Jproperty.get("capacity");
+        int capacity = Math.toIntExact((long)Jproperty.get("capacity"));
         double baseRent = (double)Jproperty.get("base rent");
         Property property = new Property(manager, title, description, address, capacity, baseRent);
 
-        for(String extraFee : (String[])Jproperty.get("extra fees")){
+        JSONArray feeArray =(JSONArray) Jproperty.get("extra fees");
+        for(int i=0; i < feeArray.size(); i++){
+            String extraFee = (String)feeArray.get(i);
             String name = extraFee.split(":")[0];
             double fee = Double.parseDouble(extraFee.split("$")[1]);
             property.addFee(manager, name, fee);
         }
 
-        for(String renter : (String[])Jproperty.get("renters")){
+        JSONArray renterArray = (JSONArray)Jproperty.get("renters");
+        for(int i=0; i < renterArray.size(); i++){
+            String renter = (String)renterArray.get(i);
             property.addRenter(renter, manager);
         }
 
@@ -161,7 +166,7 @@ public class DataReader {
         for(Object unitObject : unitArray){
             JSONObject Junit = (JSONObject) unitObject;
             String addressModifier = (String)Junit.get("address modifier");
-            int Ucapacity = (int)Junit.get("capacity");
+            int Ucapacity = Math.toIntExact((long)Junit.get("capacity"));
             property.addUnit(addressModifier, Ucapacity, manager);
 
             for(String renter : (String[])Junit.get("renters")){
@@ -171,7 +176,7 @@ public class DataReader {
             JSONArray reviewArray = (JSONArray)Junit.get("reviews");
             for(Object reviewObject : reviewArray){
                 JSONObject Jreview = (JSONObject)reviewObject;
-                int rating = (int)Jreview.get("rating");
+                int rating = Math.toIntExact((long)Jreview.get("rating"));
                 String Rtitle = (String)Jreview.get("title");
                 String Rdescription = (String)Jreview.get("description");
                 String author = (String)Jreview.get("author");
@@ -182,7 +187,7 @@ public class DataReader {
         JSONArray reviewArray = (JSONArray)Jproperty.get("reviews");
         for(Object reviewObject : reviewArray){
             JSONObject Jreview = (JSONObject)reviewObject;
-            int rating = (int)Jreview.get("rating");
+            int rating = Math.toIntExact((long)Jreview.get("rating"));
             String Rtitle = (String)Jreview.get("title");
             String Rdescription = (String)Jreview.get("description");
             String author = (String)Jreview.get("author");

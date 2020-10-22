@@ -36,6 +36,10 @@ public class Property {
     	this.address = address;
         this.capacity = capacity; 
         this.baseRent = baseRent;
+        renters = new ArrayList<String>();
+        units = new ArrayList<Unit>();
+        reviews = new ArrayList<Review>();
+        extraFees = new ArrayList<String>();
     }
 
     /**
@@ -285,8 +289,8 @@ public class Property {
         property.put("address", address);
         property.put("capacity", capacity);
         property.put("base rent", baseRent);
-        property.put("extra fees", extraFees.toArray());
-        property.put("renters", renters.toArray());
+        property.put("extra fees", extraFees);
+        property.put("renters", renters);
 
         JSONArray unitArray = new JSONArray();
         for(Unit unit : units){

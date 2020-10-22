@@ -16,7 +16,11 @@ public class PSystem {
     /**
      * Default constructor for System.
      */
-    public PSystem(){};
+    public PSystem(){
+        users = new ArrayList<User>();
+        propertyManagers = new ArrayList<PropertyManager>();
+        properties = new ArrayList<Property>();
+    };
 
     /**
      * Parameterized constructor for System
@@ -26,9 +30,9 @@ public class PSystem {
      */
     public PSystem(ArrayList<Property> properties, ArrayList<User> users,
                   ArrayList<PropertyManager> propertyManagers){
-    	this.properties = new ArrayList<Property>();
-    	this.users = new ArrayList<User>();
-    	this.propertyManagers = new ArrayList<PropertyManager>();
+    	this.properties = properties;
+    	this.users = users;
+    	this.propertyManagers = propertyManagers;
     }
 
     /**

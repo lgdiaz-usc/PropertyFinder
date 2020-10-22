@@ -22,6 +22,8 @@ public class Unit {
     Unit(String addressModifier, int capacity) {
     	this.addressModifier = addressModifier;
     	this.capacity = capacity;
+    	renters = new ArrayList<String>();
+    	reviews = new ArrayList<Review>();
     }
 
     /**

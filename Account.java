@@ -37,6 +37,8 @@ public class Account {
 		 this.homeAddress = homeAddress; 
 		 this.email = email;
 		 this.phoneNumber = phoneNumber;
+		 reviews = new ArrayList<Review>();
+		 messages = new ArrayList<Message>();
 	}
 
 	/**
