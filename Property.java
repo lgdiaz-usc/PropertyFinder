@@ -30,7 +30,12 @@ public class Property {
      */
     public Property(String manager, String title, String description, String address,
                     int capacity, double baseRent) {
-
+    	this.manager = manager;
+    	this.title = title;
+    	this.description = description; 
+    	this.address = address;
+        this.capacity = capacity; 
+        this.baseRent = baseRent;
     }
 
     /**

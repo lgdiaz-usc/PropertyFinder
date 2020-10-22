@@ -15,7 +15,8 @@ public class Message {
 	 * @param message -> The message of the author
 	 */
 	public Message(String author, String message) {
-		
+		this.author = author;
+		this.description = message;
 	}
 	
 	/**

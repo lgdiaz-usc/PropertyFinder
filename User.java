@@ -24,6 +24,9 @@ public class User extends Account{
 	 */
 	public User(String username, String password, String name, String dateOfBirth, String homeAddress, String email, String phoneNumber, String StudentID) {
 		super(username, password, name, dateOfBirth, homeAddress, email, phoneNumber);
+		this.studentID = studentID;
+		this.creditScore = creditScore;
+		this.disablities = new ArrayList<String>();
 	}
 	
 	/**

@@ -30,7 +30,13 @@ public class Account {
 	 */
 	public Account(String username, String password, String name, String dateOfBirth, String homeAddress, String email,
 			String phoneNumber) {
-
+		this.username = username; 
+		 this.password = password; 
+		 this.name = name;
+		 this.dateOfBirth = dateOfBirth; 
+		 this.homeAddress = homeAddress; 
+		 this.email = email;
+		 this.phoneNumber = phoneNumber;
 	}
 
 	/**

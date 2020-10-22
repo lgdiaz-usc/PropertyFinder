@@ -20,7 +20,8 @@ public class Unit {
      * @param capacity The maximum capacity of the Unit
      */
     Unit(String addressModifier, int capacity) {
-
+    	this.addressModifier = addressModifier;
+    	this.capacity = capacity;
     }
 
     /**

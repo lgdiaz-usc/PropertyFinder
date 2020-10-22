@@ -19,7 +19,10 @@ public class Review {
 	 * @param author -> The username of the Account that wrote the review
 	 */
 	public Review(int rating, String title, String description, String author) {
-		
+		this.rating = rating;
+		this.title = title;
+		this.description = description;
+		this.author = author;
 	}
 	
 	/**
