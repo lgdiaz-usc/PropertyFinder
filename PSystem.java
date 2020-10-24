@@ -40,16 +40,37 @@ public class PSystem {
      * @param username The username for the User
      * @param password The password for the User
      * @param name The name of the User
-     * @param datOfBirth The date of birth of the User
+     * @param dateOfBirth The date of birth of the User
      * @param homeAddress The home address of the User
      * @param email The email address of the User
      * @param phoneNumber The phone number of the User
      * @param StudentID The student ID of the User
      */
     public void createUserAccount(String username, String password, String name,
-                                  String datOfBirth, String homeAddress, String email,
+                                  String dateOfBirth, String homeAddress, String email,
                                   String phoneNumber, String StudentID){
+        //Checks if username exists in any other Account
+        boolean exists = false;
+        for(User user : users){
+            if(username == user.username){
+                exists = true;
+                break;
+            }
+        }
+        for(PropertyManager manager : propertyManagers){
+            if(username == manager.username || exists){
+                exists = true;
+                break;
+            }
+        }
 
+        if(!exists) {
+            users.add(new User(username, password, name, dateOfBirth, homeAddress, email, phoneNumber,
+                    StudentID));
+        }
+        else{
+            System.out.println("Sorry! An account with that username already exists!");
+        }
     }
 
     /**
@@ -57,15 +78,35 @@ public class PSystem {
      * @param username The username for the PropertyManager
      * @param password The password for the PropertyManager
      * @param name The name of the PropertyManager
-     * @param datOfBirth The date of birth of the PropertyManager
+     * @param dateOfBirth The date of birth of the PropertyManager
      * @param homeAddress The home address of the PropertyManager
      * @param email The email address of the PropertyManager
      * @param phoneNumber The phone number of the PropertyManager
      */
     public void createManagerAccount(String username, String password, String name,
-                                  String datOfBirth, String homeAddress, String email,
+                                  String dateOfBirth, String homeAddress, String email,
                                   String phoneNumber){
-
+        //Checks if username exists in any other Account
+        boolean exists = false;
+        for(User user : users){
+            if(username.equals(user.username)){
+                exists = true;
+                break;
+            }
+        }
+        for(PropertyManager manager : propertyManagers){
+            if(username.equals(manager.username) || exists){
+                exists = true;
+                break;
+            }
+        }
+        if(!exists) {
+            propertyManagers.add(new PropertyManager(username, password, name, dateOfBirth,
+                    homeAddress, email, phoneNumber));
+        }
+        else{
+            System.out.println("Sorry! An account with that username already exists!");
+        }
     }
 
     /**
@@ -89,7 +130,66 @@ public class PSystem {
      * @return The Terms of Service
      */
     public String getTOS(){
-        return null;
+        return "Program is made by that particular Digital Document File with or without " +
+                "Modifications,\n" +
+                " and/or any respective portions of your own, or to endorse or promote products " +
+                "derived\n" +
+                " from this software and to permit persons to whom the Software without " +
+                "restriction,\n" +
+                " including Compiled Works generated from a Contributor which are necessarily " +
+                "infringed\n" +
+                " by the terms of Sections 1 and 2 above provided that the Source Code " +
+                "distribution\n" +
+                " titled \"LEGAL\" that describes the claim in sufficient detail that a recipient" +
+                " of\n" +
+                " ordinary skill at computer programming to be covered by this License; and (b) " +
+                "otherwise\n" +
+                " make Covered Code and/or Modifications of Original Code or previous " +
+                "Modifications.\n" +
+                " Code\"../ means the individual(s) or organization(s) named in the Work through " +
+                "the\n" +
+                " means of an unequivocal list it might be impossible for you if you modify it. " +
+                "For\n" +
+                " an executable program, either on an unmodified basis or as an addendum to the " +
+                "author\n" +
+                " to ask you to deprive anyone else from sharing it farther. Redistribution and " +
+                "use\n" +
+                " in the case (e.g., if a Distributor Fee, and with or without modifications, and" +
+                " in\n" +
+                " any derivative version prepared by Licensee.\n" +
+                "\n" +
+                "BeOpen is making the claim in sufficient detail that a recipient will know whom " +
+                "to contact.\n" +
+                " If Contributor obtains such knowledge after you make an `intention " +
+                "announcement' as\n" +
+                " described in Exhibit A in each file of the Package, do not, by themselves, " +
+                "cause the\n" +
+                " direction or management of such combination). Recipient relating to the extent " +
+                "necessary\n" +
+                " to enable you to infringe any patents or other broadcasting content and " +
+                "products\n" +
+                " consisting of \"commercial computer software\" and \"commercial computer\n" +
+                " software\" and \"commercial computer software\" and \"commercial computer " +
+                "software documentation,\n" +
+                "\"../ as such parties remain in full force and effect.\n" +
+                "\n" +
+                "Notwithstanding the provision set forth herein, no assurances are provided by " +
+                "any\n" +
+                " other Contributor to the version of the Contribution of such Contributor, if " +
+                "any,\n" +
+                " in a manner equivalent to the Recipient a non-exclusive, royalty-free, " +
+                "world-wide\n" +
+                " license to reproduce, analyze, test, perform and/or display publicly, prepare\n" +
+                " derivative works, in source and free culture, all users contributing to " +
+                "Wikimedia\n" +
+                " projects are required to allow Recipient to distribute the same media as an\n" +
+                " executable program, either on an unmodified basis or as an executable program" +
+                ".\n" +
+                " Code\" means (a) the power, direct or contributory patent infringement, then " +
+                "this\n" +
+                " License, you may distribute the Program (including its Contributions) under the" +
+                " \n" +
+                "terms of any change. You must immediately discontinue any use of the date such litigation is filed.";
     }
 
     /**

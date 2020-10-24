@@ -12,7 +12,7 @@ public class Driver {
         PSystem system = null;
 
         //Choosing which JSON database to use
-        System.out.println("Woukd you like to use the default database? (y/n)");
+        System.out.println("Would you like to use the default database? (y/n)");
         char choice = input.next().charAt(0);
         if(choice == 'y' || choice == 'Y'){
             system = DataReader.read("data.json");
@@ -23,7 +23,8 @@ public class Driver {
         else{
             boolean isValid = false;
             while(!isValid){
-                System.out.println("Which database would you like to use? (or q for default)");
+                System.out.println("Which database would you like to use? (or \"default\" for " +
+                        "default)");
                 String database = input.next();
                 if(database.equals("default")){
                     system = DataReader.read("data.json");
@@ -53,16 +54,19 @@ public class Driver {
                 case "help":
                     System.out.println("The available commands are:" +
                             "\nhelp - Displays available commands" +
-                            "\nquit - quits the program");
+                            "\nquit - Quits the program" +
+                            "\nregister - Creates a new account");
                     break;
                 case "quit":
                     done = true;
+                    break;
+                case "register":
+                    system = createAccount(system);
                     break;
                 default:
                     System.out.println("\"" + command + "\" is not a valid command! Please type " +
                             "\"help\" for a list of commands");
             }
-
         }
 
 
@@ -70,5 +74,70 @@ public class Driver {
         System.out.println("Saving...");
         DataWriter.write(system);
         System.out.println("Goodbye!");
+    }
+
+    public static PSystem createAccount(PSystem system){
+        Scanner input = new Scanner(System.in);
+        String accountType;
+
+        //Choosing account type
+        System.out.print("Are you a student or a property manager?" + "\n>");
+        accountType = input.nextLine();
+
+        //Inputting information
+        if(accountType.equalsIgnoreCase("student") || accountType.equalsIgnoreCase("property " +
+                "manager")){
+            String username;
+            String password;
+            String name;
+            String dateOfBirth;
+            String homeAddress;
+            String email;
+            String phoneNumber;
+
+            System.out.print("Please input a username:" + "\n>");
+            username = input.nextLine();
+            System.out.print("Please input a password:" + "\n>");
+            password = input.nextLine();
+            System.out.print("Please input your name:" + "\n>");
+            name = input.nextLine();
+            System.out.print("Please input your date of birth:" + "\n>");
+            dateOfBirth = input.nextLine();
+            System.out.print("Please input your home address:" + "\n>");
+            homeAddress = input.nextLine();
+            System.out.print("Please input your e-mail address:" + "\n>");
+            email = input.nextLine();
+            System.out.print("Please input your phone number:" + "\n>");
+            phoneNumber = input.nextLine();
+
+            char acceptTOS;
+            System.out.println("TERMS OF SERVICE:\n" + system.getTOS());
+            System.out.print("\nDo you accept these terms? (y/n)" + "\n>");
+            acceptTOS = input.nextLine().charAt(0);
+
+            //Account creation
+            if(acceptTOS == 'y' || acceptTOS == 'Y'){
+                if(accountType.equalsIgnoreCase("student")){
+                    String StudentID;
+                    System.out.print("Almost there! Please enter your student ID:" + "\n>");
+                    StudentID = input.nextLine();
+                    system.createUserAccount(username,password,name,dateOfBirth,homeAddress,email
+                            ,phoneNumber,StudentID);
+                }
+                else{
+                    system.createManagerAccount(username,password,name,dateOfBirth,homeAddress,
+                            email,phoneNumber);
+                }
+                System.out.println("Account created!");
+            }
+            else{
+                System.out.println("You have accept the Terms of Service in order to create an " +
+                        "account.");
+            }
+        }
+        else {
+            System.out.println("ERROR: \"" + accountType + "\" is not a valid account type!");
+        }
+        return system;
     }
 }
