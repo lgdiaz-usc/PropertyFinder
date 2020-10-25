@@ -274,7 +274,30 @@ public class Property {
      * @return -> The description of the Property listing
      */
     public String toString(){
-        return null;
+        String output = "";
+        output = output.concat(title);
+        output = output.concat("\n" + address);
+        output = output.concat("\nManaged by: " + manager);
+        output = output.concat("\n" + description);
+        output = output.concat("\nMaximum capacity: " + capacity);
+        output = output.concat("\nUnits:");
+        for(Unit unit : units){
+            output = output.concat("\n" + unit.toString(address));
+        }
+        output = output.concat("\nRenters:");
+        for(String renter : renters){
+            output.concat("\n - " + renter);
+        }
+        output = output.concat("\nRent: $" + baseRent);
+        output = output.concat("\nAdditional fees: ");
+        for(String fee : extraFees)
+        output = output.concat("\nAverage rating: " + getAverageRating());
+        output = output.concat("\nReviews:");
+        for(Review review : reviews){
+            output = output.concat(review.toString());
+        }
+
+        return output;
     }
 
     /**

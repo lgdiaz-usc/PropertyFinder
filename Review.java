@@ -37,7 +37,11 @@ public class Review {
 	 * Returns a String interpretation of the User
 	 */
 	public String toString() {
-		return null;
+		String output = "";
+		output = output.concat("\n\t" + title + " - " + rating + "/10");
+		output = output.concat("\n\tBy " + author);
+		output = output.concat("\n\t" + description + "\n");
+		return output;
 	}
 	
 	/**

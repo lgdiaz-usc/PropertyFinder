@@ -23,7 +23,10 @@ public class Message {
 	 * Returns a String interpretation of the Message
 	 */
 	public String toString() {
-		return null;
+		String output = "";
+		output = output.concat("\n\t" + author);
+		output = output.concat("\n\t" + description);
+		return output;
 	}
 	
 	/**

@@ -81,8 +81,21 @@ public class Unit {
      * Returns a description of this Unit as a String
      * @return The description of this Unit
      */
-    public String toString() {
-        return null;
+    public String toString(String address) {
+        String output = "";
+        output = output.concat("\n\t" + address + " " + addressModifier);
+        output = output.concat("\n\tMaximum capacity: " + capacity);
+        output = output.concat("\n\tRenters:");
+        for(String renter : renters){
+            output = output.concat("\n\t - " + renter);
+        }
+        output = output.concat("\n\tAverage rating: " + getAverageRating());
+        output = output.concat("\n\tReviews:");
+        for(Review review : reviews){
+            output = output.concat(review.toString().replaceAll("\n", "\n\t"));
+        }
+
+        return output;
     }
 
     /**

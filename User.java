@@ -61,7 +61,15 @@ public class User extends Account{
 	 * @return String interpretation of User
 	 */
 	public String toString(String currentAccount) {
-		return null;
+		String output = "";
+		output = super.toString(currentAccount);
+		output = output.concat("\nStudent ID: " + studentID);
+		output = output.concat("\nCredit Score: " + creditScore);
+		output = output.concat("\nDisabilities: ");
+		for(String disability : disablities){
+			output = output.concat("\n - " + disability);
+		}
+		return output;
 	}
 	
 	/**

@@ -156,7 +156,24 @@ public class Account {
 	 * @return String representation of the messages of the User.
 	 */
 	public String getMessages(String currentAccount) {
-		return null;
+		String output = "";
+		output = output.concat("Username: " + username);
+		if(authenticate(currentAccount)){
+			output = output.concat("\nPassword: " + password);
+		}
+		output = output.concat("\nE-mail address: " + email);
+		output = output.concat("\nPhone number: " + phoneNumber);
+		if(authenticate(currentAccount)){
+			output = output.concat("\nAddress: " + homeAddress);
+			output = output.concat("\nDate of birth: " + dateOfBirth);
+		}
+		output = output.concat("\nAverage rating: " + getAverageRating() + "/10");
+		output = output.concat("\nReviews: ");
+		for(Review review : reviews){
+			output = output.concat(review.toString());
+		}
+
+		return output;
 	}
 
 	/**
