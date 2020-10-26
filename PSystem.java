@@ -207,7 +207,26 @@ public class PSystem {
      * @return A list of all PropertyManager's that matched the query
      */
     public ArrayList<PropertyManager> searchManager(String query){
-        return null;
+        ArrayList<PropertyManager> results = new ArrayList<PropertyManager>();
+
+        //1st Priority search - Exact match
+        for(PropertyManager manager : propertyManagers){
+            if(manager.username.equalsIgnoreCase(query) || manager.name.equalsIgnoreCase(query)){
+                results.add(manager);
+            }
+        }
+
+        //2nd Priority search - Partial match
+        for(PropertyManager manager : propertyManagers){
+            if(!results.contains(manager)){
+                for(String part : query.split(" ")){
+                    if(!results.contains(manager) && (manager.username.contains(part) || manager.name.contains(part))){
+                        results.add(manager);
+                    }
+                }
+            }
+        }
+        return results;
     }
 
     /**
@@ -216,7 +235,26 @@ public class PSystem {
      * @return A list of all User's that matched the query
      */
     public ArrayList<User> searchUser(String query){
-        return null;
+        ArrayList<User> results = new ArrayList<User>();
+
+        //1st Priority search - Exact match
+        for(User user : users){
+            if(user.username.equalsIgnoreCase(query) || user.name.equalsIgnoreCase(query)){
+                results.add(user);
+            }
+        }
+
+        //2nd Priority search - Partial match
+        for(User user : users){
+            if(!results.contains(user)){
+                for(String part : query.split(" ")){
+                    if(!results.contains(user) && (user.username.contains(part) || user.name.contains(part))){
+                        results.add(user);
+                    }
+                }
+            }
+        }
+        return results;
     }
 
     /**
