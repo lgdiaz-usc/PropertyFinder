@@ -1,5 +1,6 @@
 package PropertyFinder;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -9,7 +10,6 @@ public class Driver {
     public static void main(String[] args){
         Scanner input = new Scanner(System.in);
         boolean done = false;
-        int menu = 0;
         PSystem system = null;
 
         //Choosing which JSON database to use
@@ -47,7 +47,7 @@ public class Driver {
         }
         
 	        	//UI Loop for MAIN MENU command
-	            while(!done && (menu != 1 || menu != 2))
+	            while(!done)
 	            {
 	                System.out.print("Please enter a command:" + "\n>");
 	                String command = input.next();
@@ -59,13 +59,14 @@ public class Driver {
 	                                "\nhelp - Displays available commands" +
 	                                "\nquit - Quits the program" +
 	                                "\nlogin - Login into account" +
-	                                "\nregister - Creates a new account");
+	                                "\nregister - Creates a new account" +
+                                    "\nsearch - Searches for accounts and property listings");
 	                        break;
 	                    case "quit":
 	                        done = true;
 	                        break;
 	                    case "login":
-	                    	int value = login(system, menu);
+	                    	int value = login(system);
 	                    	if(value == 1)
 		                    {
 		                    	system = displayUserMenu(system);
@@ -76,14 +77,13 @@ public class Driver {
 		                    	system = displayPMMenu(system);
 		                    	break;
 		                    }
-		                    else 
-		                    {
-		                    	
-		                    }
 		                    	break;
 	                    case "register":
 	                        system = createAccount(system);
 	                        break;
+                        case "search":
+                            search(system);
+                            break;
 	                    default:
 	                        System.out.println("\"" + command + "\" is not a valid command! Please type " +
 	                                "\"help\" for a list of commands");
@@ -113,12 +113,16 @@ public class Driver {
             case "help":
                 System.out.println("The available commands are:" +
                         "\nhelp - Displays available commands" +
-                        "\nlogout - Log out of account");
+                        "\nlogout - Log out of account" +
+                        "\nsearch - Searches for accounts and property listings");
                 break;
             case "logout":
             	system = logout(system);
             	done = true;
             	break;
+            case "search":
+                search(system);
+                break;
                 default:
                     System.out.println("\"" + command + "\" is not a valid command! Please type " +
                             "\"help\" for a list of commands");
@@ -144,12 +148,16 @@ public class Driver {
                 case "help":
                     System.out.println("The available commands are:" +
                             "\nhelp - Displays available commands" +
-                            "\nlogout - Log out of account");
+                            "\nlogout - Log out of account" +
+                            "\nsearch - Searches for accounts and property listings");
                     break;
                 case "logout":
                 	system = logout(system);
                 	done = true;
                 	break;
+                case "search":
+                    search(system);
+                    break;
                 default:
                     System.out.println("\"" + command + "\" is not a valid command! Please type " +
                             "\"help\" for a list of commands");
@@ -224,7 +232,7 @@ public class Driver {
         return system;
     }
     
-    public static int login(PSystem system, int menu) {
+    public static int login(PSystem system) {
     	Scanner input = new Scanner(System.in);
     	
     	//Inputting information
@@ -246,5 +254,95 @@ public class Driver {
     	
     	//Return to the main menu
     	return system;
+    }
+
+    public static void search(PSystem system){
+        Scanner input = new Scanner(System.in);
+        String searchType;
+
+        //Input search type
+        System.out.print("What would you like to search for? (user/manager/property)" + "\n>");
+        searchType = input.next();
+        if(searchType.equalsIgnoreCase("user") || searchType.equalsIgnoreCase("manager")
+            || searchType.equalsIgnoreCase("property")){
+            //Input search terms
+            input = new Scanner(System.in);
+            System.out.print("Please enter your search terms:" + "\n>");
+            String query = input.nextLine();
+
+            int sortType;
+            boolean isDescending;
+            //Search and sort
+            if(searchType.equalsIgnoreCase("user")){
+                ArrayList<User> results = system.searchUser(query);
+                System.out.print("How would you like to sort the results?" +
+                        "\n1: By relevancy" +
+                        "\n2: By name" +
+                        "\n3: By rating" +
+                        "\n>");
+                sortType = input.nextInt();
+                System.out.print("Would you like your results in descend order? (y/n)" + "\n>");
+                String order = input.next();
+                if(order.equalsIgnoreCase("y")){
+                    isDescending = true;
+                }
+                else{
+                    isDescending = false;
+                }
+
+                 if(sortType == 2){
+                    results = system.sortUserByName(results, isDescending);
+                }
+                else if(sortType == 3){
+                    results = system.sortUserByRating(results, isDescending);
+                }
+                else if(isDescending){
+                    results = system.descendSort(results);
+                }
+
+                //Display User results
+                for(User user : results){
+                    System.out.println(user.toString(null));
+                }
+            }
+            else if(searchType.equalsIgnoreCase("manager")){
+                ArrayList<PropertyManager> results = system.searchManager(query);
+                System.out.print("How would you like to sort the results?" +
+                        "\n1: By relevancy" +
+                        "\n2: By name" +
+                        "\n3: By rating" +
+                        "\n>");
+                sortType = input.nextInt();
+                System.out.print("Would you like your results in descend order? (y/n)" + "\n>");
+                String order = input.next();
+                if(order.equalsIgnoreCase("y")){
+                    isDescending = true;
+                }
+                else{
+                    isDescending = false;
+                }
+
+                if(sortType == 2){
+                    results = system.sortManagerByName(results, isDescending);
+                }
+                else if(sortType == 3){
+                    results = system.sortManagerByRating(results, isDescending);
+                }
+                else if(isDescending){
+                    results = system.descendSort(results);
+                }
+
+                //Display Property Manager results
+                for(PropertyManager manager : results){
+                    System.out.println(manager.toString(null));
+                }
+            }
+            else{
+                //TODO Property search
+            }
+        }
+        else{
+            System.out.println("ERROR: Invalid search type!");
+        }
     }
 }

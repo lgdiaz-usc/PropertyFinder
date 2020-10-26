@@ -50,7 +50,7 @@ public class Account {
 	 */
 	public boolean authenticate(String currentAccount) {
 		boolean check = false;
-		if (currentAccount.equals(username)) {
+		if (currentAccount != null && currentAccount.equals(username)) {
 			check = true;
 		} else {
 			check = false;
@@ -156,7 +156,25 @@ public class Account {
 	 * @return String interpretation of the account of the User.
 	 */
 	public String toString(String currentAccount) {
-		return null;
+		String output = "";
+		output = output.concat(name);
+		output = output.concat("\nUsername: " + username);
+		if (authenticate(currentAccount)) {
+			output = output.concat("\nPassword: " + password);
+		}
+		output = output.concat("\nE-mail address: " + email);
+		output = output.concat("\nPhone number: " + phoneNumber);
+		if (authenticate(currentAccount)) {
+			output = output.concat("\nAddress: " + homeAddress);
+			output = output.concat("\nDate of birth: " + dateOfBirth);
+		}
+		output = output.concat("\nAverage rating: " + getAverageRating() + "/10");
+		output = output.concat("\nReviews: ");
+		for (Review review : reviews) {
+			output = output.concat(review.toString());
+		}
+
+		return output;
 	}
 
 	/**
@@ -176,24 +194,7 @@ public class Account {
 	 * @return String representation of the messages of the User.
 	 */
 	public String getMessages(String currentAccount) {
-		String output = "";
-		output = output.concat("Username: " + username);
-		if (authenticate(currentAccount)) {
-			output = output.concat("\nPassword: " + password);
-		}
-		output = output.concat("\nE-mail address: " + email);
-		output = output.concat("\nPhone number: " + phoneNumber);
-		if (authenticate(currentAccount)) {
-			output = output.concat("\nAddress: " + homeAddress);
-			output = output.concat("\nDate of birth: " + dateOfBirth);
-		}
-		output = output.concat("\nAverage rating: " + getAverageRating() + "/10");
-		output = output.concat("\nReviews: ");
-		for (Review review : reviews) {
-			output = output.concat(review.toString());
-		}
-
-		return output;
+		return null;
 	}
 
 	/**

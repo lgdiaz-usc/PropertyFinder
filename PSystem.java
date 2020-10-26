@@ -267,7 +267,8 @@ public class PSystem {
         for(PropertyManager manager : propertyManagers){
             if(!results.contains(manager)){
                 for(String part : query.split(" ")){
-                    if(!results.contains(manager) && (manager.username.contains(part) || manager.name.contains(part))){
+                    if(!results.contains(manager) && (manager.username.toLowerCase().contains(part.toLowerCase())
+                            || manager.name.toLowerCase().contains(part.toLowerCase()))){
                         results.add(manager);
                     }
                 }
@@ -295,7 +296,8 @@ public class PSystem {
         for(User user : users){
             if(!results.contains(user)){
                 for(String part : query.split(" ")){
-                    if(!results.contains(user) && (user.username.contains(part) || user.name.contains(part))){
+                    if(!results.contains(user) && (user.username.toLowerCase().contains(part.toLowerCase())
+                            || user.name.toLowerCase().contains(part.toLowerCase()))){
                         results.add(user);
                     }
                 }
@@ -379,10 +381,10 @@ public class PSystem {
 
     /**
      * Reverses the order of a list.
-     * @param list The lis to be reversed
+     * @param list The list to be reversed
      * @return The reversed list
      */
-    private ArrayList descendSort(ArrayList list){
+    public ArrayList descendSort(ArrayList list){
         return null;
     }
 
