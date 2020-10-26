@@ -20,6 +20,7 @@ public class Account {
 
 	/**
 	 * Parameterized constructor for Account
+	 * 
 	 * @param username    -> The username for the User
 	 * @param password    -> The password for the User
 	 * @param name        -> The name of the User
@@ -30,28 +31,36 @@ public class Account {
 	 */
 	public Account(String username, String password, String name, String dateOfBirth, String homeAddress, String email,
 			String phoneNumber) {
-		 this.username = username;
-		 this.password = password; 
-		 this.name = name;
-		 this.dateOfBirth = dateOfBirth; 
-		 this.homeAddress = homeAddress; 
-		 this.email = email;
-		 this.phoneNumber = phoneNumber;
-		 reviews = new ArrayList<Review>();
-		 messages = new ArrayList<Message>();
+		this.username = username;
+		this.password = password;
+		this.name = name;
+		this.dateOfBirth = dateOfBirth;
+		this.homeAddress = homeAddress;
+		this.email = email;
+		this.phoneNumber = phoneNumber;
+		reviews = new ArrayList<Review>();
+		messages = new ArrayList<Message>();
 	}
 
 	/**
 	 * Authenticates the User's account.
+	 * 
 	 * @param currentAccount -> The account being authenticated
 	 * @return Whether or not currentAccount matches username
 	 */
 	public boolean authenticate(String currentAccount) {
-		return false;
+		boolean check = false;
+		if (currentAccount.equals(username)) {
+			check = true;
+		} else {
+			check = false;
+		}
+		return check;
 	}
 
 	/**
 	 * Updates the name of User
+	 * 
 	 * @param currentAccount -> The account of the User
 	 * @param name           -> The name of the User
 	 */
@@ -61,6 +70,7 @@ public class Account {
 
 	/**
 	 * Updates the date of birth of the User
+	 * 
 	 * @param currentAccount -> The account of the User
 	 * @param dateOfBirth    -> The date of birth of the User
 	 */
@@ -70,6 +80,7 @@ public class Account {
 
 	/**
 	 * Updates the home address of the User
+	 * 
 	 * @param currentAccount -> The account of the User
 	 * @param homeAddress    -> The home address of the User
 	 */
@@ -79,6 +90,7 @@ public class Account {
 
 	/**
 	 * Updates the email of the User
+	 * 
 	 * @param currentAccount -> The account of the User
 	 * @param email          -> The email of the User
 	 */
@@ -88,6 +100,7 @@ public class Account {
 
 	/**
 	 * Updates the phone number of the User
+	 * 
 	 * @param currentAccount -> The account of the User
 	 * @param phoneNumber    -> The phone number of the User
 	 */
@@ -97,6 +110,7 @@ public class Account {
 
 	/**
 	 * Updates the username of the User
+	 * 
 	 * @param currentAccount -> The account of the User
 	 * @param username       -> The username of the User
 	 */
@@ -106,6 +120,7 @@ public class Account {
 
 	/**
 	 * Updates the password of the User
+	 * 
 	 * @param currentAccount -> The account of the User
 	 * @param password       -> The password of the User
 	 */
@@ -115,6 +130,7 @@ public class Account {
 
 	/**
 	 * Creates and adds a Review to reviews.
+	 * 
 	 * @param rating      -> Rating of the Review (out of 10)
 	 * @param title       -> The title of the Review
 	 * @param description -> The description of the Review
@@ -126,6 +142,7 @@ public class Account {
 
 	/**
 	 * Return the average rating for all Reviews in reviews
+	 * 
 	 * @return The average rating
 	 */
 	public int getAverageRating() {
@@ -134,6 +151,7 @@ public class Account {
 
 	/**
 	 * Returns a String interpretation of the Account.
+	 * 
 	 * @param currentAccount -> The account of the user
 	 * @return String interpretation of the account of the User.
 	 */
@@ -143,6 +161,7 @@ public class Account {
 
 	/**
 	 * Creates and adds a Message to messages
+	 * 
 	 * @param currentAccount -> The account of the user
 	 * @param description    -> The description of the message
 	 */
@@ -152,24 +171,25 @@ public class Account {
 
 	/**
 	 * Returns a String representation of all Messages in messages
+	 * 
 	 * @param currentAccount -> The account of the user
 	 * @return String representation of the messages of the User.
 	 */
 	public String getMessages(String currentAccount) {
 		String output = "";
 		output = output.concat("Username: " + username);
-		if(authenticate(currentAccount)){
+		if (authenticate(currentAccount)) {
 			output = output.concat("\nPassword: " + password);
 		}
 		output = output.concat("\nE-mail address: " + email);
 		output = output.concat("\nPhone number: " + phoneNumber);
-		if(authenticate(currentAccount)){
+		if (authenticate(currentAccount)) {
 			output = output.concat("\nAddress: " + homeAddress);
 			output = output.concat("\nDate of birth: " + dateOfBirth);
 		}
 		output = output.concat("\nAverage rating: " + getAverageRating() + "/10");
 		output = output.concat("\nReviews: ");
-		for(Review review : reviews){
+		for (Review review : reviews) {
 			output = output.concat(review.toString());
 		}
 
@@ -178,6 +198,7 @@ public class Account {
 
 	/**
 	 * Returns the contents of Account in JSON format
+	 * 
 	 * @return The JSON interpretation of the Account content
 	 */
 	public JSONObject toJSON() {
@@ -190,14 +211,13 @@ public class Account {
 		account.put("e-mail", email);
 		account.put("phone number", phoneNumber);
 
-
 		JSONArray reviewArray = new JSONArray();
-		for(Review review : reviews){
+		for (Review review : reviews) {
 			reviewArray.add(review.toJSON());
 		}
 
 		JSONArray messageArray = new JSONArray();
-		for(Message message : messages){
+		for (Message message : messages) {
 			messageArray.add(message.toJSON());
 		}
 

@@ -9,6 +9,7 @@ public class Driver {
     public static void main(String[] args){
         Scanner input = new Scanner(System.in);
         boolean done = false;
+        int menu = 0;
         PSystem system = null;
 
         //Choosing which JSON database to use
@@ -44,38 +45,117 @@ public class Driver {
                 }
             }
         }
-
-        //UI Loop
-        while(!done){
-            System.out.print("Please enter a command:" + "\n>");
-            String command = input.next();
-
-            switch(command){
-                case "help":
-                    System.out.println("The available commands are:" +
-                            "\nhelp - Displays available commands" +
-                            "\nquit - Quits the program" +
-                            "\nregister - Creates a new account");
-                    break;
-                case "quit":
-                    done = true;
-                    break;
-                case "register":
-                    system = createAccount(system);
-                    break;
-                default:
-                    System.out.println("\"" + command + "\" is not a valid command! Please type " +
-                            "\"help\" for a list of commands");
-            }
-        }
-
-
+        
+	        	//UI Loop for MAIN MENU command
+	            while(!done && (menu != 1 || menu != 2))
+	            {
+	                System.out.print("Please enter a command:" + "\n>");
+	                String command = input.next();
+	
+	                switch(command)
+	                {
+	                    case "help":
+	                        System.out.println("The available commands are:" +
+	                                "\nhelp - Displays available commands" +
+	                                "\nquit - Quits the program" +
+	                                "\nlogin - Login into account" +
+	                                "\nregister - Creates a new account");
+	                        break;
+	                    case "quit":
+	                        done = true;
+	                        break;
+	                    case "login":
+	                    	int value = login(system, menu);
+	                    	if(value == 1)
+		                    {
+		                    	displayUserMenu();
+		                    	System.out.println("Your should be in user menu");
+		                    	break;
+		                    }
+		                    else if(value == 2) 
+		                    {
+		                    	displayPMMenu();		                   
+		                    	break;
+		                    }
+		                    else 
+		                    {
+		                    	
+		                    }
+		                    	break;
+	                    case "register":
+	                        system = createAccount(system);
+	                        break;
+	                    default:
+	                        System.out.println("\"" + command + "\" is not a valid command! Please type " +
+	                                "\"help\" for a list of commands");
+	                }
+	            }
+        
+    
         //Saves data upon completion
         System.out.println("Saving...");
         DataWriter.write(system);
         System.out.println("Goodbye!");
     }
+    
+    public static void displayUserMenu() {
+    	  boolean done = false;
+          PSystem system = DataReader.read("data.json");
+          Scanner input = new Scanner(System.in);
+          System.out.println("*****STUDENT MENU*****");
 
+    	//UI Loop for USER commands
+        while(!done)
+        {
+            System.out.print("Please enter a command:" + "\n>");
+            String command = input.next();
+
+            switch(command)
+            {
+            case "help":
+                System.out.println("The available commands are:" +
+                        "\nhelp - Displays available commands" +
+                        "\nlogout - Log out of account");
+                break;
+            case "logout":
+            	system = logout(system);
+            	break;
+                default:
+                    System.out.println("\"" + command + "\" is not a valid command! Please type " +
+                            "\"help\" for a list of commands");
+            }
+        }
+    }
+    
+    public static void displayPMMenu() {
+        boolean done = false;
+        PSystem system = DataReader.read("data.json");
+        Scanner input = new Scanner(System.in);
+        System.out.println("*****PROPERTY MANAGER MENU*****");
+    	
+        //UI Loop for MANAGER commands
+        while(!done)
+        {
+            System.out.print("Please enter a command:" + "\n>");
+            String command = input.next();
+
+            switch(command)
+            {
+                case "help":
+                    System.out.println("The available commands are:" +
+                            "\nhelp - Displays available commands" +
+                            "\nlogout - Log out of account");
+                    break;
+                case "logout":
+                	system = logout(system);
+                	break;
+                default:
+                    System.out.println("\"" + command + "\" is not a valid command! Please type " +
+                            "\"help\" for a list of commands");
+            }
+        }
+    }
+    
     public static PSystem createAccount(PSystem system){
         Scanner input = new Scanner(System.in);
         String accountType;
@@ -139,5 +219,30 @@ public class Driver {
             System.out.println("ERROR: \"" + accountType + "\" is not a valid account type!");
         }
         return system;
+    }
+    
+    public static int login(PSystem system, int menu) {
+    	Scanner input = new Scanner(System.in);
+    	
+    	//Inputting information
+    	String username, password;
+    	System.out.println("Please log in:");
+    	System.out.print("Enter your username:" + "\n>");
+    	username = input.nextLine();
+    	System.out.print("Enter your password:" + "\n>");
+    	password = input.nextLine();
+    	
+    	//Login to Account
+    	return system.login(username, password);
+    }  
+
+	public static PSystem logout(PSystem system) {
+    	//Logout of Account
+		system.logout();
+    	System.out.println("You are logged out.");
+    	
+    	//Return to the main menu
+    	main(null);
+    	return system;
     }
 }

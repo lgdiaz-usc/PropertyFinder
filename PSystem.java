@@ -113,16 +113,63 @@ public class PSystem {
      * Allow the user to log in to their Account
      * @param username The username of the Account
      * @param Password The password of the Account
+     * @return 1 if user is signed in, 2 if manager is signed in, and 0 if login failure
      */
-    public void login(String username, String Password){
-
-    }
+    public int login(String username, String Password) {
+	   	currentAccount = null;
+	   	boolean access = false;
+	   	boolean userMenu = false;
+	   	boolean pmMenu = false; 
+	   	int menu = 0;
+	   		//Searches through users for username and password.
+		     for(User user : users)
+		     {
+		         if(username.equals(user.username) && Password.equals(user.password)) 
+		         {
+		             access = true;
+		             userMenu = true;
+		             break;
+		         }
+		     }
+		     //Searches through property managers for username and password.
+		     for(PropertyManager manager : propertyManagers)
+		     {
+		         if(username.equals(manager.username) && Password.equals(manager.password)) 
+		         {
+		             access = true;
+		             pmMenu = true;
+		             break;
+		         }
+		     }
+		     //Login Successful for User
+		     if(access && userMenu) 
+		     {
+		     	currentAccount = username;
+		      	System.out.println("Welcome " + currentAccount + ", you are logged in.");
+		      	menu = 1;
+		     }
+		     //Login Successful for Manager
+		     else if(access && pmMenu) 
+		     {
+		     	currentAccount = username;
+		      	System.out.println("Welcome " + currentAccount + ", you are logged in.");
+		      	menu = 2;
+		     }
+		     //Login Failed
+		     else 
+		     {
+		    	 System.out.println("Incorrect username or password");	    	 
+		     }
+			return menu;
+		     
+}    
 
     /**
      * Allows the user to log out of their Account
      */
-    public void logout(){
-
+    public void logout() {
+    	System.out.println("Logging out...");
+    	currentAccount = null;
     }
 
     /**
