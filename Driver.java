@@ -338,7 +338,40 @@ public class Driver {
                 }
             }
             else{
-                //TODO Property search
+                ArrayList<Property> results = system.searchProperty(query);
+                System.out.print("How would you like to sort the results?" +
+                        "\n1: By relevancy" +
+                        "\n2: By title" +
+                        "\n3: By rating" +
+                        "\n4: By price" +
+                        "\n>");
+                sortType = input.nextInt();
+                System.out.print("Would you like your results in descend order? (y/n)" + "\n>");
+                String order = input.next();
+                if(order.equalsIgnoreCase("y")){
+                    isDescending = true;
+                }
+                else{
+                    isDescending = false;
+                }
+
+                if(sortType == 2){
+                    results = system.sortPropertyByTitle(results, isDescending);
+                }
+                else if(sortType == 3){
+                    results = system.sortPropertyByRating(results, isDescending);
+                }
+                else if(sortType == 4){
+                    results = system.sortPropertyByPrice(results, isDescending);
+                }
+                else if(isDescending){
+                    results = system.descendSort(results);
+                }
+
+                //Display Property Manager results
+                for(Property property : results){
+                    System.out.println(property.toString());
+                }
             }
         }
         else{
