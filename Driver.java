@@ -68,13 +68,12 @@ public class Driver {
 	                    	int value = login(system, menu);
 	                    	if(value == 1)
 		                    {
-		                    	displayUserMenu();
-		                    	System.out.println("Your should be in user menu");
+		                    	system = displayUserMenu(system);
 		                    	break;
 		                    }
 		                    else if(value == 2) 
 		                    {
-		                    	displayPMMenu();		                   
+		                    	system = displayPMMenu(system);
 		                    	break;
 		                    }
 		                    else 
@@ -98,9 +97,8 @@ public class Driver {
         System.out.println("Goodbye!");
     }
     
-    public static void displayUserMenu() {
+    public static PSystem displayUserMenu(PSystem system) {
     	  boolean done = false;
-          PSystem system = DataReader.read("data.json");
           Scanner input = new Scanner(System.in);
           System.out.println("*****STUDENT MENU*****");
 
@@ -119,17 +117,19 @@ public class Driver {
                 break;
             case "logout":
             	system = logout(system);
+            	done = true;
             	break;
                 default:
                     System.out.println("\"" + command + "\" is not a valid command! Please type " +
                             "\"help\" for a list of commands");
             }
         }
+
+        return system;
     }
     
-    public static void displayPMMenu() {
+    public static PSystem displayPMMenu(PSystem system) {
         boolean done = false;
-        PSystem system = DataReader.read("data.json");
         Scanner input = new Scanner(System.in);
         System.out.println("*****PROPERTY MANAGER MENU*****");
     	
@@ -148,12 +148,15 @@ public class Driver {
                     break;
                 case "logout":
                 	system = logout(system);
+                	done = true;
                 	break;
                 default:
                     System.out.println("\"" + command + "\" is not a valid command! Please type " +
                             "\"help\" for a list of commands");
             }
         }
+
+        return system;
     }
     
     public static PSystem createAccount(PSystem system){
@@ -242,7 +245,6 @@ public class Driver {
     	System.out.println("You are logged out.");
     	
     	//Return to the main menu
-    	main(null);
     	return system;
     }
 }
