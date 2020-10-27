@@ -1,6 +1,8 @@
 package PropertyFinder;
 
 import java.util.ArrayList;
+
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 /**
@@ -80,7 +82,13 @@ public class User extends Account{
 		JSONObject user = super.toJSON();
 		user.put("student ID", studentID);
 		user.put("credit score", creditScore);
-		user.put("disabilities", disablities);
+
+		JSONArray disabilityArray = new JSONArray();
+		for(String disability : disablities){
+			disabilityArray.add(disability);
+		}
+
+		user.put("disabilities", disabilityArray);
 
 		return user;
 	}

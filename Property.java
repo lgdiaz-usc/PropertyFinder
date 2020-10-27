@@ -312,8 +312,16 @@ public class Property {
         property.put("address", address);
         property.put("capacity", capacity);
         property.put("base rent", baseRent);
-        property.put("extra fees", extraFees);
-        property.put("renters", renters);
+
+        JSONArray renterArray = new JSONArray();
+        for(String renter : renters){
+            renterArray.add(renter);
+        }
+
+        JSONArray feeArray = new JSONArray();
+        for(String fee : extraFees){
+            feeArray.add(fee);
+        }
 
         JSONArray unitArray = new JSONArray();
         for(Unit unit : units){
@@ -325,6 +333,8 @@ public class Property {
             reviewArray.add(review.toJSON());
         }
 
+        property.put("renters", renterArray);
+        property.put("extra fees", feeArray);
         property.put("reviews", reviewArray);
         property.put("units", unitArray);
 

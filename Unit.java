@@ -106,13 +106,18 @@ public class Unit {
         JSONObject unit = new JSONObject();
         unit.put("address modifier", addressModifier);
         unit.put("capacity", capacity);
-        unit.put("renters", renters.toArray());
+
+        JSONArray renterArray = new JSONArray();
+        for(String renter : renters){
+            renterArray.add(renter);
+        }
 
         JSONArray reviewArray = new JSONArray();
         for(Review review : reviews){
             reviewArray.add(review.toJSON());
         }
 
+        unit.put("renters", renterArray);
         unit.put("reviews", reviewArray);
 
         return unit;

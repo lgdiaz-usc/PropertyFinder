@@ -169,7 +169,9 @@ public class DataReader {
             int Ucapacity = Math.toIntExact((long)Junit.get("capacity"));
             property.addUnit(addressModifier, Ucapacity, manager);
 
-            for(String renter : (String[])Junit.get("renters")){
+            JSONArray UrenterArray = (JSONArray) Junit.get("renters");
+            for(int i = 0; i < UrenterArray.size(); i++){
+                String renter = (String)UrenterArray.get(i);
                 property.addUnitRenter(renter, addressModifier, manager);
             }
 
