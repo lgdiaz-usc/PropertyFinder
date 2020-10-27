@@ -338,7 +338,27 @@ public class PSystem {
 	 * @return The sorted list of PropertyManager's
 	 */
 	public ArrayList<PropertyManager> sortManagerByName(ArrayList<PropertyManager> managers, boolean descending) {
-		return null;
+		for(int i=1; i < managers.size(); i++){
+			boolean hasSwapped = false;
+			for(int j=0; j < managers.size() - i; j++){
+				String temp = alphanumCheck(managers.get(j).name, managers.get(j+1).name);
+				if(temp.equals(managers.get(j).name)){
+					PropertyManager tempManager = managers.get(j);
+					managers.set(j, managers.get(j+1));
+					managers.set(j+1, tempManager);
+					hasSwapped = true;
+				}
+			}
+			if(!hasSwapped){
+				break;
+			}
+		}
+
+		if(descending){
+			managers = descendSort(managers);
+		}
+
+		return managers;
 	}
 
 	/**
@@ -349,7 +369,26 @@ public class PSystem {
 	 * @return The sorted list of PropertyManager's
 	 */
 	public ArrayList<PropertyManager> sortManagerByRating(ArrayList<PropertyManager> managers, boolean descending) {
-		return null;
+		for(int i=1; i < managers.size(); i++){
+			boolean hasSwapped = false;
+			for(int j=0; j < managers.size() - i; j++){
+				if(managers.get(j).getAverageRating() > managers.get(j+1).getAverageRating()){
+					PropertyManager tempManager = managers.get(j);
+					managers.set(j, managers.get(j+1));
+					managers.set(j+1, tempManager);
+					hasSwapped = true;
+				}
+			}
+			if(!hasSwapped){
+				break;
+			}
+		}
+
+		if(descending){
+			managers = descendSort(managers);
+		}
+
+		return managers;
 	}
 
 	/**
@@ -386,6 +425,38 @@ public class PSystem {
 			listReversed.add(list.get(i));
 		}
 		return listReversed;
+	}
+
+	/**
+	 * Determines which of two Strings is lower in alphatical order
+	 * @param s1 One String being checked
+	 * @param s2 The other String being checked
+	 * @return The lower String
+	 */
+	private String alphanumCheck(String s1, String s2){
+		int size = Math.max(s1.length(), s2.length());
+
+		for(int i=0; i < size; i++){
+			try{
+				char c1 = s1.toLowerCase().trim().charAt(i);
+				char c2 = s2.toLowerCase().trim().charAt(i);
+				if(c1 > c2){
+					return s1;
+				}
+				else if(c1 < c2){
+					return s2;
+				}
+			}
+			catch(ArrayIndexOutOfBoundsException e){
+				if(size == s1.length()){
+					return s1;
+				}
+				else{
+					return s2;
+				}
+			}
+		}
+		return s2;
 	}
 
 	/**
