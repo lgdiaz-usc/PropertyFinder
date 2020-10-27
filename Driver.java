@@ -149,11 +149,15 @@ public class Driver {
                     System.out.println("The available commands are:" +
                             "\nhelp - Displays available commands" +
                             "\nlogout - Log out of account" +
+                            "\naddProperty - Displays available commands" +
                             "\nsearch - Searches for accounts and property listings");
                     break;
                 case "logout":
                 	system = logout(system);
                 	done = true;
+                	break;
+                case "addProperty":
+                	system = addProperty(system);
                 	break;
                 case "search":
                     search(system);
@@ -378,4 +382,22 @@ public class Driver {
             System.out.println("ERROR: Invalid search type!");
         }
     }
+    
+    private static PSystem addProperty(PSystem system) {
+		Scanner input = new Scanner(System.in);
+		
+		System.out.println("Please enter property title." + "\n>");
+		String title = input.nextLine();
+		System.out.println("Please enter a description." + "\n>");
+		String description = input.nextLine();
+		System.out.println("Please enter the address." + "\n>");
+		String address = input.nextLine();
+		System.out.println("Please enter property capacity." + "\n>");
+		int capacity = input.nextInt();
+		System.out.println("Please enter the base rent."+ "\n>");
+		double baseRent = input.nextDouble();
+
+		system.addProperty(title, description, address, capacity, baseRent);
+		return system;
+	}
 }
