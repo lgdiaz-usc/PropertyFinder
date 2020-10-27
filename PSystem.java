@@ -381,7 +381,11 @@ public class PSystem {
 	 * @return The reversed list
 	 */
 	public ArrayList descendSort(ArrayList list) {
-		return null;
+		ArrayList listReversed = new ArrayList();
+		for(int i=list.size() - 1; i >= 0; i--){
+			listReversed.add(list.get(i));
+		}
+		return listReversed;
 	}
 
 	/**

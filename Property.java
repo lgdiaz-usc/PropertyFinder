@@ -293,7 +293,7 @@ public class Property {
         output = output.concat("\nMaximum capacity: " + capacity);
         output = output.concat("\nUnits:");
         for(Unit unit : units){
-            output = output.concat("\n" + unit.toString(address));
+            output = output.concat(unit.toString(address));
         }
         output = output.concat("\nRenters:");
         for(String renter : renters){
