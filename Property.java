@@ -124,7 +124,7 @@ public class Property {
      * @param currentAccount The current Account
      */
     public void addRenter(String renter, String currentAccount) {
-
+    	renters.add(new String(renter));
     }
 
     /**

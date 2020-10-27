@@ -150,7 +150,8 @@ public class Driver {
                             "\nhelp - Displays available commands" +
                             "\nlogout - Log out of account" +
                             "\naddProperty - Adds property listing" +
-                            "\naddUnit - Adds unit for property" +
+                            "\naddUnit - Adds unit for listing" +
+                            "\naddRenter - Adds renter for listing" +
                             "\nsearch - Searches for accounts and property listings");
                     break;
                 case "logout":
@@ -162,6 +163,9 @@ public class Driver {
                 	break;
                 case "addUnit":
                 	system = addUnit(system);
+                	break;
+                case "addRenter":
+                	system = addRenter(system);
                 	break;
                 case "search":
                     search(system);
@@ -420,6 +424,20 @@ public class Driver {
     	
     	//Adds Unit
     	system.addUnit(propertyName, addressModifier, capacity);
+    	return system;
+    }
+    
+    private static PSystem addRenter(PSystem system) {
+    	Scanner input = new Scanner(System.in);
+    	
+    	//Inputting information
+		System.out.println("Please enter property name." + "\n>");
+    	String propertyName = input.nextLine();
+		System.out.println("Please enter renter's username." + "\n>");
+    	String renterName = input.nextLine();
+    	
+    	//Adds Renter
+    	system.addRenter(propertyName, renterName);
     	return system;
     }
 }

@@ -212,7 +212,7 @@ public class PSystem {
 	 * @return A list of all Property's that matched the query
 	 */
 	public ArrayList<Property> searchProperty(String query) {
-		
+
 		return null;
 	}
 
@@ -400,7 +400,41 @@ public class PSystem {
 	 * @param renterName    The username of the User being added to the Property
 	 */
 	public void addRenter(String propertyTitle, String renterName) {
-
+		boolean userExist = false;
+		boolean propertyExist = false;
+		//Checks if the user exists
+		for (User user : users) {
+			if (user.username.equals(renterName))
+				userExist = true;
+		}
+		//Checks if the property exists
+		if (userExist == true) {
+			for (PropertyManager manager : propertyManagers) 
+			{
+				for (Property property : properties) {
+					String title = property.getTitle();
+					// checks if property exist.
+					if (title.equals(propertyTitle) && currentAccount.equals(manager.username)) 
+					{
+						// Adds renter for current address.
+						property.addRenter(renterName, currentAccount);
+						propertyExist = true;
+					}
+				}
+			}
+			if (propertyExist == true) 
+			{
+				System.out.println("Renter Added");
+			} 
+			else 
+			{
+				System.out.println("Property doesn't exist. Cannot add Renter.");
+			}
+		} 
+		else 
+		{
+			System.out.println("User doesn't exists. Cannot add renter.");
+		}
 	}
 
 	/**
@@ -422,7 +456,7 @@ public class PSystem {
 	 * @param renterName      The username of the User being added
 	 */
 	public void addUnitRenter(String propertyTitle, String addressModifier, String renterName) {
-		
+
 	}
 
 	/**
@@ -466,25 +500,23 @@ public class PSystem {
 	 * @param capacity        The maximum capacity of the Unit
 	 */
 	public void addUnit(String propertyName, String addressModifier, int capacity) {
-		boolean exist = false;		
+		boolean exist = false;
 		// Searches through properties
 		for (PropertyManager manager : propertyManagers) {
 			for (Property property : properties) {
 				String title = property.getTitle();
-				// checks if property exits.
+				// checks if property exist
 				if (propertyName.equals(title) && currentAccount.equals(manager.username)) {
-					// Add unit for current account;
+					// Add unit for current account
 					property.addUnit(addressModifier, capacity, currentAccount);
-					//property.units.add(new Unit(addressModifier, capacity));
 					exist = true;
 					break;
 				}
 			}
 		}
-		if(exist == true) {
+		if (exist == true) {
 			System.out.println("Unit Added");
-		}
-		else {
+		} else {
 			System.out.println("Property doesn't exist. Cannot add unit.");
 		}
 	}
