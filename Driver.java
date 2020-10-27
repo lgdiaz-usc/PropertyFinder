@@ -149,7 +149,8 @@ public class Driver {
                     System.out.println("The available commands are:" +
                             "\nhelp - Displays available commands" +
                             "\nlogout - Log out of account" +
-                            "\naddProperty - Displays available commands" +
+                            "\naddProperty - Adds property listing" +
+                            "\naddUnit - Adds unit for property" +
                             "\nsearch - Searches for accounts and property listings");
                     break;
                 case "logout":
@@ -158,6 +159,9 @@ public class Driver {
                 	break;
                 case "addProperty":
                 	system = addProperty(system);
+                	break;
+                case "addUnit":
+                	system = addUnit(system);
                 	break;
                 case "search":
                     search(system);
@@ -386,6 +390,7 @@ public class Driver {
     private static PSystem addProperty(PSystem system) {
 		Scanner input = new Scanner(System.in);
 		
+		//Inputting information
 		System.out.println("Please enter property title." + "\n>");
 		String title = input.nextLine();
 		System.out.println("Please enter a description." + "\n>");
@@ -396,8 +401,25 @@ public class Driver {
 		int capacity = input.nextInt();
 		System.out.println("Please enter the base rent."+ "\n>");
 		double baseRent = input.nextDouble();
-
+		
+		//Adds property
 		system.addProperty(title, description, address, capacity, baseRent);
 		return system;
 	}
+    
+    private static PSystem addUnit(PSystem system) {
+    	Scanner input = new Scanner(System.in);
+    	
+    	//Inputting information
+		System.out.println("Please enter property name." + "\n>");
+    	String propertyName = input.nextLine();
+		System.out.println("Please enter unit." + "\n>");
+    	String addressModifier = input.nextLine();
+		System.out.println("Please enter unit capacity." + "\n>");
+    	int capacity = input.nextInt();
+    	
+    	//Adds Unit
+    	system.addUnit(propertyName, addressModifier, capacity);
+    	return system;
+    }
 }

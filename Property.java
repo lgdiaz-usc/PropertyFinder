@@ -65,11 +65,20 @@ public class Property {
                               String addressModifier){
 
     }
-
+    
+    /**
+     * Accessor that returns title
+     * @return title.
+     */
+	public String getTitle() {
+		return this.title;
+	}
+	
     /**
      * Returns the average rating for all Review objects is reviews
      * @return The average rating
      */
+    
     public int getAverageRating(){
         return 0;
     }
@@ -154,8 +163,10 @@ public class Property {
      * @param currentAccount The current Account
      */
     public void addUnit(String addressModifier, int capacity, String currentAccount) {
-
-    }
+    
+			units.add(new Unit(addressModifier, capacity));
+		}
+    
 
     /**
      * Removes a Unit from units
@@ -340,4 +351,5 @@ public class Property {
 
         return property;
     }
+    
 }

@@ -212,6 +212,7 @@ public class PSystem {
 	 * @return A list of all Property's that matched the query
 	 */
 	public ArrayList<Property> searchProperty(String query) {
+		
 		return null;
 	}
 
@@ -418,10 +419,10 @@ public class PSystem {
 	 * @param propertyTitle   The title of the Property being edited
 	 * @param addressModifier The addressModifier that identifies the Unit being
 	 *                        edited
-	 * @param renterName      The username of the USer being added
+	 * @param renterName      The username of the User being added
 	 */
 	public void addUnitRenter(String propertyTitle, String addressModifier, String renterName) {
-
+		
 	}
 
 	/**
@@ -430,7 +431,7 @@ public class PSystem {
 	 * @param propertyTitle   The title of the Property being edited
 	 * @param addressModifier The addressModifier that identifies the Unit being
 	 *                        edited
-	 * @param renterName      The username of the USer being removed
+	 * @param renterName      The username of the User being removed
 	 */
 	public void removeUnitRenter(String propertyTitle, String addressModifier, String renterName) {
 
@@ -439,16 +440,16 @@ public class PSystem {
 	/**
 	 * Creates a Property object and adds it to properties
 	 * 
-	 * @param title       ->The title of the Property
+	 * @param title       The title of the Property
 	 * @param description The description of the Property
 	 * @param address     The address of the Property
 	 * @param capacity    The maximum capacity of the Property
 	 * @param baseRent    The base amount of rent for the Property
 	 */
 	public void addProperty(String title, String description, String address, int capacity, double baseRent) {
-		//Goes through property manager list.
+		// Goes through property manager list.
 		for (PropertyManager manager : propertyManagers) {
-			//Add property for current account;
+			// Add property for current account;
 			if (currentAccount.equals(manager.username)) {
 				String name = manager.name;
 				properties.add(new Property(name, title, description, address, capacity, baseRent));
@@ -465,8 +466,33 @@ public class PSystem {
 	 * @param capacity        The maximum capacity of the Unit
 	 */
 	public void addUnit(String propertyName, String addressModifier, int capacity) {
-
+		boolean exist = false;		
+		// Searches through properties
+		for (PropertyManager manager : propertyManagers) {
+			for (Property property : properties) {
+				String title = property.getTitle();
+				// checks if property exits.
+				if (propertyName.equals(title) && currentAccount.equals(manager.username)) {
+					// Add unit for current account;
+					property.addUnit(addressModifier, capacity, currentAccount);
+					//property.units.add(new Unit(addressModifier, capacity));
+					exist = true;
+					break;
+				}
+			}
+		}
+		if(exist == true) {
+			System.out.println("Unit Added");
+		}
+		else {
+			System.out.println("Property doesn't exist. Cannot add unit.");
+		}
 	}
+
+	/*
+	 * search through the arraylist of properties if property title = propertyName
+	 * then add unit
+	 */
 
 	/**
 	 * Removes a Property from properties
