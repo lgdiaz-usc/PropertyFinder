@@ -212,8 +212,29 @@ public class PSystem {
 	 * @return A list of all Property's that matched the query
 	 */
 	public ArrayList<Property> searchProperty(String query) {
+		ArrayList<Property> results = new ArrayList<Property>();
 
-		return null;
+		// 1st Priority search - Exact match
+		for (Property property : properties) {
+			String title = property.getTitle();
+			if (title.equalsIgnoreCase(query) || title.equalsIgnoreCase(query)) {
+				results.add(property);
+			}
+		}
+
+		// 2nd Priority search - Partial match
+		for (Property property : properties) {
+			String title = property.getTitle();
+			if (!results.contains(property)) {
+				for (String part : query.split(" ")) {
+					if (!results.contains(property) && (title.toLowerCase().contains(part.toLowerCase())
+							|| title.toLowerCase().contains(part.toLowerCase()))) {
+						results.add(property);
+					}
+				}
+			}
+		}
+		return results;
 	}
 
 	/**
@@ -402,37 +423,30 @@ public class PSystem {
 	public void addRenter(String propertyTitle, String renterName) {
 		boolean userExist = false;
 		boolean propertyExist = false;
-		//Checks if the user exists
+		// Checks if the user exists
 		for (User user : users) {
 			if (user.username.equals(renterName))
 				userExist = true;
 		}
-		//Checks if the property exists
+		// Checks if the property exists
 		if (userExist == true) {
-			for (PropertyManager manager : propertyManagers) 
-			{
+			for (PropertyManager manager : propertyManagers) {
 				for (Property property : properties) {
 					String title = property.getTitle();
 					// checks if property exist.
-					if (title.equals(propertyTitle) && currentAccount.equals(manager.username)) 
-					{
+					if (title.equals(propertyTitle) && currentAccount.equals(manager.username)) {
 						// Adds renter for current address.
 						property.addRenter(renterName, currentAccount);
 						propertyExist = true;
 					}
 				}
 			}
-			if (propertyExist == true) 
-			{
+			if (propertyExist == true) {
 				System.out.println("Renter Added");
-			} 
-			else 
-			{
+			} else {
 				System.out.println("Property doesn't exist. Cannot add Renter.");
 			}
-		} 
-		else 
-		{
+		} else {
 			System.out.println("User doesn't exists. Cannot add renter.");
 		}
 	}

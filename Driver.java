@@ -395,15 +395,15 @@ public class Driver {
 		Scanner input = new Scanner(System.in);
 		
 		//Inputting information
-		System.out.println("Please enter property title." + "\n>");
+		System.out.print("Please enter property title." + "\n>");
 		String title = input.nextLine();
-		System.out.println("Please enter a description." + "\n>");
+		System.out.print("Please enter a description." + "\n>");
 		String description = input.nextLine();
-		System.out.println("Please enter the address." + "\n>");
+		System.out.print("Please enter the address." + "\n>");
 		String address = input.nextLine();
-		System.out.println("Please enter property capacity." + "\n>");
+		System.out.print("Please enter property capacity." + "\n>");
 		int capacity = input.nextInt();
-		System.out.println("Please enter the base rent."+ "\n>");
+		System.out.print("Please enter the base rent."+ "\n>");
 		double baseRent = input.nextDouble();
 		
 		//Adds property
@@ -415,11 +415,11 @@ public class Driver {
     	Scanner input = new Scanner(System.in);
     	
     	//Inputting information
-		System.out.println("Please enter property name." + "\n>");
+		System.out.print("Please enter property name." + "\n>");
     	String propertyName = input.nextLine();
-		System.out.println("Please enter unit." + "\n>");
+		System.out.print("Please enter unit." + "\n>");
     	String addressModifier = input.nextLine();
-		System.out.println("Please enter unit capacity." + "\n>");
+		System.out.print("Please enter unit capacity." + "\n>");
     	int capacity = input.nextInt();
     	
     	//Adds Unit
