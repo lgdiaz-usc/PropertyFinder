@@ -305,7 +305,28 @@ public class PSystem {
 	 * @return The sorted list of Property's
 	 */
 	public ArrayList<Property> sortPropertyByTitle(ArrayList<Property> properties, boolean descending) {
-		return null;
+		for(int i=1; i < properties.size(); i++){
+			boolean hasSwapped = false;
+			for(int j=0; j < properties.size() - i; j++){
+				String temp = alphanumCheck((String) properties.get(j).toJSON().get("title"),
+						(String) properties.get(j+1).toJSON().get("title"));
+				if(temp.equals(properties.get(j).toJSON().get("title"))){
+					Property tempProperty = properties.get(j);
+					properties.set(j, properties.get(j+1));
+					properties.set(j+1, tempProperty);
+					hasSwapped = true;
+				}
+			}
+			if(!hasSwapped){
+				break;
+			}
+		}
+
+		if(descending){
+			properties = descendSort(properties);
+		}
+
+		return properties;
 	}
 
 	/**
@@ -316,7 +337,26 @@ public class PSystem {
 	 * @return The sorted list of Property's
 	 */
 	public ArrayList<Property> sortPropertyByPrice(ArrayList<Property> properties, boolean descending) {
-		return null;
+		for(int i=1; i < properties.size(); i++){
+			boolean hasSwapped = false;
+			for(int j=0; j < properties.size() - i; j++){
+				if((double)properties.get(j).toJSON().get("base rent") > (double)properties.get(j+1).toJSON().get("base rent")){
+					Property tempProperty = properties.get(j);
+					properties.set(j, properties.get(j+1));
+					properties.set(j+1, tempProperty);
+					hasSwapped = true;
+				}
+			}
+			if(!hasSwapped){
+				break;
+			}
+		}
+
+		if(descending){
+			properties = descendSort(properties);
+		}
+
+		return properties;
 	}
 
 	/**
@@ -327,7 +367,26 @@ public class PSystem {
 	 * @return The sorted list of Property's
 	 */
 	public ArrayList<Property> sortPropertyByRating(ArrayList<Property> properties, boolean descending) {
-		return null;
+		for(int i=1; i < properties.size(); i++){
+			boolean hasSwapped = false;
+			for(int j=0; j < properties.size() - i; j++){
+				if(properties.get(j).getAverageRating() > properties.get(j+1).getAverageRating()){
+					Property tempProperty = properties.get(j);
+					properties.set(j, properties.get(j+1));
+					properties.set(j+1, tempProperty);
+					hasSwapped = true;
+				}
+			}
+			if(!hasSwapped){
+				break;
+			}
+		}
+
+		if(descending){
+			properties = descendSort(properties);
+		}
+
+		return properties;
 	}
 
 	/**
@@ -399,7 +458,27 @@ public class PSystem {
 	 * @return The sorted list of User's
 	 */
 	public ArrayList<User> sortUserByName(ArrayList<User> users, boolean descending) {
-		return null;
+		for(int i=1; i < users.size(); i++){
+			boolean hasSwapped = false;
+			for(int j=0; j < users.size() - i; j++){
+				String temp = alphanumCheck(users.get(j).name, users.get(j+1).name);
+				if(temp.equals(users.get(j).name)){
+					User tempUser = users.get(j);
+					users.set(j, users.get(j+1));
+					users.set(j+1, tempUser);
+					hasSwapped = true;
+				}
+			}
+			if(!hasSwapped){
+				break;
+			}
+		}
+
+		if(descending){
+			users = descendSort(users);
+		}
+
+		return users;
 	}
 
 	/**
@@ -410,7 +489,26 @@ public class PSystem {
 	 * @return The sorted list of User's
 	 */
 	public ArrayList<User> sortUserByRating(ArrayList<User> users, boolean descending) {
-		return null;
+		for(int i=1; i < users.size(); i++){
+			boolean hasSwapped = false;
+			for(int j=0; j < users.size() - i; j++){
+				if(users.get(j).getAverageRating() > users.get(j+1).getAverageRating()){
+					User tempUser = users.get(j);
+					users.set(j, users.get(j+1));
+					users.set(j+1, tempUser);
+					hasSwapped = true;
+				}
+			}
+			if(!hasSwapped){
+				break;
+			}
+		}
+
+		if(descending){
+			users = descendSort(users);
+		}
+
+		return users;
 	}
 
 	/**
