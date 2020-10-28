@@ -631,7 +631,7 @@ public class PSystem {
 	 * @param renterName    The username of the User being removed to the Property
 	 */
 	public void removeRenter(String propertyTitle, String renterName) {
-
+		
 	}
 
 	/**
@@ -708,18 +708,32 @@ public class PSystem {
 		}
 	}
 
-	/*
-	 * search through the arraylist of properties if property title = propertyName
-	 * then add unit
-	 */
-
 	/**
 	 * Removes a Property from properties
 	 * 
 	 * @param propertyName The title of the Property to be removed
 	 */
 	public void removeProperty(String propertyName) {
-
+		boolean exist = false;
+		// Goes through property manager list.
+		for (PropertyManager manager : propertyManagers) {
+			for(Property property: properties) {
+				String title = property.getTitle();
+				// Checks if property exists
+				if (propertyName.equals(title) && currentAccount.equals(manager.username)) {
+					//Removes property
+					properties.remove(property);
+					exist = true;
+					break;
+				}
+			}
+		}
+		if (exist == true) {
+			System.out.println("Property Removed");
+		}
+		else {
+			System.out.println("Property doesn't exist. Cannot remove Property.");
+		}
 	}
 
 	/**
