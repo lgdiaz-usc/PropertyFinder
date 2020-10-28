@@ -137,7 +137,7 @@ public class Account {
 	 * @param author      -> The author of the Review
 	 */
 	public void addReview(int rating, String title, String description, String author) {
-
+		reviews.add(new Review(rating, title, description, author));
 	}
 
 	/**
@@ -146,7 +146,14 @@ public class Account {
 	 * @return The average rating
 	 */
 	public int getAverageRating() {
-		return 0;
+		int averageRating = 0;
+		for(Review review : reviews){
+			averageRating += review.getRating();
+		}
+		if(reviews.size() > 0){
+			averageRating /= reviews.size();
+		}
+		return averageRating;
 	}
 
 	/**

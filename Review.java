@@ -30,7 +30,7 @@ public class Review {
 	 * @return The rating of the review
 	 */
 	public int getRating() {
-		return 0;
+		return rating;
 	}
 	
 	/**

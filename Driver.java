@@ -102,7 +102,8 @@ public class Driver {
 			    			+ "\nlogout - Log out of account"
                             + "\nsearch - Searches for accounts and property listings"
                             + "\ncontact - Sends a message to another account"
-                            + "\nmessages - Displays all of your messages");
+                            + "\nmessages - Displays all of your messages"
+							+ "\nreview - Writes a review for an account or a property listing");
 			    	break;
 			    case "logout":
 			    	system = logout(system);
@@ -117,6 +118,9 @@ public class Driver {
                 case "messages":
                     System.out.println(system.getMessages());
                     break;
+				case "review":
+					system = review(system);
+					break;
 			    default:
 				    System.out.println("\"" + command + "\" is not a valid command! Please type " +
                             "\"help\" for a list of commands");
@@ -145,7 +149,8 @@ public class Driver {
 						    + "\nremove - Removes a property, unit, renter, or unit renter"
 						    + "\nsearch - Searches for accounts and property listings"
                             + "\ncontact - Sends a message to another account"
-                            + "\nmessages - Displays the contents of all of your messages");
+                            + "\nmessages - Displays the contents of all of your messages"
+							+ "\nreview - Write a review for an account or property listing");
 			    	break;
 			    case "logout":
 			    	system = logout(system);
@@ -166,6 +171,9 @@ public class Driver {
                 case "messages":
                     System.out.println(system.getMessages());
                     break;
+				case "review":
+					system = review(system);
+					break;
 			default:
 				System.out.println(
 						"\"" + command + "\" is not a valid command! Please type " + "\"help\" " +
@@ -415,7 +423,7 @@ public class Driver {
 		System.out.print("Please enter property name." + "\n>");
 		String propertyName = input.nextLine();
 		System.out.print("Please enter unit." + "\n>");
-		String addressModifier = input.nextLine();
+		String addressModifier = input.next();
 		System.out.print("Please enter unit capacity." + "\n>");
 		int capacity = input.nextInt();
 
@@ -548,7 +556,7 @@ public class Driver {
             System.out.print("What message would you like to send to that property manager?" +
                     "\n>");
             message = input.nextLine();
-            system.contactUser(username, message);
+            system.contactManager(username, message);
         }
 	    else{
 	        System.out.println("ERROR: \"" + recipientType + "\" is not a valid account type!");
@@ -556,4 +564,59 @@ public class Driver {
 
 	    return system;
     }
+
+    private static PSystem review(PSystem system){
+		Scanner input = new Scanner(System.in);
+		String reviewType;
+
+		System.out.print("What are you reviewing? (user/manager/property/unit)" + "\n>");
+		reviewType = input.next();
+		if(reviewType.equalsIgnoreCase("user") || reviewType.equalsIgnoreCase("manager")){
+			System.out.print("What is the username of the account you want to review?" + "\n>");
+			String username = input.next();
+			System.out.print("What is the numerical rating of your review? (out of 10)" +"\n>");
+			int rating = input.nextInt();
+
+			input = new Scanner(System.in);
+			System.out.print("What is the title of your review?" + "\n>");
+			String title = input.nextLine();
+			System.out.print("What is the description of your review?" + "\n>");
+			String description = input.nextLine();
+
+			if(reviewType.equalsIgnoreCase("manager")){
+				system.addReview(rating, title, description, username, ReviewType.PROPERTY_MANAGER);
+			}
+			else {
+				system.addReview(rating, title, description, username, ReviewType.USER);
+			}
+		}
+		else if(reviewType.equalsIgnoreCase("property") || reviewType.equalsIgnoreCase("unit")){
+			input = new Scanner(System.in);
+			System.out.print("What is the title of the property you want to review?" + "\n>");
+			String name = input.nextLine();
+			System.out.print("What is the numerical rating of your review? (out of 10)" +"\n>");
+			int rating = input.nextInt();
+
+			input = new Scanner(System.in);
+			System.out.print("What is the title of your review?" + "\n>");
+			String title = input.nextLine();
+			System.out.print("What is the description of your review?" + "\n>");
+			String description = input.nextLine();
+
+			if(reviewType.equalsIgnoreCase("unit")){
+				input = new Scanner(System.in);
+				System.out.print("What is the address modifier of the unit you want to review?" + "\n>");
+				name = name.concat("\t" + input.nextLine());
+				system.addReview(rating, title, description, name, ReviewType.UNIT);
+			}
+			else {
+				system.addReview(rating, title, description, name, ReviewType.PROPERTY);
+			}
+		}
+		else{
+			System.out.println("ERROR: Invalid review type!");
+		}
+
+		return system;
+	}
 }

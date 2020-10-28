@@ -50,7 +50,7 @@ public class Property {
      * @param author The username of the Account that made the Review
      */
     public void addReview(int rating, String title, String description, String author){
-
+        reviews.add(new Review(rating, title, description, author));
     }
 
     /**
@@ -63,7 +63,13 @@ public class Property {
      */
     public void addUnitReview(int rating, String title, String description, String author,
                               String addressModifier){
-
+        for(Unit unit : units){
+            if(unit.getAddressModifier().equals(addressModifier)){
+                unit.addReview(rating, title, description, author);
+                return;
+            }
+        }
+        System.out.println("Error: This unit does not exist!");
     }
     
     /**
@@ -80,7 +86,14 @@ public class Property {
      */
     
     public int getAverageRating(){
-        return 0;
+        int averageRating = 0;
+        for(Review review : reviews){
+            averageRating += review.getRating();
+        }
+        if(reviews.size() > 0){
+            averageRating /= reviews.size();
+        }
+        return averageRating;
     }
 
     /**
@@ -89,7 +102,13 @@ public class Property {
      * @return The average rating
      */
     public int getUnitAverageRating(String addressModifier){
-        return 0;
+        for(Unit unit : units){
+            if(unit.getAddressModifier().equals(addressModifier)){
+                return unit.getAverageRating();
+            }
+        }
+        System.out.println("ERROR: This unit does not exist!");
+        return -1;
     }
 
     /**
@@ -124,7 +143,12 @@ public class Property {
      * @param currentAccount The current Account
      */
     public void addRenter(String renter, String currentAccount) {
-    	renters.add(new String(renter));
+        if(renters.size() < capacity) {
+            renters.add(renter);
+        }
+        else{
+            System.out.println("ERROR: Property already at maximum capacity!");
+        }
     }
 
     /**
@@ -297,7 +321,7 @@ public class Property {
         }
         output = output.concat("\nRenters:");
         for(String renter : renters){
-            output.concat("\n - " + renter);
+            output = output.concat("\n - " + renter);
         }
         output = output.concat("\nRent: $" + baseRent);
         output = output.concat("\nAdditional fees: ");

@@ -308,9 +308,9 @@ public class PSystem {
 		for(int i=1; i < properties.size(); i++){
 			boolean hasSwapped = false;
 			for(int j=0; j < properties.size() - i; j++){
-				String temp = alphanumCheck((String) properties.get(j).toJSON().get("title"),
-						(String) properties.get(j+1).toJSON().get("title"));
-				if(temp.equals(properties.get(j).toJSON().get("title"))){
+				String temp = alphanumCheck((String) properties.get(j).getTitle(),
+						(String) properties.get(j+1).getTitle());
+				if(temp.equals(properties.get(j).getTitle())){
 					Property tempProperty = properties.get(j);
 					properties.set(j, properties.get(j+1));
 					properties.set(j+1, tempProperty);
@@ -823,7 +823,46 @@ public class PSystem {
 	 * @param Type          The type of object being reviewed
 	 */
 	public void addReview(int rating, String title, String description, String reviewSubject, ReviewType Type) {
-
+		if(Type == ReviewType.USER){
+			for(User user : users){
+				if(user.username.equals(reviewSubject)){
+					user.addReview(rating, title, description, currentAccount);
+					return;
+				}
+			}
+			System.out.println("Error: This account does not exist!");
+		}
+		else if(Type == ReviewType.PROPERTY_MANAGER){
+			for(PropertyManager manager : propertyManagers){
+				if(manager.username.equals(reviewSubject)){
+					manager.addReview(rating, title, description, currentAccount);
+					return;
+				}
+			}
+			System.out.println("ERROR: This account does not exist!");
+		}
+		else if(Type == ReviewType.PROPERTY){
+			for(Property property : properties){
+				if(property.getTitle().equals(reviewSubject)){
+					property.addReview(rating, title, description, currentAccount);
+					return;
+				}
+			}
+			System.out.println("ERROR: This property does not exist!");
+		}
+		else if(Type == ReviewType.UNIT){
+			for(Property property : properties){
+				if(property.getTitle().equals(reviewSubject.split("\t")[0])){
+					property.addUnitReview(rating, title, description, currentAccount,
+							reviewSubject.split("\t")[1]);
+					return;
+				}
+			}
+			System.out.println("ERROR: That property does not exist!");
+		}
+		else{
+			System.out.println("ERROR: Invalid review type!");
+		}
 	}
 
 	/**
@@ -832,6 +871,11 @@ public class PSystem {
 	 * @return The current Account
 	 */
 	public User getUser() {
+		for(User user : users){
+			if(user.username.equals(currentAccount)){
+				return user;
+			}
+		}
 		return null;
 	}
 
@@ -841,6 +885,11 @@ public class PSystem {
 	 * @return The current Account
 	 */
 	public PropertyManager getManager() {
+		for(PropertyManager manager : propertyManagers){
+			if(manager.username.equals(currentAccount)){
+				return manager;
+			}
+		}
 		return null;
 	}
 
