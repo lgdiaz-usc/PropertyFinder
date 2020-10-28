@@ -184,7 +184,7 @@ public class Account {
 	 * @param description    -> The description of the message
 	 */
 	public void addMessage(String currentAccount, String description) {
-
+		messages.add(new Message(currentAccount, description));
 	}
 
 	/**
@@ -194,7 +194,11 @@ public class Account {
 	 * @return String representation of the messages of the User.
 	 */
 	public String getMessages(String currentAccount) {
-		return null;
+		String output = "";
+		for(Message message : messages){
+			output = output.concat(message.toString() + "\n");
+		}
+		return output;
 	}
 
 	/**

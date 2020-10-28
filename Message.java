@@ -24,7 +24,7 @@ public class Message {
 	 */
 	public String toString() {
 		String output = "";
-		output = output.concat("\n\t" + author);
+		output = output.concat("\nFrom: " + author);
 		output = output.concat("\n\t" + description);
 		return output;
 	}

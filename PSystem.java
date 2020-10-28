@@ -564,7 +564,13 @@ public class PSystem {
 	 * @param message     The contents of the message
 	 */
 	public void contactManager(String managerName, String message) {
-
+		for(PropertyManager manager : propertyManagers){
+			if(manager.username.equals(managerName)){
+				manager.addMessage(currentAccount, message);
+				return;
+			}
+		}
+		System.out.println("ERROR: That account does not exist!");
 	}
 
 	/**
@@ -574,7 +580,13 @@ public class PSystem {
 	 * @param message  The contents of the message
 	 */
 	public void contactUser(String userName, String message) {
-
+		for(User user : users){
+			if(user.username.equals(userName)){
+				user.addMessage(currentAccount, message);
+				return;
+			}
+		}
+		System.out.println("ERROR: That account does not exist!");
 	}
 
 	/**
@@ -584,7 +596,17 @@ public class PSystem {
 	 * @return The /string interpretation of the current user's Message's
 	 */
 	public String getMessages() {
-		return null;
+		for (User user : users) {
+			if (currentAccount.equals(user.username)) {
+				return user.getMessages(currentAccount);
+			}
+		}
+		for (PropertyManager manager : propertyManagers) {
+			if (currentAccount.equals(manager.username)) {
+				return manager.getMessages(currentAccount);
+			}
+		}
+		return "ERROR: This account does not exist!";
 	}
 
 	/**

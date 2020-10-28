@@ -48,34 +48,34 @@ public class Driver {
 			String command = input.next();
 
 			switch (command) {
-			case "help":
-				System.out.println("The available commands are:" + "\nhelp - Displays available commands"
+			    case "help":
+			    	System.out.println("The available commands are:" + "\nhelp - Displays available commands"
 						+ "\nquit - Quits the program" + "\nlogin - Login into account"
 						+ "\nregister - Creates a new account"
 						+ "\nsearch - Searches for accounts and property listings");
-				break;
-			case "quit":
-				done = true;
-				break;
-			case "login":
-				int value = login(system);
-				if (value == 1) {
-					system = displayUserMenu(system);
-					break;
-				} else if (value == 2) {
+				    break;
+			    case "quit":
+			    	done = true;
+			    	break;
+			    case "login":
+			    	int value = login(system);
+			    	if (value == 1) {
+			    		system = displayUserMenu(system);
+			    		break;
+			    	} else if (value == 2) {
 					system = displayPMMenu(system);
-					break;
-				}
-				break;
-			case "register":
-				system = createAccount(system);
-				break;
-			case "search":
-				search(system);
-				break;
-			default:
-				System.out.println(
-						"\"" + command + "\" is not a valid command! Please type " + "\"help\" for a list of commands");
+			    		break;
+			    	}
+			    	break;
+			    case "register":
+			    	system = createAccount(system);
+			    	break;
+			    case "search":
+			    	search(system);
+				    break;
+			    default:
+				    System.out.println("\"" + command + "\" is not a valid command! Please type " +
+                        "\"help\" for a list of commands");
 			}
 		}
 
@@ -85,7 +85,7 @@ public class Driver {
 		System.out.println("Goodbye!");
 	}
 
-	public static PSystem displayUserMenu(PSystem system) {
+	private static PSystem displayUserMenu(PSystem system) {
 		boolean done = false;
 		Scanner input = new Scanner(System.in);
 		System.out.println("*****STUDENT MENU*****");
@@ -96,27 +96,37 @@ public class Driver {
 			String command = input.next();
 
 			switch (command) {
-			case "help":
-				System.out.println("The available commands are:" + "\nhelp - Displays available commands"
-						+ "\nlogout - Log out of account" + "\nsearch - Searches for accounts and property listings");
-				break;
-			case "logout":
-				system = logout(system);
-				done = true;
-				break;
-			case "search":
-				search(system);
-				break;
-			default:
-				System.out.println(
-						"\"" + command + "\" is not a valid command! Please type " + "\"help\" for a list of commands");
+			    case "help":
+			    	System.out.println("The available commands are:"
+                            + "\nhelp - Displays available commands"
+			    			+ "\nlogout - Log out of account"
+                            + "\nsearch - Searches for accounts and property listings"
+                            + "\ncontact - Sends a message to another account"
+                            + "\nmessages - Displays all of your messages");
+			    	break;
+			    case "logout":
+			    	system = logout(system);
+			    	done = true;
+			    	break;
+			    case "search":
+			    	search(system);
+			    	break;
+                case "contact":
+                    system = contact(system);
+                    break;
+                case "messages":
+                    System.out.println(system.getMessages());
+                    break;
+			    default:
+				    System.out.println("\"" + command + "\" is not a valid command! Please type " +
+                            "\"help\" for a list of commands");
 			}
 		}
 
 		return system;
 	}
 
-	public static PSystem displayPMMenu(PSystem system) {
+	private static PSystem displayPMMenu(PSystem system) {
 		boolean done = false;
 		Scanner input = new Scanner(System.in);
 		System.out.println("*****PROPERTY MANAGER MENU*****");
@@ -128,36 +138,45 @@ public class Driver {
 			String command = input.next();
 
 			switch (command) {
-			case "help":
-				System.out.println("The available commands are:" + "\nhelp - Displays available commands"
-						+ "\nlogout - Log out of account"  
-						+ "\nadd - Adds a property, unit, rentor or unit rentor" 
-						+ "\nremove - Removes a property, unit, renotr, or unit rentor"
-						+ "\nsearch - Searches for accounts and property listings");
-				break;
-			case "logout":
-				system = logout(system);
-				done = true;
-				break;
-			case "add":
-				system = add(system);
-				break;
-			case "remove":
-				system = remove(system);
-				break;
-			case "search":
-				search(system);
-				break;
+			    case "help":
+				    System.out.println("The available commands are:" + "\nhelp - Displays available commands"
+						    + "\nlogout - Log out of account"
+						    + "\nadd - Adds a property, unit, renter or unit renter"
+						    + "\nremove - Removes a property, unit, renter, or unit renter"
+						    + "\nsearch - Searches for accounts and property listings"
+                            + "\ncontact - Sends a message to another account"
+                            + "\nmessages - Displays the contents of all of your messages");
+			    	break;
+			    case "logout":
+			    	system = logout(system);
+			    	done = true;
+			    	break;
+			    case "add":
+			    	system = add(system);
+			    	break;
+			    case "remove":
+			    	system = remove(system);
+			    	break;
+			    case "search":
+			    	search(system);
+			    	break;
+                case "contact":
+                    system = contact(system);
+                    break;
+                case "messages":
+                    System.out.println(system.getMessages());
+                    break;
 			default:
 				System.out.println(
-						"\"" + command + "\" is not a valid command! Please type " + "\"help\" for a list of commands");
+						"\"" + command + "\" is not a valid command! Please type " + "\"help\" " +
+                                "for a list of commands");
 			}
 		}
 
 		return system;
 	}
 
-	public static PSystem createAccount(PSystem system) {
+	private static PSystem createAccount(PSystem system) {
 		Scanner input = new Scanner(System.in);
 		String accountType;
 
@@ -216,7 +235,7 @@ public class Driver {
 		return system;
 	}
 
-	public static int login(PSystem system) {
+	private static int login(PSystem system) {
 		Scanner input = new Scanner(System.in);
 
 		// Inputting information
@@ -231,7 +250,7 @@ public class Driver {
 		return system.login(username, password);
 	}
 
-	public static PSystem logout(PSystem system) {
+	private static PSystem logout(PSystem system) {
 		// Logout of Account
 		system.logout();
 		System.out.println("You are logged out.");
@@ -240,7 +259,7 @@ public class Driver {
 		return system;
 	}
 
-	public static void search(PSystem system) {
+	private static void search(PSystem system) {
 		Scanner input = new Scanner(System.in);
 		String searchType;
 
@@ -432,7 +451,7 @@ public class Driver {
 
 		// Adds Renter
 		//system.addUnitRenter(propertyName, addressModifier, renterName);
-		System.out.println("Can't add unit rentor yet.");
+		System.out.println("Can't add unit renter yet.");
 		return system;
 	}
 
@@ -444,7 +463,7 @@ public class Driver {
 						"\n1: Property" + 
 						"\n2: Unit"	+ 
 						"\n3: Renter" + 
-						"\n4: Unit Renter" + 
+						"\n4: Unit Renter" +
 						"\n>");
 		choice = input.nextInt();
 		if(choice == 1)	{
@@ -489,7 +508,7 @@ public class Driver {
 		Scanner input = new Scanner(System.in);
 
 		// Inputting information
-		System.out.println("Can't remove rentor yet.");
+		System.out.println("Can't remove renter yet.");
 		return system;
 	}
 
@@ -497,7 +516,44 @@ public class Driver {
 		Scanner input = new Scanner(System.in);
 
 		// Inputting information
-		System.out.println("Can't remove unit rentor yet.");
+		System.out.println("Can't remove unit renter yet.");
 		return system;
 	}
+
+	private static PSystem contact(PSystem system){
+	    Scanner input = new Scanner(System.in);
+	    String recipientType;
+	    System.out.print("Would you like to contact a user, or a property manager? " +
+                "(user/manager)" + "\n>");
+	    recipientType = input.next();
+
+	    if(recipientType.equalsIgnoreCase("user")){
+	        String username, message;
+	        System.out.print("What is the username of the user you would like to contact?" +
+                    "\n>");
+	        username = input.next();
+
+	        input = new Scanner(System.in);
+	        System.out.print("What message would you like to send to that user?" + "\n>");
+	        message = input.nextLine();
+	        system.contactUser(username, message);
+        }
+	    else if(recipientType.equalsIgnoreCase("manager")){
+            String username, message;
+            System.out.print("What is the username of the property manager you would like to " +
+                    "contact?" + "\n>");
+            username = input.next();
+
+            input = new Scanner(System.in);
+            System.out.print("What message would you like to send to that property manager?" +
+                    "\n>");
+            message = input.nextLine();
+            system.contactUser(username, message);
+        }
+	    else{
+	        System.out.println("ERROR: \"" + recipientType + "\" is not a valid account type!");
+        }
+
+	    return system;
+    }
 }
