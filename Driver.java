@@ -48,34 +48,34 @@ public class Driver {
 			String command = input.next();
 
 			switch (command) {
-			case "help":
-				System.out.println("The available commands are:" + "\nhelp - Displays available commands"
-						+ "\nquit - Quits the program" + "\nlogin - Login into account"
-						+ "\nregister - Creates a new account"
-						+ "\nsearch - Searches for accounts and property listings");
-				break;
-			case "quit":
-				done = true;
-				break;
-			case "login":
-				int value = login(system);
-				if (value == 1) {
-					system = displayUserMenu(system);
+				case "help":
+					System.out.println("The available commands are:" + "\nhelp - Displays available commands"
+							+ "\nquit - Quits the program" + "\nlogin - Login into account"
+							+ "\nregister - Creates a new account"
+							+ "\nsearch - Searches for accounts and property listings");
 					break;
-				} else if (value == 2) {
-					system = displayPMMenu(system);
+				case "quit":
+					done = true;
 					break;
-				}
-				break;
-			case "register":
-				system = createAccount(system);
-				break;
-			case "search":
-				search(system);
-				break;
-			default:
-				System.out.println(
-						"\"" + command + "\" is not a valid command! Please type " + "\"help\" for a list of commands");
+				case "login":
+					int value = login(system);
+					if (value == 1) {
+						system = displayUserMenu(system);
+						break;
+					} else if (value == 2) {
+						system = displayPMMenu(system);
+						break;
+					}
+					break;
+				case "register":
+					system = createAccount(system);
+					break;
+				case "search":
+					search(system);
+					break;
+				default:
+					System.out.println(
+							"\"" + command + "\" is not a valid command! Please type " + "\"help\" for a list of commands");
 			}
 		}
 
@@ -96,32 +96,32 @@ public class Driver {
 			String command = input.next();
 
 			switch (command) {
-			case "help":
-				System.out.println("The available commands are:" + "\nhelp - Displays available commands"
-						+ "\nlogout - Log out of account" + "\nsearch - Searches for accounts and property listings"
-						+ "\ncontact - Sends a message to another account"
-						+ "\nmessages - Displays all of your messages"
-						+ "\nreview - Writes a review for an account or a property listing");
-				break;
-			case "logout":
-				system = logout(system);
-				done = true;
-				break;
-			case "search":
-				search(system);
-				break;
-			case "contact":
-				system = contact(system);
-				break;
-			case "messages":
-				System.out.println(system.getMessages());
-				break;
-			case "review":
-				system = review(system);
-				break;
-			default:
-				System.out.println(
-						"\"" + command + "\" is not a valid command! Please type " + "\"help\" for a list of commands");
+				case "help":
+					System.out.println("The available commands are:" + "\nhelp - Displays available commands"
+							+ "\nlogout - Log out of account" + "\nsearch - Searches for accounts and property listings"
+							+ "\ncontact - Sends a message to another account"
+							+ "\nmessages - Displays all of your messages"
+							+ "\nreview - Writes a review for an account or a property listing");
+					break;
+				case "logout":
+					system = logout(system);
+					done = true;
+					break;
+				case "search":
+					search(system);
+					break;
+				case "contact":
+					system = contact(system);
+					break;
+				case "messages":
+					System.out.println(system.getMessages());
+					break;
+				case "review":
+					system = review(system);
+					break;
+				default:
+					System.out.println(
+							"\"" + command + "\" is not a valid command! Please type " + "\"help\" for a list of commands");
 			}
 		}
 
@@ -140,40 +140,40 @@ public class Driver {
 			String command = input.next();
 
 			switch (command) {
-			case "help":
-				System.out.println("The available commands are:" + "\nhelp - Displays available commands"
-						+ "\nlogout - Log out of account" + "\nadd - Adds a property, unit, renter or unit renter"
-						+ "\nremove - Removes a property, unit, renter, or unit renter"
-						+ "\nsearch - Searches for accounts and property listings"
-						+ "\ncontact - Sends a message to another account"
-						+ "\nmessages - Displays the contents of all of your messages"
-						+ "\nreview - Write a review for an account or property listing");
-				break;
-			case "logout":
-				system = logout(system);
-				done = true;
-				break;
-			case "add":
-				system = add(system);
-				break;
-			case "remove":
-				system = remove(system);
-				break;
-			case "search":
-				search(system);
-				break;
-			case "contact":
-				system = contact(system);
-				break;
-			case "messages":
-				System.out.println(system.getMessages());
-				break;
-			case "review":
-				system = review(system);
-				break;
-			default:
-				System.out.println("\"" + command + "\" is not a valid command! Please type " + "\"help\" "
-						+ "for a list of commands");
+				case "help":
+					System.out.println("The available commands are:" + "\nhelp - Displays available commands"
+							+ "\nlogout - Log out of account" + "\nadd - Adds a property, unit, renter or unit renter"
+							+ "\nremove - Removes a property, unit, renter, or unit renter"
+							+ "\nsearch - Searches for accounts and property listings"
+							+ "\ncontact - Sends a message to another account"
+							+ "\nmessages - Displays the contents of all of your messages"
+							+ "\nreview - Write a review for an account or property listing");
+					break;
+				case "logout":
+					system = logout(system);
+					done = true;
+					break;
+				case "add":
+					system = add(system);
+					break;
+				case "remove":
+					system = remove(system);
+					break;
+				case "search":
+					search(system);
+					break;
+				case "contact":
+					system = contact(system);
+					break;
+				case "messages":
+					System.out.println(system.getMessages());
+					break;
+				case "review":
+					system = review(system);
+					break;
+				default:
+					System.out.println("\"" + command + "\" is not a valid command! Please type " + "\"help\" "
+							+ "for a list of commands");
 			}
 		}
 

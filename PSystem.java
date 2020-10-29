@@ -811,7 +811,7 @@ public class PSystem {
 				}
 			}
 		}
-		if (exist == true) {
+		if (exist) {
 			System.out.println("Unit Added");
 		} else {
 			System.out.println("Property doesn't exist. Cannot add unit.");
