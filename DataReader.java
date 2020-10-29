@@ -72,7 +72,7 @@ public class DataReader {
         JSONArray reviewArray = (JSONArray)Juser.get("reviews");
         for(Object reviewObject : reviewArray){
             JSONObject Jreview = (JSONObject)reviewObject;
-            int rating = (int)Jreview.get("rating");
+            int rating = Math.toIntExact((long)Jreview.get("rating"));
             String Rtitle = (String)Jreview.get("title");
             String Rdescription = (String)Jreview.get("description");
             String author = (String)Jreview.get("author");
