@@ -78,6 +78,10 @@ public class User extends Account{
 	 * Returns the contents of User in JSON format
 	 * @return The JSON interpretation of the User contents
 	 */
+	/**
+	 * Returns the contents of User in JSON format
+	 * @return The JSON interpretation of the User contents
+	 */
 	public JSONObject toJSON() {
 		JSONObject user = super.toJSON();
 		user.put("student ID", studentID);

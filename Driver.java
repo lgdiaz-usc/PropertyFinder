@@ -48,34 +48,34 @@ public class Driver {
 			String command = input.next();
 
 			switch (command) {
-			    case "help":
-			    	System.out.println("The available commands are:" + "\nhelp - Displays available commands"
+			case "help":
+				System.out.println("The available commands are:" + "\nhelp - Displays available commands"
 						+ "\nquit - Quits the program" + "\nlogin - Login into account"
 						+ "\nregister - Creates a new account"
 						+ "\nsearch - Searches for accounts and property listings");
-				    break;
-			    case "quit":
-			    	done = true;
-			    	break;
-			    case "login":
-			    	int value = login(system);
-			    	if (value == 1) {
-			    		system = displayUserMenu(system);
-			    		break;
-			    	} else if (value == 2) {
+				break;
+			case "quit":
+				done = true;
+				break;
+			case "login":
+				int value = login(system);
+				if (value == 1) {
+					system = displayUserMenu(system);
+					break;
+				} else if (value == 2) {
 					system = displayPMMenu(system);
-			    		break;
-			    	}
-			    	break;
-			    case "register":
-			    	system = createAccount(system);
-			    	break;
-			    case "search":
-			    	search(system);
-				    break;
-			    default:
-				    System.out.println("\"" + command + "\" is not a valid command! Please type " +
-                        "\"help\" for a list of commands");
+					break;
+				}
+				break;
+			case "register":
+				system = createAccount(system);
+				break;
+			case "search":
+				search(system);
+				break;
+			default:
+				System.out.println(
+						"\"" + command + "\" is not a valid command! Please type " + "\"help\" for a list of commands");
 			}
 		}
 
@@ -96,34 +96,32 @@ public class Driver {
 			String command = input.next();
 
 			switch (command) {
-			    case "help":
-			    	System.out.println("The available commands are:"
-                            + "\nhelp - Displays available commands"
-			    			+ "\nlogout - Log out of account"
-                            + "\nsearch - Searches for accounts and property listings"
-                            + "\ncontact - Sends a message to another account"
-                            + "\nmessages - Displays all of your messages"
-							+ "\nreview - Writes a review for an account or a property listing");
-			    	break;
-			    case "logout":
-			    	system = logout(system);
-			    	done = true;
-			    	break;
-			    case "search":
-			    	search(system);
-			    	break;
-                case "contact":
-                    system = contact(system);
-                    break;
-                case "messages":
-                    System.out.println(system.getMessages());
-                    break;
-				case "review":
-					system = review(system);
-					break;
-			    default:
-				    System.out.println("\"" + command + "\" is not a valid command! Please type " +
-                            "\"help\" for a list of commands");
+			case "help":
+				System.out.println("The available commands are:" + "\nhelp - Displays available commands"
+						+ "\nlogout - Log out of account" + "\nsearch - Searches for accounts and property listings"
+						+ "\ncontact - Sends a message to another account"
+						+ "\nmessages - Displays all of your messages"
+						+ "\nreview - Writes a review for an account or a property listing");
+				break;
+			case "logout":
+				system = logout(system);
+				done = true;
+				break;
+			case "search":
+				search(system);
+				break;
+			case "contact":
+				system = contact(system);
+				break;
+			case "messages":
+				System.out.println(system.getMessages());
+				break;
+			case "review":
+				system = review(system);
+				break;
+			default:
+				System.out.println(
+						"\"" + command + "\" is not a valid command! Please type " + "\"help\" for a list of commands");
 			}
 		}
 
@@ -142,42 +140,40 @@ public class Driver {
 			String command = input.next();
 
 			switch (command) {
-			    case "help":
-				    System.out.println("The available commands are:" + "\nhelp - Displays available commands"
-						    + "\nlogout - Log out of account"
-						    + "\nadd - Adds a property, unit, renter or unit renter"
-						    + "\nremove - Removes a property, unit, renter, or unit renter"
-						    + "\nsearch - Searches for accounts and property listings"
-                            + "\ncontact - Sends a message to another account"
-                            + "\nmessages - Displays the contents of all of your messages"
-							+ "\nreview - Write a review for an account or property listing");
-			    	break;
-			    case "logout":
-			    	system = logout(system);
-			    	done = true;
-			    	break;
-			    case "add":
-			    	system = add(system);
-			    	break;
-			    case "remove":
-			    	system = remove(system);
-			    	break;
-			    case "search":
-			    	search(system);
-			    	break;
-                case "contact":
-                    system = contact(system);
-                    break;
-                case "messages":
-                    System.out.println(system.getMessages());
-                    break;
-				case "review":
-					system = review(system);
-					break;
+			case "help":
+				System.out.println("The available commands are:" + "\nhelp - Displays available commands"
+						+ "\nlogout - Log out of account" + "\nadd - Adds a property, unit, renter or unit renter"
+						+ "\nremove - Removes a property, unit, renter, or unit renter"
+						+ "\nsearch - Searches for accounts and property listings"
+						+ "\ncontact - Sends a message to another account"
+						+ "\nmessages - Displays the contents of all of your messages"
+						+ "\nreview - Write a review for an account or property listing");
+				break;
+			case "logout":
+				system = logout(system);
+				done = true;
+				break;
+			case "add":
+				system = add(system);
+				break;
+			case "remove":
+				system = remove(system);
+				break;
+			case "search":
+				search(system);
+				break;
+			case "contact":
+				system = contact(system);
+				break;
+			case "messages":
+				System.out.println(system.getMessages());
+				break;
+			case "review":
+				system = review(system);
+				break;
 			default:
-				System.out.println(
-						"\"" + command + "\" is not a valid command! Please type " + "\"help\" " +
-                                "for a list of commands");
+				System.out.println("\"" + command + "\" is not a valid command! Please type " + "\"help\" "
+						+ "for a list of commands");
 			}
 		}
 
@@ -366,36 +362,28 @@ public class Driver {
 			System.out.println("ERROR: Invalid search type!");
 		}
 	}
-	
+
 	private static PSystem add(PSystem system) {
 		Scanner input = new Scanner(System.in);
 		int choice;
-		//Inputting information
-		System.out.print("What would you like to add? (Select a number)." + 
-						"\n1: Property" + 
-						"\n2: Unit"	+ 
-						"\n3: Renter" + 
-						"\n4: Unit Renter" + 
-						"\n>");
+		// Inputting information
+		System.out.print("What would you like to add? (Select a number)." + "\n1: Property" + "\n2: Unit"
+				+ "\n3: Renter" + "\n4: Unit Renter" + "\n>");
 		choice = input.nextInt();
-		if(choice == 1)	{
+		if (choice == 1) {
 			system = addProperty(system);
-		}
-		else if(choice == 2) {
+		} else if (choice == 2) {
 			system = addUnit(system);
-		}
-		else if(choice == 3) {
+		} else if (choice == 3) {
 			system = addRenter(system);
-		}	
-		else if(choice == 4) {
+		} else if (choice == 4) {
 			system = addUnitRenter(system);
-		}
-		else {
+		} else {
 			System.out.println("ERROR: Invalid add type");
 		}
 		return system;
 	}
-	
+
 	private static PSystem addProperty(PSystem system) {
 		Scanner input = new Scanner(System.in);
 
@@ -436,9 +424,9 @@ public class Driver {
 		Scanner input = new Scanner(System.in);
 
 		// Inputting information
-		System.out.println("Please enter property name." + "\n>");
+		System.out.print("Please enter property name." + "\n>");
 		String propertyName = input.nextLine();
-		System.out.println("Please enter renter's username." + "\n>");
+		System.out.print("Please enter renter's username." + "\n>");
 		String renterName = input.nextLine();
 
 		// Adds Renter
@@ -450,48 +438,40 @@ public class Driver {
 		Scanner input = new Scanner(System.in);
 
 		// Inputting information
-		//System.out.print("Please enter property name." + "\n>");
-		//String propertyName = input.nextLine();
-		//System.out.print("Please enter unit." + "\n>");
-		//String addressModifier = input.nextLine();
-		//System.out.print("Please enter renter's username." + "\n>");
-		//String renterName = input.nextLine();
+		// System.out.print("Please enter the property's name." + "\n>");
+		// String propertyTitle = input.nextLine();
+		// System.out.print("Please enter the unit." + "\n>");
+		// String addressModifier = input.nextLine();
+		// System.out.print("Please enter the renter's username." + "\n>");
+		// String renterName = input.nextLine();
 
-		// Adds Renter
-		//system.addUnitRenter(propertyName, addressModifier, renterName);
-		System.out.println("Can't add unit renter yet.");
+		// Add Unit Rentor
+		// system.addUnitRenter(propertyTitle, addressModifier, renterName);
+		System.out.print("UNDER CONSTRUCTION: COMING SOON!");
 		return system;
 	}
 
 	private static PSystem remove(PSystem system) {
 		Scanner input = new Scanner(System.in);
 		int choice;
-		//Inputting information
-		System.out.print("What would you like to remove? (Select a number)." + 
-						"\n1: Property" + 
-						"\n2: Unit"	+ 
-						"\n3: Renter" + 
-						"\n4: Unit Renter" +
-						"\n>");
+		// Inputting information
+		System.out.print("What would you like to remove? (Select a number)." + "\n1: Property" + "\n2: Unit"
+				+ "\n3: Renter" + "\n4: Unit Renter" + "\n>");
 		choice = input.nextInt();
-		if(choice == 1)	{
+		if (choice == 1) {
 			system = removeProperty(system);
-		}
-		else if(choice == 2) {
+		} else if (choice == 2) {
 			system = removeUnit(system);
-		}
-		else if(choice == 3) {
+		} else if (choice == 3) {
 			system = removeRenter(system);
-		}	
-		else if(choice == 4) {
+		} else if (choice == 4) {
 			system = removeUnitRenter(system);
-		}
-		else {
+		} else {
 			System.out.println("ERROR: Invalid remove type");
 		}
 		return system;
 	}
-	
+
 	private static PSystem removeProperty(PSystem system) {
 		Scanner input = new Scanner(System.in);
 
@@ -506,9 +486,15 @@ public class Driver {
 
 	private static PSystem removeUnit(PSystem system) {
 		Scanner input = new Scanner(System.in);
-		
+
 		// Inputting information
-		System.out.println("Can't remove unit yet.");
+		System.out.print("Please enter property name." + "\n>");
+		String propertyName = input.nextLine();
+		System.out.print("Please enter unit." + "\n>");
+		String addressModifier = input.nextLine();
+
+		// Removes unit from property listing
+		system.removeUnit(propertyName, addressModifier);
 		return system;
 	}
 
@@ -516,7 +502,13 @@ public class Driver {
 		Scanner input = new Scanner(System.in);
 
 		// Inputting information
-		System.out.println("Can't remove renter yet.");
+		System.out.print("Please enter property name." + "\n>");
+		String propertyName = input.nextLine();
+		System.out.print("Please enter rentor's username." + "\n>");
+		String renterName = input.nextLine();
+
+		// Removes renter from property listings.
+		system.removeRenter(propertyName, renterName);
 		return system;
 	}
 
@@ -524,57 +516,51 @@ public class Driver {
 		Scanner input = new Scanner(System.in);
 
 		// Inputting information
-		System.out.println("Can't remove unit renter yet.");
+		System.out.print("UNDER CONSTRUCTION: COMING SOON!");
 		return system;
 	}
 
-	private static PSystem contact(PSystem system){
-	    Scanner input = new Scanner(System.in);
-	    String recipientType;
-	    System.out.print("Would you like to contact a user, or a property manager? " +
-                "(user/manager)" + "\n>");
-	    recipientType = input.next();
+	private static PSystem contact(PSystem system) {
+		Scanner input = new Scanner(System.in);
+		String recipientType;
+		System.out.print("Would you like to contact a user, or a property manager? " + "(user/manager)" + "\n>");
+		recipientType = input.next();
 
-	    if(recipientType.equalsIgnoreCase("user")){
-	        String username, message;
-	        System.out.print("What is the username of the user you would like to contact?" +
-                    "\n>");
-	        username = input.next();
+		if (recipientType.equalsIgnoreCase("user")) {
+			String username, message;
+			System.out.print("What is the username of the user you would like to contact?" + "\n>");
+			username = input.next();
 
-	        input = new Scanner(System.in);
-	        System.out.print("What message would you like to send to that user?" + "\n>");
-	        message = input.nextLine();
-	        system.contactUser(username, message);
-        }
-	    else if(recipientType.equalsIgnoreCase("manager")){
-            String username, message;
-            System.out.print("What is the username of the property manager you would like to " +
-                    "contact?" + "\n>");
-            username = input.next();
+			input = new Scanner(System.in);
+			System.out.print("What message would you like to send to that user?" + "\n>");
+			message = input.nextLine();
+			system.contactUser(username, message);
+		} else if (recipientType.equalsIgnoreCase("manager")) {
+			String username, message;
+			System.out.print("What is the username of the property manager you would like to " + "contact?" + "\n>");
+			username = input.next();
 
-            input = new Scanner(System.in);
-            System.out.print("What message would you like to send to that property manager?" +
-                    "\n>");
-            message = input.nextLine();
-            system.contactManager(username, message);
-        }
-	    else{
-	        System.out.println("ERROR: \"" + recipientType + "\" is not a valid account type!");
-        }
+			input = new Scanner(System.in);
+			System.out.print("What message would you like to send to that property manager?" + "\n>");
+			message = input.nextLine();
+			system.contactManager(username, message);
+		} else {
+			System.out.println("ERROR: \"" + recipientType + "\" is not a valid account type!");
+		}
 
-	    return system;
-    }
+		return system;
+	}
 
-    private static PSystem review(PSystem system){
+	private static PSystem review(PSystem system) {
 		Scanner input = new Scanner(System.in);
 		String reviewType;
 
 		System.out.print("What are you reviewing? (user/manager/property/unit)" + "\n>");
 		reviewType = input.next();
-		if(reviewType.equalsIgnoreCase("user") || reviewType.equalsIgnoreCase("manager")){
+		if (reviewType.equalsIgnoreCase("user") || reviewType.equalsIgnoreCase("manager")) {
 			System.out.print("What is the username of the account you want to review?" + "\n>");
 			String username = input.next();
-			System.out.print("What is the numerical rating of your review? (out of 10)" +"\n>");
+			System.out.print("What is the numerical rating of your review? (out of 10)" + "\n>");
 			int rating = input.nextInt();
 
 			input = new Scanner(System.in);
@@ -583,18 +569,16 @@ public class Driver {
 			System.out.print("What is the description of your review?" + "\n>");
 			String description = input.nextLine();
 
-			if(reviewType.equalsIgnoreCase("manager")){
+			if (reviewType.equalsIgnoreCase("manager")) {
 				system.addReview(rating, title, description, username, ReviewType.PROPERTY_MANAGER);
-			}
-			else {
+			} else {
 				system.addReview(rating, title, description, username, ReviewType.USER);
 			}
-		}
-		else if(reviewType.equalsIgnoreCase("property") || reviewType.equalsIgnoreCase("unit")){
+		} else if (reviewType.equalsIgnoreCase("property") || reviewType.equalsIgnoreCase("unit")) {
 			input = new Scanner(System.in);
 			System.out.print("What is the title of the property you want to review?" + "\n>");
 			String name = input.nextLine();
-			System.out.print("What is the numerical rating of your review? (out of 10)" +"\n>");
+			System.out.print("What is the numerical rating of your review? (out of 10)" + "\n>");
 			int rating = input.nextInt();
 
 			input = new Scanner(System.in);
@@ -603,17 +587,15 @@ public class Driver {
 			System.out.print("What is the description of your review?" + "\n>");
 			String description = input.nextLine();
 
-			if(reviewType.equalsIgnoreCase("unit")){
+			if (reviewType.equalsIgnoreCase("unit")) {
 				input = new Scanner(System.in);
 				System.out.print("What is the address modifier of the unit you want to review?" + "\n>");
 				name = name.concat("\t" + input.nextLine());
 				system.addReview(rating, title, description, name, ReviewType.UNIT);
-			}
-			else {
+			} else {
 				system.addReview(rating, title, description, name, ReviewType.PROPERTY);
 			}
-		}
-		else{
+		} else {
 			System.out.println("ERROR: Invalid review type!");
 		}
 

@@ -653,7 +653,34 @@ public class PSystem {
 	 * @param renterName    The username of the User being removed to the Property
 	 */
 	public void removeRenter(String propertyTitle, String renterName) {
-		
+		boolean userExist = false;
+		boolean propertyExist = false;
+		// Checks if the user exists
+		for (User user : users) {
+			if (user.username.equals(renterName))
+				userExist = true;
+		}
+
+		if (userExist == true) {
+			// Checks if the property exists
+			for (PropertyManager manager : propertyManagers) {
+				for (Property property : properties) {
+					String title = property.getTitle();
+					// checks if property exist.
+					if (title.equals(propertyTitle) && currentAccount.equals(manager.username)) {
+						// Removes renter for current address.
+						property.removeRenter(renterName, currentAccount);
+						System.out.println("Rentor removed.");
+						propertyExist = true;
+					}
+				}
+			}
+			if (propertyExist == false) {
+				System.out.println("Property doesn't exist. Cannot remove renter.");
+			}
+		} else {
+			System.out.println("User doesn't exists. Cannot remove renter.");
+		}
 	}
 
 	/**
@@ -665,7 +692,40 @@ public class PSystem {
 	 * @param renterName      The username of the User being added
 	 */
 	public void addUnitRenter(String propertyTitle, String addressModifier, String renterName) {
-
+		boolean userExist = false;
+		boolean propertyExist = false;
+		// Checks if the user exists
+		for(User user: users) {
+			if(user.username.equals(renterName))
+				userExist = true;
+		}
+		
+		// Searches through properties
+		if(userExist == true) 
+		{
+			for (PropertyManager manager : propertyManagers) 
+			{
+				for (Property property : properties) 
+				{
+					String title = property.getTitle();
+					// checks if property exist
+					if (propertyTitle.equals(title) && currentAccount.equals(manager.username)) 
+					{
+						// Add unit for current account
+						property.addUnitRenter(renterName, addressModifier, currentAccount);
+						propertyExist = true;
+						break;
+					}
+				}
+			}
+			if (propertyExist == true) {
+				System.out.println("Unit Renter Added");
+			} else {
+				System.out.println("Property doesn't exist. Cannot add unit renter.");
+			}
+		} else {	
+			System.out.println("User doesn't exists. Cannot add renter.");
+		}
 	}
 
 	/**
@@ -702,35 +762,6 @@ public class PSystem {
 	}
 
 	/**
-	 * Adds a Unit to a Property
-	 * 
-	 * @param propertyName    The title of the Property to be edited
-	 * @param addressModifier The addressModifier of the Unit
-	 * @param capacity        The maximum capacity of the Unit
-	 */
-	public void addUnit(String propertyName, String addressModifier, int capacity) {
-		boolean exist = false;
-		// Searches through properties
-		for (PropertyManager manager : propertyManagers) {
-			for (Property property : properties) {
-				String title = property.getTitle();
-				// checks if property exist
-				if (propertyName.equals(title) && currentAccount.equals(manager.username)) {
-					// Add unit for current account
-					property.addUnit(addressModifier, capacity, currentAccount);
-					exist = true;
-					break;
-				}
-			}
-		}
-		if (exist == true) {
-			System.out.println("Unit Added");
-		} else {
-			System.out.println("Property doesn't exist. Cannot add unit.");
-		}
-	}
-
-	/**
 	 * Removes a Property from properties
 	 * 
 	 * @param propertyName The title of the Property to be removed
@@ -759,13 +790,58 @@ public class PSystem {
 	}
 
 	/**
+	 * Adds a Unit to a Property
+	 * 
+	 * @param propertyName    The title of the Property to be edited
+	 * @param addressModifier The addressModifier of the Unit
+	 * @param capacity        The maximum capacity of the Unit
+	 */
+	public void addUnit(String propertyName, String addressModifier, int capacity) {
+		boolean exist = false;
+		// Searches through properties
+		for (PropertyManager manager : propertyManagers) {
+			for (Property property : properties) {
+				String title = property.getTitle();
+				// checks if property exist
+				if (propertyName.equals(title) && currentAccount.equals(manager.username)) {
+					// Add unit for current account
+					property.addUnit(addressModifier, capacity, currentAccount);
+					exist = true;
+					break;
+				}
+			}
+		}
+		if (exist == true) {
+			System.out.println("Unit Added");
+		} else {
+			System.out.println("Property doesn't exist. Cannot add unit.");
+		}
+	}
+	
+	/**
 	 * Removes a Unit from a Property
 	 * 
 	 * @param propertyName    The title of Property to be edited
 	 * @param addressModifier The addressModifier of the Unit to be removed
 	 */
 	public void removeUnit(String propertyName, String addressModifier) {
-
+		boolean propertyExist = false;
+		// Searches through properties
+		for(PropertyManager manager : propertyManagers){
+			for(Property property: properties) {
+				String title = property.getTitle();
+				// checks if property exist
+				if (propertyName.equals(title) && currentAccount.equals(manager.username)) {
+					// Add unit for current account
+					property.removeUnit(addressModifier, currentAccount);
+					propertyExist = true;
+					break;
+				}	
+			}
+		}
+		if (propertyExist == false) {
+			System.out.println("Property doesn't exist. Cannot remove unit.");
+		}
 	}
 
 	/**

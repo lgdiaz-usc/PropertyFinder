@@ -11,7 +11,7 @@ public class PropertyManager extends Account{
      * @param name The name of the PropertyManager
      * @param dateOfBirth The date of birth of the PropertyManager
      * @param homeAddress The home address of the PropertyManager
-     * @param email The email address of th ePropertyManager
+     * @param email The email address of the PropertyManager
      * @param phoneNumber The phone number of the PropertyManager
      */
     public PropertyManager(String username, String password, String name, String dateOfBirth,
