@@ -49,8 +49,10 @@ public class Driver {
 
 			switch (command) {
 				case "help":
-					System.out.println("The available commands are:" + "\nhelp - Displays available commands"
-							+ "\nquit - Quits the program" + "\nlogin - Login into account"
+					System.out.println("The available commands are:"
+							+ "\nhelp - Displays available commands"
+							+ "\nquit - Quits the program"
+							+ "\nlogin - Login into account"
 							+ "\nregister - Creates a new account"
 							+ "\nsearch - Searches for accounts and property listings");
 					break;
@@ -98,10 +100,12 @@ public class Driver {
 			switch (command) {
 				case "help":
 					System.out.println("The available commands are:" + "\nhelp - Displays available commands"
-							+ "\nlogout - Log out of account" + "\nsearch - Searches for accounts and property listings"
+							+ "\nlogout - Log out of account"
+							+ "\nsearch - Searches for accounts and property listings"
 							+ "\ncontact - Sends a message to another account"
 							+ "\nmessages - Displays all of your messages"
-							+ "\nreview - Writes a review for an account or a property listing");
+							+ "\nreview - Writes a review for an account or a property listing"
+							+ "\nrent - generates a lease agreement for a property listing");
 					break;
 				case "logout":
 					system = logout(system);
@@ -118,6 +122,9 @@ public class Driver {
 					break;
 				case "review":
 					system = review(system);
+					break;
+				case "rent":
+					system = rent(system);
 					break;
 				default:
 					System.out.println(
@@ -141,7 +148,8 @@ public class Driver {
 			switch (command) {
 				case "help":
 					System.out.println("The available commands are:" + "\nhelp - Displays available commands"
-							+ "\nlogout - Log out of account" + "\nadd - Adds a property, unit, renter or unit renter"
+							+ "\nlogout - Log out of account"
+							+ "\nadd - Adds a property, unit, renter or unit renter"
 							+ "\nremove - Removes a property, unit, renter, or unit renter"
 							+ "\nsearch - Searches for accounts and property listings"
 							+ "\ncontact - Sends a message to another account"
@@ -605,6 +613,30 @@ public class Driver {
 			System.out.println("ERROR: Invalid review type!");
 		}
 
+		return system;
+	}
+
+	private static PSystem rent(PSystem system){
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("What is the title of the property you would like to rent?" + "\n>");
+		String title = input.nextLine();
+		input = new Scanner(System.in);
+
+		System.out.print("How many other students would you like to sign your lease with (0 if " +
+				"just you)?" + "\n>");
+		int numCoRenters = input.nextInt();
+		if(numCoRenters > 0){
+			String[] coRenters = new String[numCoRenters];
+			for(int i=0; i < numCoRenters; i++){
+				System.out.println("Please enter the username for corenter #" + (i+1) + "." + "\n" + ">");
+				coRenters[i] = input.next();
+			}
+			system.generateLease(title, coRenters);
+		}
+		else{
+			system.generateLease(title);
+		}
 		return system;
 	}
 }

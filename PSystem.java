@@ -3,6 +3,8 @@ package PropertyFinder;
 import java.util.ArrayList;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import java.time.LocalDate;
+import java.util.regex.Matcher;
 
 /**
  * Contains the methods and data used by the driver to interact with user
@@ -1001,6 +1003,205 @@ public class PSystem {
 	 */
 	public void updateAccount(PropertyManager newManager) {
 
+	}
+
+	/**
+	 * Generates a lease agreement for a specified Property
+	 * @param propertyTitle The title of the property having a lease generated
+	 */
+	public void generateLease(String propertyTitle){
+		JSONObject target = null;
+		//Property check
+		for(Property property : properties){
+			if(property.getTitle().equals(propertyTitle)){
+				target = property.toJSON();
+				break;
+			}
+		}
+		if(target == null){
+			System.out.println("ERROR: This property does not exist!");
+			return;
+		}
+
+		//Gathering information
+		String lease = DataReader.getLeaseTemplate();
+		String date = LocalDate.now().toString();
+		String endDate = LocalDate.now().plusMonths(5).toString();
+		String manager = (String)target.get("manager");
+		String tenant = getUser().name;
+		String propertyAddress = (String)target.get("address");
+		String paymentAddress = null;
+		String rent = "$" + String.valueOf(target.get("base rent"));
+		String damages = null;
+		JSONArray feeArray = (JSONArray)target.get("extra fees");
+		String description = (String)target.get("description");
+		String beds = null;
+		String baths = null;
+
+		String toManager = "";
+		for(PropertyManager Manager : propertyManagers){
+			if(Manager.name.equals(manager)){
+				paymentAddress = Manager.homeAddress;
+				toManager = Manager.username;
+				break;
+			}
+		}
+
+		for(int i=0; i < feeArray.size(); i++){
+			String fee = (String)feeArray.get(i);
+			if(fee.split(":")[0].trim().equalsIgnoreCase("damages")){
+				damages = fee.split(":")[1].trim();
+			}
+		}
+		if(damages == null){
+			damages = "$0";
+		}
+
+		if(description.contains("bed")){
+			beds = String.valueOf(description.charAt(description.indexOf("bed") - 2));
+		}
+		else{
+			beds = "1";
+		}
+
+		if(description.contains("bath")){
+			baths = String.valueOf(description.charAt(description.indexOf("bath") - 2));
+		}
+		else{
+			baths = "1";
+		}
+
+		//Lease Generation
+		lease = lease.replaceAll("<DATE>", Matcher.quoteReplacement(date));
+		lease = lease.replaceAll("<END DATE>", Matcher.quoteReplacement(endDate));
+		lease = lease.replaceAll("<LANDLOARD>", Matcher.quoteReplacement(manager));
+		lease = lease.replaceAll("<TENANTS>", Matcher.quoteReplacement(tenant));
+		lease = lease.replaceAll("<NUM_BED>", Matcher.quoteReplacement(beds));
+		lease = lease.replaceAll("<NUM_BATH>", Matcher.quoteReplacement(baths));
+		lease = lease.replaceAll("<PROPERTY_ADDRESS>", Matcher.quoteReplacement(propertyAddress));
+		lease = lease.replaceAll("<RENT>", Matcher.quoteReplacement(rent));
+		lease = lease.replaceAll("<PAYMENT ADDRESS>", Matcher.quoteReplacement(paymentAddress));
+		lease = lease.replaceAll("<DAMAGE COST>", Matcher.quoteReplacement(damages));
+
+		//Output
+		System.out.println(lease);
+		contactManager(toManager, lease);
+		contactUser(currentAccount, lease);
+	}
+
+	/**
+	 * Generates a lease agreement for a specified Property
+	 * @param propertyTitle The title of the Property having a lease generated
+	 * @param coRenters The list of other renters in the lease.
+	 */
+	public void generateLease(String propertyTitle, String[] coRenters){
+		JSONObject target = null;
+		int coRenterCount = 0;
+		String[] coRenterTemp = coRenters.clone();
+		//Property check
+		for(Property property : properties){
+			if(property.getTitle().equals(propertyTitle)){
+				target = property.toJSON();
+				break;
+			}
+		}
+		if(target == null){
+			System.out.println("ERROR: This property does not exist!");
+			return;
+		}
+
+		//Corenter check
+		for(int i=0; i < coRenters.length; i++){
+			for(User user : users){
+				if(user.username.equals(coRenters[i])){
+					coRenterCount++;
+					coRenters[i] = user.name;
+					break;
+				}
+			}
+		}
+		if(coRenterCount != coRenters.length){
+			System.out.println("ERROR: One of your corenters does not exist!");
+		}
+
+		//Gathering information
+		String lease = DataReader.getLeaseTemplate();
+		String date = LocalDate.now().toString();
+		String endDate = LocalDate.now().plusMonths(5).toString();
+		String manager = (String)target.get("manager");
+		String tenant = getUser().name;
+		String propertyAddress = (String)target.get("address");
+		String paymentAddress = null;
+		String rent = "$" + String.valueOf(target.get("base rent"));
+		String damages = null;
+		JSONArray feeArray = (JSONArray)target.get("extra fees");
+		String description = (String)target.get("description");
+		String beds = null;
+		String baths = null;
+
+		String toManager = "";
+		for(PropertyManager Manager : propertyManagers){
+			if(Manager.name.equals(manager)){
+				paymentAddress = Manager.homeAddress;
+				toManager = Manager.username;
+				break;
+			}
+		}
+
+		for(int i=0; i < feeArray.size(); i++){
+			String fee = (String)feeArray.get(i);
+			if(fee.split(":")[0].trim().equalsIgnoreCase("damages")){
+				damages = fee.split(":")[1].trim();
+			}
+		}
+		if(damages == null){
+			damages = "$0";
+		}
+
+		if(description.contains("bed")){
+			beds = String.valueOf(description.charAt(description.indexOf("bed") - 2));
+		}
+		else{
+			beds = "1";
+		}
+
+		if(description.contains("bath")){
+			baths = String.valueOf(description.charAt(description.indexOf("bath") - 2));
+		}
+		else{
+			baths = "1";
+		}
+
+		//Lease Generation
+		lease = lease.replaceAll("<DATE>", Matcher.quoteReplacement(date));
+		lease = lease.replaceAll("<END DATE>", Matcher.quoteReplacement(endDate));
+		lease = lease.replaceAll("<LANDLOARD>", Matcher.quoteReplacement(manager));
+		lease = lease.replaceAll("<NUM_BED>", Matcher.quoteReplacement(beds));
+		lease = lease.replaceAll("<NUM_BATH>", Matcher.quoteReplacement(baths));
+		lease = lease.replaceAll("<PROPERTY_ADDRESS>", Matcher.quoteReplacement(propertyAddress));
+		lease = lease.replaceAll("<RENT>", Matcher.quoteReplacement(rent));
+		lease = lease.replaceAll("<PAYMENT ADDRESS>", Matcher.quoteReplacement(paymentAddress));
+		lease = lease.replaceAll("<DAMAGE COST>", Matcher.quoteReplacement(damages));
+
+		String temp = tenant;
+		for(String coRenter : coRenters){
+			temp = temp.concat(", " + coRenter);
+		}
+		lease = lease.replaceFirst("<TENANTS>", Matcher.quoteReplacement(temp));
+
+		temp = tenant;
+		for(String coRenter : coRenters){
+			temp = temp.concat("\n" + coRenter);
+		}
+		lease = lease.replaceFirst("<TENANTS>", Matcher.quoteReplacement(temp));
+
+		//Output
+		System.out.println(lease);
+		contactManager(toManager, lease);
+		contactUser(currentAccount, lease);
+		for(String coRenter : coRenterTemp){
+			contactUser(coRenter, lease);
+		}
 	}
 
 	/**

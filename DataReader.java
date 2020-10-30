@@ -1,6 +1,8 @@
 package PropertyFinder;
 
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -199,5 +201,27 @@ public class DataReader {
 		}
 
 		return property;
+	}
+
+	/**
+	 * Reads a lease agreement template from a file and returns it as a String
+	 * @return The lease agreement template
+	 */
+	public static String getLeaseTemplate(){
+		FileReader reader = null;
+		String output = "";
+		try {
+			reader = new FileReader("Lease Agreement");
+
+			while(reader.ready()){
+				output = output.concat(String.valueOf(Character.toChars(reader.read())));
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return output;
 	}
 }
