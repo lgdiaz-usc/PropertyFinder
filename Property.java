@@ -124,7 +124,7 @@ public class Property {
 	 * @return if the Property is available for rent
 	 */
 	public boolean isAvailable() {
-		return false;
+		return renters.size() < capacity;
 	}
 
 	/**
@@ -135,7 +135,7 @@ public class Property {
 	 * @return Whether or not the current Account is the owner of this Property
 	 */
 	public boolean isManager(String currentAccount) {
-		return false;
+		return manager.equals(currentAccount);
 	}
 
 	/**
@@ -145,7 +145,7 @@ public class Property {
 	 * @return Whether or not the current Account is a renter of this Property
 	 */
 	public boolean isRenter(String renterName) {
-		return false;
+		return renters.contains(renterName);
 	}
 
 	/**
@@ -155,10 +155,15 @@ public class Property {
 	 * @param currentAccount The current Account
 	 */
 	public void addRenter(String renter, String currentAccount) {
-		if (renters.size() < capacity) {
-			renters.add(renter);
-		} else {
-			System.out.println("ERROR: Property already at maximum capacity!");
+		if(isManager(currentAccount)){
+			if (isAvailable()) {
+				renters.add(renter);
+			} else {
+				System.out.println("ERROR: Property already at maximum capacity!");
+			}
+		}
+		else{
+			System.out.println("ERROR: You do not own this property.");
 		}
 	}
 
@@ -169,7 +174,12 @@ public class Property {
 	 * @param currentAccount The current Account
 	 */
 	public void removeRenter(String renter, String currentAccount) {
-		renters.remove(renter);
+		if(isManager(currentAccount)){
+			renters.remove(renter);
+		}
+		else{
+			System.out.println("ERROR: You do not own this property.");
+		}
 	}
 
 	/**
@@ -181,15 +191,20 @@ public class Property {
 	 */
 	public void addUnitRenter(String renter, String addressModifier, String currentAccount) {
 		boolean unitExist = false;
-		for (Unit unit : units) {
-			if (unit.getAddressModifier().equals(addressModifier)) {
-				unit.addUnitRenter(renter, addressModifier, currentAccount);
-				unitExist = true;
-				break;
+		if(isManager(currentAccount)) {
+			for (Unit unit : units) {
+				if (unit.getAddressModifier().equals(addressModifier)) {
+					unit.addUnitRenter(renter, addressModifier, currentAccount);
+					unitExist = true;
+					break;
+				}
+			}
+			if (!unitExist) {
+				System.out.println("Unit doesn't exists. Cannot Add Unit Renter.");
 			}
 		}
-		if (!unitExist) {
-			System.out.println("Unit doesn't exists. Cannot Add Unit Renter.");
+		else{
+			System.out.println("ERROR: You do not own this property.");
 		}
 	}
 
@@ -202,15 +217,20 @@ public class Property {
 	 */
 	public void removeUnitRenter(String renter, String addressModifier, String currentAccount) {
 		boolean unitExist = false;
-		for (Unit unit : units) {
-			if (unit.getAddressModifier().equals(addressModifier)) {
-				unit.removeUnitRenter(renter, addressModifier, currentAccount);
-				unitExist = true;
-				break;
+		if(isManager(currentAccount)) {
+			for (Unit unit : units) {
+				if (unit.getAddressModifier().equals(addressModifier)) {
+					unit.removeUnitRenter(renter, addressModifier, currentAccount);
+					unitExist = true;
+					break;
+				}
+			}
+			if (!unitExist) {
+				System.out.println("Unit doesn't exists. Cannot remove Unit Renter.");
 			}
 		}
-		if (!unitExist) {
-			System.out.println("Unit doesn't exists. Cannot remove Unit Renter.");
+		else {
+			System.out.println("ERROR: You do not own this property.");
 		}
 	}
 
@@ -222,8 +242,12 @@ public class Property {
 	 * @param currentAccount  The current Account
 	 */
 	public void addUnit(String addressModifier, int capacity, String currentAccount) {
-
-		units.add(new Unit(addressModifier, capacity));
+		if(isManager(currentAccount)){
+			units.add(new Unit(addressModifier, capacity));
+		}
+		else{
+			System.out.println("ERROR: You do not own this property.");
+		}
 	}
 
 	/**
@@ -234,17 +258,22 @@ public class Property {
 	 */
 	public void removeUnit(String addressModifier, String currentAccount) {
 		boolean unitExist = false;
-		for (Unit unit : units) {
-			String unitName = unit.getAddressModifier();
-			if (unitName.equals(addressModifier)) {
-				units.remove(unit);
-				unitExist = true;
+		if(isManager(currentAccount)) {
+			for (Unit unit : units) {
+				String unitName = unit.getAddressModifier();
+				if (unitName.equals(addressModifier)) {
+					units.remove(unit);
+					unitExist = true;
+				}
+			}
+			if (unitExist) {
+				System.out.println("Unit Removed.");
+			} else {
+				System.out.println("Unit doesn't exist. Cannot remove unit");
 			}
 		}
-		if (unitExist) {
-			System.out.println("Unit Removed.");
-		} else {
-			System.out.println("Unit doesn't exist. Cannot remove unit");
+		else {
+			System.out.println("ERROR: You do not own this property.");
 		}
 	}
 
@@ -257,7 +286,12 @@ public class Property {
 	 * @param fee            The dollar amount of the fee
 	 */
 	public void addFee(String currentAccount, String name, double fee) {
-
+		if(isManager(currentAccount)){
+			extraFees.add(name + ": $" + fee);
+		}
+		else{
+			System.out.println("ERROR: You do not own this property.");
+		}
 	}
 
 	/**
@@ -267,7 +301,19 @@ public class Property {
 	 * @param name           The name of the fee
 	 */
 	public void removeFee(String currentAccount, String name) {
-
+		if(isManager(currentAccount)){
+			for(int i=0; i < extraFees.size(); i++){
+				if(name.equals(extraFees.get(i).split(":")[0])){
+					extraFees.remove(i);
+					System.out.println("Fee \"" + name + "\" deleted!");
+					return;
+				}
+			}
+			System.out.println("ERROR: Fee \"" + name + "\" does not exist!");
+		}
+		else {
+			System.out.println("ERROR: You do not own this property.");
+		}
 	}
 
 	/**
@@ -277,7 +323,12 @@ public class Property {
 	 * @param title          The new title
 	 */
 	public void updateTitle(String currentAccount, String title) {
-
+		if(isManager(currentAccount)){
+			this.title = title;
+		}
+		else{
+			System.out.println("ERROR: You do not own this property.");
+		}
 	}
 
 	/**
@@ -287,7 +338,12 @@ public class Property {
 	 * @param address        The new address
 	 */
 	public void updateAddress(String currentAccount, String address) {
-
+		if(isManager(currentAccount)){
+			this.address = address;
+		}
+		else{
+			System.out.println("ERROR: You do not own this property.");
+		}
 	}
 
 	/**
@@ -297,7 +353,12 @@ public class Property {
 	 * @param description    The new description
 	 */
 	public void updateDescription(String currentAccount, String description) {
-
+		if(isManager(currentAccount)){
+			this.description = description;
+		}
+		else{
+			System.out.println("ERROR: You do not own this property.");
+		}
 	}
 
 	/**
@@ -307,7 +368,12 @@ public class Property {
 	 * @param capacity       The new capacity
 	 */
 	public void updateCapacity(String currentAccount, int capacity) {
-
+		if(isManager(currentAccount)){
+			this.capacity = capacity;
+		}
+		else{
+			System.out.println("ERROR: You do not own this property.");
+		}
 	}
 
 	/**
@@ -317,7 +383,12 @@ public class Property {
 	 * @param baseRent       The new base rent
 	 */
 	public void updateRent(String currentAccount, double baseRent) {
-
+		if(isManager(currentAccount)){
+			this.baseRent = baseRent;
+		}
+		else{
+			System.out.println("ERROR: You do not own this property.");
+		}
 	}
 
 	/**
@@ -328,7 +399,13 @@ public class Property {
 	 * @param capacity        The new maximum capacity
 	 */
 	public void updateUnitCapacity(String currentAccount, String addressModifier, int capacity) {
-
+		for(Unit unit : units){
+			if(unit.getAddressModifier().equals(addressModifier)){
+				unit.updateCapacity(capacity);
+				return;
+			}
+		}
+		System.out.println("Error: This unit doesn't exist!");
 	}
 
 	/**
@@ -339,7 +416,18 @@ public class Property {
 	 * @param newModifier     The new addressModifier
 	 */
 	public void updateUnitAddressModifier(String currentAccount, String addressModifier, String newModifier) {
-
+		if(isManager(currentAccount)){
+			for(Unit unit : units){
+				if(unit.getAddressModifier().equals(addressModifier)){
+					unit.updateAddressModifier(addressModifier);
+					return;
+				}
+			}
+			System.out.println("ERROR: This unit doesn't exist!");
+		}
+		else{
+			System.out.println("ERROR: You do not own this property.");
+		}
 	}
 
 	/**
@@ -349,7 +437,22 @@ public class Property {
 	 * @param newRenterName  The renter's new username
 	 */
 	public void updateRenterUsername(String currentAccount, String newRenterName) {
+		if(isRenter(currentAccount)){
+			if(renters.contains(currentAccount)){
+				renters.remove(currentAccount);
+				renters.add(newRenterName);
+			}
 
+			for(Unit unit : units){
+				if(unit.renters.contains(currentAccount)){
+					unit.renters.remove(currentAccount);
+					unit.renters.add(newRenterName);
+				}
+			}
+		}
+		else{
+			System.out.println("ERROR: You do not rent this property.");
+		}
 	}
 
 	/**
@@ -359,7 +462,12 @@ public class Property {
 	 * @param newManager     The owner's new username
 	 */
 	public void updateManagerUsername(String currentAccount, String newManager) {
-
+		if(isManager(currentAccount)){
+			manager = newManager;
+		}
+		else{
+			System.out.println("ERROR: You do not own this property.");
+		}
 	}
 
 	/**
