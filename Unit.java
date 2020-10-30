@@ -30,10 +30,8 @@ public class Unit {
 	/**
 	 * 
 	 * @param renter          The username of the renter
-	 * @param addressModifier The addressModifier for Unit (e.g. apartment number)
-	 * @param currentAccount  The current account of the user
 	 */
-	public void addUnitRenter(String renter, String addressModifier, String currentAccount) {
+	public void addUnitRenter(String renter) {
 		if (isAvailable()) {
 			renters.add(renter);
 		} else {
@@ -44,10 +42,8 @@ public class Unit {
 	/**
 	 * 
 	 * @param renter          The username of the renter
-	 * @param addressModifier The addressModifier for Unit (e.g. apartment number)
-	 * @param currentAccount  The current account of the user
 	 */
-	public void removeUnitRenter(String renter, String addressModifier, String currentAccount) {
+	public void removeUnitRenter(String renter) {
 		renters.remove(renter);
 	}
 
@@ -103,7 +99,7 @@ public class Unit {
 	 * @param addressModifier The new addressModifier
 	 */
 	public void updateAddressModifier(String addressModifier) {
-
+		this.addressModifier = addressModifier;
 	}
 
 	/**
@@ -112,7 +108,7 @@ public class Unit {
 	 * @param capacity The new maximum capacity
 	 */
 	public void updateCapacity(int capacity) {
-
+		this.capacity = capacity;
 	}
 
 	/**

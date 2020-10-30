@@ -194,7 +194,7 @@ public class Property {
 		if(isManager(currentAccount)) {
 			for (Unit unit : units) {
 				if (unit.getAddressModifier().equals(addressModifier)) {
-					unit.addUnitRenter(renter, addressModifier, currentAccount);
+					unit.addUnitRenter(renter);
 					unitExist = true;
 					break;
 				}
@@ -220,7 +220,7 @@ public class Property {
 		if(isManager(currentAccount)) {
 			for (Unit unit : units) {
 				if (unit.getAddressModifier().equals(addressModifier)) {
-					unit.removeUnitRenter(renter, addressModifier, currentAccount);
+					unit.removeUnitRenter(renter);
 					unitExist = true;
 					break;
 				}
@@ -399,13 +399,18 @@ public class Property {
 	 * @param capacity        The new maximum capacity
 	 */
 	public void updateUnitCapacity(String currentAccount, String addressModifier, int capacity) {
-		for(Unit unit : units){
-			if(unit.getAddressModifier().equals(addressModifier)){
-				unit.updateCapacity(capacity);
-				return;
+		if(isManager(currentAccount)){
+			for(Unit unit : units){
+				if(unit.getAddressModifier().equals(addressModifier)){
+					unit.updateCapacity(capacity);
+					return;
+				}
 			}
+			System.out.println("Error: This unit doesn't exist!");
 		}
-		System.out.println("Error: This unit doesn't exist!");
+		else{
+			System.out.println("Error: You do not own this property!");
+		}
 	}
 
 	/**
@@ -419,7 +424,7 @@ public class Property {
 		if(isManager(currentAccount)){
 			for(Unit unit : units){
 				if(unit.getAddressModifier().equals(addressModifier)){
-					unit.updateAddressModifier(addressModifier);
+					unit.updateAddressModifier(newModifier);
 					return;
 				}
 			}
@@ -492,8 +497,10 @@ public class Property {
 		}
 		output = output.concat("\nRent: $" + baseRent);
 		output = output.concat("\nAdditional fees: ");
-		for (String fee : extraFees)
-			output = output.concat("\nAverage rating: " + getAverageRating());
+		for (String fee : extraFees){
+			output = output.concat("\n\t" + fee);
+		}
+		output = output.concat("\nAverage rating: " + getAverageRating());
 		output = output.concat("\nReviews:");
 		for (Review review : reviews) {
 			output = output.concat(review.toString());
