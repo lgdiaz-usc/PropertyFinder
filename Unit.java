@@ -34,7 +34,11 @@ public class Unit {
 	 * @param currentAccount  The current account of the user
 	 */
 	public void addUnitRenter(String renter, String addressModifier, String currentAccount) {
-		renters.add(renter);
+		if (renters.size() < capacity) {
+			renters.add(renter);
+		} else {
+			System.out.println("ERROR: Property already at maximum capacity!");
+		}
 	}
 
 	/**

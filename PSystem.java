@@ -305,24 +305,24 @@ public class PSystem {
 	 * @return The sorted list of Property's
 	 */
 	public ArrayList<Property> sortPropertyByTitle(ArrayList<Property> properties, boolean descending) {
-		for(int i=1; i < properties.size(); i++){
+		for (int i = 1; i < properties.size(); i++) {
 			boolean hasSwapped = false;
-			for(int j=0; j < properties.size() - i; j++){
+			for (int j = 0; j < properties.size() - i; j++) {
 				String temp = alphanumCheck((String) properties.get(j).getTitle(),
-						(String) properties.get(j+1).getTitle());
-				if(temp.equals(properties.get(j).getTitle())){
+						(String) properties.get(j + 1).getTitle());
+				if (temp.equals(properties.get(j).getTitle())) {
 					Property tempProperty = properties.get(j);
-					properties.set(j, properties.get(j+1));
-					properties.set(j+1, tempProperty);
+					properties.set(j, properties.get(j + 1));
+					properties.set(j + 1, tempProperty);
 					hasSwapped = true;
 				}
 			}
-			if(!hasSwapped){
+			if (!hasSwapped) {
 				break;
 			}
 		}
 
-		if(descending){
+		if (descending) {
 			properties = descendSort(properties);
 		}
 
@@ -337,22 +337,23 @@ public class PSystem {
 	 * @return The sorted list of Property's
 	 */
 	public ArrayList<Property> sortPropertyByPrice(ArrayList<Property> properties, boolean descending) {
-		for(int i=1; i < properties.size(); i++){
+		for (int i = 1; i < properties.size(); i++) {
 			boolean hasSwapped = false;
-			for(int j=0; j < properties.size() - i; j++){
-				if((double)properties.get(j).toJSON().get("base rent") > (double)properties.get(j+1).toJSON().get("base rent")){
+			for (int j = 0; j < properties.size() - i; j++) {
+				if ((double) properties.get(j).toJSON().get("base rent") > (double) properties.get(j + 1).toJSON()
+						.get("base rent")) {
 					Property tempProperty = properties.get(j);
-					properties.set(j, properties.get(j+1));
-					properties.set(j+1, tempProperty);
+					properties.set(j, properties.get(j + 1));
+					properties.set(j + 1, tempProperty);
 					hasSwapped = true;
 				}
 			}
-			if(!hasSwapped){
+			if (!hasSwapped) {
 				break;
 			}
 		}
 
-		if(descending){
+		if (descending) {
 			properties = descendSort(properties);
 		}
 
@@ -367,22 +368,22 @@ public class PSystem {
 	 * @return The sorted list of Property's
 	 */
 	public ArrayList<Property> sortPropertyByRating(ArrayList<Property> properties, boolean descending) {
-		for(int i=1; i < properties.size(); i++){
+		for (int i = 1; i < properties.size(); i++) {
 			boolean hasSwapped = false;
-			for(int j=0; j < properties.size() - i; j++){
-				if(properties.get(j).getAverageRating() > properties.get(j+1).getAverageRating()){
+			for (int j = 0; j < properties.size() - i; j++) {
+				if (properties.get(j).getAverageRating() > properties.get(j + 1).getAverageRating()) {
 					Property tempProperty = properties.get(j);
-					properties.set(j, properties.get(j+1));
-					properties.set(j+1, tempProperty);
+					properties.set(j, properties.get(j + 1));
+					properties.set(j + 1, tempProperty);
 					hasSwapped = true;
 				}
 			}
-			if(!hasSwapped){
+			if (!hasSwapped) {
 				break;
 			}
 		}
 
-		if(descending){
+		if (descending) {
 			properties = descendSort(properties);
 		}
 
@@ -397,23 +398,23 @@ public class PSystem {
 	 * @return The sorted list of PropertyManager's
 	 */
 	public ArrayList<PropertyManager> sortManagerByName(ArrayList<PropertyManager> managers, boolean descending) {
-		for(int i=1; i < managers.size(); i++){
+		for (int i = 1; i < managers.size(); i++) {
 			boolean hasSwapped = false;
-			for(int j=0; j < managers.size() - i; j++){
-				String temp = alphanumCheck(managers.get(j).name, managers.get(j+1).name);
-				if(temp.equals(managers.get(j).name)){
+			for (int j = 0; j < managers.size() - i; j++) {
+				String temp = alphanumCheck(managers.get(j).name, managers.get(j + 1).name);
+				if (temp.equals(managers.get(j).name)) {
 					PropertyManager tempManager = managers.get(j);
-					managers.set(j, managers.get(j+1));
-					managers.set(j+1, tempManager);
+					managers.set(j, managers.get(j + 1));
+					managers.set(j + 1, tempManager);
 					hasSwapped = true;
 				}
 			}
-			if(!hasSwapped){
+			if (!hasSwapped) {
 				break;
 			}
 		}
 
-		if(descending){
+		if (descending) {
 			managers = descendSort(managers);
 		}
 
@@ -428,22 +429,22 @@ public class PSystem {
 	 * @return The sorted list of PropertyManager's
 	 */
 	public ArrayList<PropertyManager> sortManagerByRating(ArrayList<PropertyManager> managers, boolean descending) {
-		for(int i=1; i < managers.size(); i++){
+		for (int i = 1; i < managers.size(); i++) {
 			boolean hasSwapped = false;
-			for(int j=0; j < managers.size() - i; j++){
-				if(managers.get(j).getAverageRating() > managers.get(j+1).getAverageRating()){
+			for (int j = 0; j < managers.size() - i; j++) {
+				if (managers.get(j).getAverageRating() > managers.get(j + 1).getAverageRating()) {
 					PropertyManager tempManager = managers.get(j);
-					managers.set(j, managers.get(j+1));
-					managers.set(j+1, tempManager);
+					managers.set(j, managers.get(j + 1));
+					managers.set(j + 1, tempManager);
 					hasSwapped = true;
 				}
 			}
-			if(!hasSwapped){
+			if (!hasSwapped) {
 				break;
 			}
 		}
 
-		if(descending){
+		if (descending) {
 			managers = descendSort(managers);
 		}
 
@@ -458,23 +459,23 @@ public class PSystem {
 	 * @return The sorted list of User's
 	 */
 	public ArrayList<User> sortUserByName(ArrayList<User> users, boolean descending) {
-		for(int i=1; i < users.size(); i++){
+		for (int i = 1; i < users.size(); i++) {
 			boolean hasSwapped = false;
-			for(int j=0; j < users.size() - i; j++){
-				String temp = alphanumCheck(users.get(j).name, users.get(j+1).name);
-				if(temp.equals(users.get(j).name)){
+			for (int j = 0; j < users.size() - i; j++) {
+				String temp = alphanumCheck(users.get(j).name, users.get(j + 1).name);
+				if (temp.equals(users.get(j).name)) {
 					User tempUser = users.get(j);
-					users.set(j, users.get(j+1));
-					users.set(j+1, tempUser);
+					users.set(j, users.get(j + 1));
+					users.set(j + 1, tempUser);
 					hasSwapped = true;
 				}
 			}
-			if(!hasSwapped){
+			if (!hasSwapped) {
 				break;
 			}
 		}
 
-		if(descending){
+		if (descending) {
 			users = descendSort(users);
 		}
 
@@ -489,22 +490,22 @@ public class PSystem {
 	 * @return The sorted list of User's
 	 */
 	public ArrayList<User> sortUserByRating(ArrayList<User> users, boolean descending) {
-		for(int i=1; i < users.size(); i++){
+		for (int i = 1; i < users.size(); i++) {
 			boolean hasSwapped = false;
-			for(int j=0; j < users.size() - i; j++){
-				if(users.get(j).getAverageRating() > users.get(j+1).getAverageRating()){
+			for (int j = 0; j < users.size() - i; j++) {
+				if (users.get(j).getAverageRating() > users.get(j + 1).getAverageRating()) {
 					User tempUser = users.get(j);
-					users.set(j, users.get(j+1));
-					users.set(j+1, tempUser);
+					users.set(j, users.get(j + 1));
+					users.set(j + 1, tempUser);
 					hasSwapped = true;
 				}
 			}
-			if(!hasSwapped){
+			if (!hasSwapped) {
 				break;
 			}
 		}
 
-		if(descending){
+		if (descending) {
 			users = descendSort(users);
 		}
 
@@ -519,7 +520,7 @@ public class PSystem {
 	 */
 	public ArrayList descendSort(ArrayList list) {
 		ArrayList listReversed = new ArrayList();
-		for(int i=list.size() - 1; i >= 0; i--){
+		for (int i = list.size() - 1; i >= 0; i--) {
 			listReversed.add(list.get(i));
 		}
 		return listReversed;
@@ -527,29 +528,27 @@ public class PSystem {
 
 	/**
 	 * Determines which of two Strings is lower in alphatical order
+	 * 
 	 * @param s1 One String being checked
 	 * @param s2 The other String being checked
 	 * @return The lower String
 	 */
-	private String alphanumCheck(String s1, String s2){
+	private String alphanumCheck(String s1, String s2) {
 		int size = Math.max(s1.length(), s2.length());
 
-		for(int i=0; i < size; i++){
-			try{
+		for (int i = 0; i < size; i++) {
+			try {
 				char c1 = s1.toLowerCase().trim().charAt(i);
 				char c2 = s2.toLowerCase().trim().charAt(i);
-				if(c1 > c2){
+				if (c1 > c2) {
 					return s1;
-				}
-				else if(c1 < c2){
+				} else if (c1 < c2) {
 					return s2;
 				}
-			}
-			catch(ArrayIndexOutOfBoundsException e){
-				if(size == s1.length()){
+			} catch (ArrayIndexOutOfBoundsException e) {
+				if (size == s1.length()) {
 					return s1;
-				}
-				else{
+				} else {
 					return s2;
 				}
 			}
@@ -564,8 +563,8 @@ public class PSystem {
 	 * @param message     The contents of the message
 	 */
 	public void contactManager(String managerName, String message) {
-		for(PropertyManager manager : propertyManagers){
-			if(manager.username.equals(managerName)){
+		for (PropertyManager manager : propertyManagers) {
+			if (manager.username.equals(managerName)) {
 				manager.addMessage(currentAccount, message);
 				return;
 			}
@@ -580,8 +579,8 @@ public class PSystem {
 	 * @param message  The contents of the message
 	 */
 	public void contactUser(String userName, String message) {
-		for(User user : users){
-			if(user.username.equals(userName)){
+		for (User user : users) {
+			if (user.username.equals(userName)) {
 				user.addMessage(currentAccount, message);
 				return;
 			}
@@ -661,7 +660,7 @@ public class PSystem {
 				userExist = true;
 		}
 
-		if (userExist == true) {
+		if (userExist) {
 			// Checks if the property exists
 			for (PropertyManager manager : propertyManagers) {
 				for (Property property : properties) {
@@ -695,36 +694,31 @@ public class PSystem {
 		boolean userExist = false;
 		boolean propertyExist = false;
 		// Checks if the user exists
-		for(User user: users) {
-			if(user.username.equals(renterName))
+		for (User user : users) {
+			if (user.username.equals(renterName))
 				userExist = true;
 		}
-		
 		// Searches through properties
-		if(userExist == true) 
-		{
-			for (PropertyManager manager : propertyManagers) 
-			{
-				for (Property property : properties) 
-				{
+		if (userExist) {
+			for (PropertyManager manager : propertyManagers) {
+				for (Property property : properties) {
 					String title = property.getTitle();
 					// checks if property exist
-					if (propertyTitle.equals(title) && currentAccount.equals(manager.username)) 
-					{
-						// Add unit for current account
+					if (propertyTitle.equals(title) && currentAccount.equals(manager.username)) {
+						// Add unit renter for current account
 						property.addUnitRenter(renterName, addressModifier, currentAccount);
 						propertyExist = true;
 						break;
 					}
 				}
 			}
-			if (propertyExist == true) {
-				System.out.println("Unit Renter Added");
-			} else {
+			if (!propertyExist) {
 				System.out.println("Property doesn't exist. Cannot add unit renter.");
 			}
-		} else {	
-			System.out.println("User doesn't exists. Cannot add renter.");
+		}
+
+		else {
+			System.out.println("User doesn't exists. Cannot add unit renter.");
 		}
 	}
 
@@ -737,7 +731,35 @@ public class PSystem {
 	 * @param renterName      The username of the User being removed
 	 */
 	public void removeUnitRenter(String propertyTitle, String addressModifier, String renterName) {
+		boolean userExist = false;
+		boolean propertyExist = false;
+		// Checks if the user exists
+		for (User user : users) {
+			if (user.username.equals(renterName))
+				userExist = true;
+		}
+		// Searches through properties
+		if (userExist) {
+			for (PropertyManager manager : propertyManagers) {
+				for (Property property : properties) {
+					String title = property.getTitle();
+					// checks if property exist
+					if (propertyTitle.equals(title) && currentAccount.equals(manager.username)) {
+						// Add unit renter for current account
+						property.removeUnitRenter(renterName, addressModifier, currentAccount);
+						propertyExist = true;
+						break;
+					}
+				}
+			}
+			if (!propertyExist) {
+				System.out.println("Property doesn't exist. Cannot remove unit renter.");
+			}
+		}
 
+		else {
+			System.out.println("User doesn't exists. Cannot remove unit renter.");
+		}
 	}
 
 	/**
@@ -770,21 +792,20 @@ public class PSystem {
 		boolean exist = false;
 		// Goes through property manager list.
 		for (PropertyManager manager : propertyManagers) {
-			for(Property property: properties) {
+			for (Property property : properties) {
 				String title = property.getTitle();
 				// Checks if property exists
 				if (propertyName.equals(title) && currentAccount.equals(manager.username)) {
-					//Removes property
+					// Removes property
 					properties.remove(property);
 					exist = true;
 					break;
 				}
 			}
 		}
-		if (exist == true) {
-			System.out.println("Property Removed");
-		}
-		else {
+		if (exist) {
+			System.out.println("Property Removed.");
+		} else {
 			System.out.println("Property doesn't exist. Cannot remove Property.");
 		}
 	}
@@ -812,12 +833,12 @@ public class PSystem {
 			}
 		}
 		if (exist) {
-			System.out.println("Unit Added");
+			System.out.println("Unit Added.");
 		} else {
 			System.out.println("Property doesn't exist. Cannot add unit.");
 		}
 	}
-	
+
 	/**
 	 * Removes a Unit from a Property
 	 * 
@@ -825,21 +846,21 @@ public class PSystem {
 	 * @param addressModifier The addressModifier of the Unit to be removed
 	 */
 	public void removeUnit(String propertyName, String addressModifier) {
-		boolean propertyExist = false;
+		boolean exist = false;
 		// Searches through properties
-		for(PropertyManager manager : propertyManagers){
-			for(Property property: properties) {
+		for (PropertyManager manager : propertyManagers) {
+			for (Property property : properties) {
 				String title = property.getTitle();
 				// checks if property exist
 				if (propertyName.equals(title) && currentAccount.equals(manager.username)) {
 					// Add unit for current account
 					property.removeUnit(addressModifier, currentAccount);
-					propertyExist = true;
+					exist = true;
 					break;
-				}	
+				}
 			}
 		}
-		if (propertyExist == false) {
+		if (!exist) {
 			System.out.println("Property doesn't exist. Cannot remove unit.");
 		}
 	}
@@ -899,44 +920,39 @@ public class PSystem {
 	 * @param Type          The type of object being reviewed
 	 */
 	public void addReview(int rating, String title, String description, String reviewSubject, ReviewType Type) {
-		if(Type == ReviewType.USER){
-			for(User user : users){
-				if(user.username.equals(reviewSubject)){
+		if (Type == ReviewType.USER) {
+			for (User user : users) {
+				if (user.username.equals(reviewSubject)) {
 					user.addReview(rating, title, description, currentAccount);
 					return;
 				}
 			}
 			System.out.println("Error: This account does not exist!");
-		}
-		else if(Type == ReviewType.PROPERTY_MANAGER){
-			for(PropertyManager manager : propertyManagers){
-				if(manager.username.equals(reviewSubject)){
+		} else if (Type == ReviewType.PROPERTY_MANAGER) {
+			for (PropertyManager manager : propertyManagers) {
+				if (manager.username.equals(reviewSubject)) {
 					manager.addReview(rating, title, description, currentAccount);
 					return;
 				}
 			}
 			System.out.println("ERROR: This account does not exist!");
-		}
-		else if(Type == ReviewType.PROPERTY){
-			for(Property property : properties){
-				if(property.getTitle().equals(reviewSubject)){
+		} else if (Type == ReviewType.PROPERTY) {
+			for (Property property : properties) {
+				if (property.getTitle().equals(reviewSubject)) {
 					property.addReview(rating, title, description, currentAccount);
 					return;
 				}
 			}
 			System.out.println("ERROR: This property does not exist!");
-		}
-		else if(Type == ReviewType.UNIT){
-			for(Property property : properties){
-				if(property.getTitle().equals(reviewSubject.split("\t")[0])){
-					property.addUnitReview(rating, title, description, currentAccount,
-							reviewSubject.split("\t")[1]);
+		} else if (Type == ReviewType.UNIT) {
+			for (Property property : properties) {
+				if (property.getTitle().equals(reviewSubject.split("\t")[0])) {
+					property.addUnitReview(rating, title, description, currentAccount, reviewSubject.split("\t")[1]);
 					return;
 				}
 			}
 			System.out.println("ERROR: That property does not exist!");
-		}
-		else{
+		} else {
 			System.out.println("ERROR: Invalid review type!");
 		}
 	}
@@ -947,8 +963,8 @@ public class PSystem {
 	 * @return The current Account
 	 */
 	public User getUser() {
-		for(User user : users){
-			if(user.username.equals(currentAccount)){
+		for (User user : users) {
+			if (user.username.equals(currentAccount)) {
 				return user;
 			}
 		}
@@ -961,8 +977,8 @@ public class PSystem {
 	 * @return The current Account
 	 */
 	public PropertyManager getManager() {
-		for(PropertyManager manager : propertyManagers){
-			if(manager.username.equals(currentAccount)){
+		for (PropertyManager manager : propertyManagers) {
+			if (manager.username.equals(currentAccount)) {
 				return manager;
 			}
 		}

@@ -181,13 +181,16 @@ public class Property {
 	 * @param currentAccount  The current Account
 	 */
 	public void addUnitRenter(String renter, String addressModifier, String currentAccount) {
+		boolean unitExist = false;
 		for (Unit unit : units) {
 			if (unit.getAddressModifier().equals(addressModifier)) {
 				unit.addUnitRenter(renter, addressModifier, currentAccount);
+				unitExist = true;
 				break;
-			} else {
-				System.out.println("Unit doesn't exists. Cannot Add Unit Renter.");
 			}
+		}
+		if (!unitExist) {
+			System.out.println("Unit doesn't exists. Cannot Add Unit Renter.");
 		}
 	}
 
@@ -199,7 +202,17 @@ public class Property {
 	 * @param currentAccount  The current Account
 	 */
 	public void removeUnitRenter(String renter, String addressModifier, String currentAccount) {
-
+		boolean unitExist = false;
+		for (Unit unit : units) {
+			if (unit.getAddressModifier().equals(addressModifier)) {
+				unit.removeUnitRenter(renter, addressModifier, currentAccount);
+				unitExist = true;
+				break;
+			}
+		}
+		if (!unitExist) {
+			System.out.println("Unit doesn't exists. Cannot remove Unit Renter.");
+		}
 	}
 
 	/**
@@ -229,7 +242,7 @@ public class Property {
 				unitExist = true;
 			}
 		}
-		if (unitExist == true) {
+		if (unitExist) {
 			System.out.println("Unit Removed.");
 		} else {
 			System.out.println("Unit doesn't exist. Cannot remove unit");

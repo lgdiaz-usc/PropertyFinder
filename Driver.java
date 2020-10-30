@@ -92,7 +92,7 @@ public class Driver {
 
 		// UI Loop for USER commands
 		while (!done) {
-			System.out.print("Please enter a command:" + "\n>");
+			System.out.print("\n" + "Please enter a command:" + "\n>");
 			String command = input.next();
 
 			switch (command) {
@@ -135,8 +135,7 @@ public class Driver {
 
 		// UI Loop for MANAGER commands
 		while (!done) {
-			System.out.println("");
-			System.out.print("Please enter a command:" + "\n>");
+			System.out.print("\n" + "Please enter a command:" + "\n>");
 			String command = input.next();
 
 			switch (command) {
@@ -438,17 +437,16 @@ public class Driver {
 		Scanner input = new Scanner(System.in);
 
 		// Inputting information
-		// System.out.print("Please enter the property's name." + "\n>");
-		// String propertyTitle = input.nextLine();
-		// System.out.print("Please enter the unit." + "\n>");
-		// String addressModifier = input.nextLine();
-		// System.out.print("Please enter the renter's username." + "\n>");
-		// String renterName = input.nextLine();
+		 System.out.print("Please enter the property's name." + "\n>");
+		 String propertyTitle = input.nextLine();
+		 System.out.print("Please enter the unit." + "\n>");
+		 String addressModifier = input.nextLine();
+		 System.out.print("Please enter the renter's username." + "\n>");
+		 String renterName = input.nextLine();
 
 		// Add Unit Rentor
-		// system.addUnitRenter(propertyTitle, addressModifier, renterName);
-		System.out.print("UNDER CONSTRUCTION: COMING SOON!");
-		return system;
+		 system.addUnitRenter(propertyTitle, addressModifier, renterName);
+		 return system;
 	}
 
 	private static PSystem remove(PSystem system) {
@@ -516,8 +514,16 @@ public class Driver {
 		Scanner input = new Scanner(System.in);
 
 		// Inputting information
-		System.out.print("UNDER CONSTRUCTION: COMING SOON!");
-		return system;
+		 System.out.print("Please enter the property's name." + "\n>");
+		 String propertyTitle = input.nextLine();
+		 System.out.print("Please enter the unit." + "\n>");
+		 String addressModifier = input.nextLine();
+		 System.out.print("Please enter the renter's username." + "\n>");
+		 String renterName = input.nextLine();
+
+		// Removes Unit Renter
+		 system.removeUnitRenter(propertyTitle, addressModifier, renterName);
+		 return system;
 	}
 
 	private static PSystem contact(PSystem system) {
