@@ -12,8 +12,8 @@ public class Message {
 	/**
 	 * Parameterized constructor for Message
 	 * 
-	 * @param author  -> The author of the message
-	 * @param message -> The message of the author
+	 * @param author  The author of the message
+	 * @param message The message of the author
 	 */
 	public Message(String author, String message) {
 		this.author = author;

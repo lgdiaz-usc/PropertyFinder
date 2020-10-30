@@ -16,14 +16,14 @@ public class User extends Account {
 	/**
 	 * Parameterized constructor for User
 	 * 
-	 * @param username    -> The username of the student
-	 * @param password    -> The password of the student
-	 * @param name        -> The name of The Student
-	 * @param dateOfBirth -> The date of birth of the student
-	 * @param homeAddress -> The home address of the student
-	 * @param email       -> the email of the student
-	 * @param phoneNumber -> the phone number of the student
-	 * @param StudentID   -> the student id of the student
+	 * @param username     The username of the student
+	 * @param password     The password of the student
+	 * @param name         The name of The Student
+	 * @param dateOfBirth  The date of birth of the student
+	 * @param homeAddress  The home address of the student
+	 * @param email        the email of the student
+	 * @param phoneNumber  The phone number of the student
+	 * @param StudentID    The student id of the student
 	 */
 	public User(String username, String password, String name, String dateOfBirth, String homeAddress, String email,
 			String phoneNumber, String StudentID) {
@@ -35,8 +35,8 @@ public class User extends Account {
 	/**
 	 * Updates the credit score of the student
 	 * 
-	 * @param currentAccount -> The account of the student
-	 * @param creditScore    -> The credit score of the student
+	 * @param currentAccount  The account of the student
+	 * @param creditScore     The credit score of the student
 	 */
 	public void updateCreditScore(String currentAccount, int creditScore) {
 
@@ -45,8 +45,8 @@ public class User extends Account {
 	/**
 	 * Adds a disability to disabilities list
 	 * 
-	 * @param currentAccount -> The account of the student
-	 * @param disability     -> The disability of the student
+	 * @param currentAccount  The account of the student
+	 * @param disability      The disability of the student
 	 */
 	public void addDisability(String currentAccount, String disability) {
 
@@ -65,8 +65,8 @@ public class User extends Account {
 	/**
 	 * Returns a String interpretation of the User
 	 * 
-	 * @param currentAccount -> The account of the student
-	 * @return String interpretation of User
+	 * @param currentAccount The account of the student
+	 * @return String        interpretation of User
 	 */
 	public String toString(String currentAccount) {
 		String output = "";
@@ -80,11 +80,6 @@ public class User extends Account {
 		return output;
 	}
 
-	/**
-	 * Returns the contents of User in JSON format
-	 * 
-	 * @return The JSON interpretation of the User contents
-	 */
 	/**
 	 * Returns the contents of User in JSON format
 	 * 

@@ -22,8 +22,7 @@ public class Property {
 	/**
 	 * Parameterized constructor for Property
 	 * 
-	 * @param manager     The username of the PropertyManager that owns this
-	 *                    Property
+	 * @param manager     The username of the PropertyManager that owns this Property
 	 * @param title       The title of this Property listing
 	 * @param description The description of the Property listing
 	 * @param address     The address of this Property
