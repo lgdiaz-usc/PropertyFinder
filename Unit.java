@@ -109,6 +109,11 @@ public class Unit {
 	 */
 	public void updateCapacity(int capacity) {
 		this.capacity = capacity;
+		if(!isAvailable()){
+			System.out.println("Error: There too many renters for this capacity, adjusting " +
+					"capacity to fit.");
+			this.capacity = renters.size();
+		}
 	}
 
 	/**

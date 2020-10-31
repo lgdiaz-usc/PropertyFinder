@@ -218,8 +218,7 @@ public class PSystem {
 
 		// 1st Priority search - Exact match
 		for (Property property : properties) {
-			String title = property.getTitle();
-			if (title.equalsIgnoreCase(query) || title.equalsIgnoreCase(query)) {
+			if (property.getTitle().equalsIgnoreCase(query) || property.getDescription().equalsIgnoreCase(query)) {
 				results.add(property);
 			}
 		}
@@ -229,8 +228,8 @@ public class PSystem {
 			String title = property.getTitle();
 			if (!results.contains(property)) {
 				for (String part : query.split(" ")) {
-					if (!results.contains(property) && (title.toLowerCase().contains(part.toLowerCase())
-							|| title.toLowerCase().contains(part.toLowerCase()))) {
+					if (!results.contains(property) && (property.getTitle().toLowerCase().contains(part.toLowerCase())
+							|| property.getDescription().toLowerCase().contains(part.toLowerCase()))) {
 						results.add(property);
 					}
 				}
@@ -529,7 +528,7 @@ public class PSystem {
 	}
 
 	/**
-	 * Determines which of two Strings is lower in alphatical order
+	 * Determines which of two Strings is lower in alphabetical order
 	 * 
 	 * @param s1 One String being checked
 	 * @param s2 The other String being checked
@@ -671,7 +670,7 @@ public class PSystem {
 					if (title.equals(propertyTitle) && currentAccount.equals(manager.username)) {
 						// Removes renter for current address.
 						property.removeRenter(renterName, currentAccount);
-						System.out.println("Rentor removed.");
+						System.out.println("Renter removed.");
 						propertyExist = true;
 					}
 				}
@@ -875,7 +874,31 @@ public class PSystem {
 	 * @param type         Which String is to be replaced
 	 */
 	public void editProperty(String propertyName, String change, EditType type) {
-
+		for(Property property : properties){
+			if(property.getTitle().equals(propertyName)){
+				String currentAccount = getManager().name;
+				if(type == EditType.ADDRESS){
+					property.updateAddress(currentAccount, change);
+				}
+				else if(type == EditType.CAPACITY){
+					property.updateCapacity(currentAccount, Integer.parseInt(change));
+				}
+				else if(type == EditType.DESCRIPTION){
+					property.updateDescription(currentAccount, change);
+				}
+				else if(type == EditType.RENT){
+					property.updateRent(currentAccount, Double.parseDouble(change));
+				}
+				else if(type == EditType.TITLE){
+					property.updateTitle(currentAccount, change);
+				}
+				else{
+					System.out.println("ERROR: Invalid edit type!");
+				}
+				return;
+			}
+		}
+		System.out.println("Error: Property \"" + propertyName + "\" does not exist!");
 	}
 
 	/**
@@ -887,7 +910,23 @@ public class PSystem {
 	 * @param type            Which String is to be replaced
 	 */
 	public void editUnit(String propertyName, String addressModifier, String change, EditType type) {
-
+		for(Property property : properties){
+			if(property.getTitle().equals(propertyName)){
+				String currentAccount = getManager().name;
+				if(type == EditType.ADDRESS){
+					property.updateUnitAddressModifier(currentAccount, addressModifier, change);
+				}
+				else if(type == EditType.CAPACITY){
+					property.updateUnitCapacity(currentAccount, addressModifier,
+							Integer.parseInt(change));
+				}
+				else{
+					System.out.println("ERROR: Invalid edit type!");
+				}
+				return;
+			}
+		}
+		System.out.println("Error: Property \"" + propertyName + "\" does not exist!");
 	}
 
 	/**
@@ -898,7 +937,13 @@ public class PSystem {
 	 * @param fee          The dollar amount of the fee
 	 */
 	public void addFee(String propertyName, String name, double fee) {
-
+		for(Property property : properties){
+			if(property.getTitle().equals(propertyName)){
+				property.addFee(currentAccount, name, fee);
+				return;
+			}
+		}
+		System.out.println("ERROR: Property \"" + propertyName + "\" does not exist!");
 	}
 
 	/**
@@ -908,7 +953,13 @@ public class PSystem {
 	 * @param name         The name of the fee to be removed
 	 */
 	public void removeFee(String propertyName, String name) {
-
+		for(Property property : properties){
+			if(property.getTitle().equals(propertyName)){
+				property.removeFee(currentAccount, name);
+				return;
+			}
+		}
+		System.out.println("ERROR: Property \"" + propertyName + "\" does not exist!");
 	}
 
 	/**

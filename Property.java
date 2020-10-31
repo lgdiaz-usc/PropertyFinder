@@ -101,6 +101,14 @@ public class Property {
 	}
 
 	/**
+	 * Returns the description of the Property
+	 * @return The description of the Property
+	 */
+	public String getDescription(){
+		return description;
+	}
+
+	/**
 	 * Returns the average rating for all Review objects in the reviews array of a
 	 * specified Unit
 	 * 
@@ -370,6 +378,11 @@ public class Property {
 	public void updateCapacity(String currentAccount, int capacity) {
 		if(isManager(currentAccount)){
 			this.capacity = capacity;
+			if(!isAvailable()){
+				System.out.println("Error: There too many renters for this capacity, adjusting " +
+						"capacity to fit.");
+				capacity = renters.size();
+			}
 		}
 		else{
 			System.out.println("ERROR: You do not own this property.");

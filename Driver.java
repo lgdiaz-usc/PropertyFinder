@@ -154,7 +154,8 @@ public class Driver {
 							+ "\nsearch - Searches for accounts and property listings"
 							+ "\ncontact - Sends a message to another account"
 							+ "\nmessages - Displays the contents of all of your messages"
-							+ "\nreview - Write a review for an account or property listing");
+							+ "\nreview - Write a review for an account or property listing"
+							+ "\nedit - Edits your account or a property listing you own");
 					break;
 				case "logout":
 					system = logout(system);
@@ -177,6 +178,9 @@ public class Driver {
 					break;
 				case "review":
 					system = review(system);
+					break;
+				case "edit":
+					system = editManager(system);
 					break;
 				default:
 					System.out.println("\"" + command + "\" is not a valid command! Please type " + "\"help\" "
@@ -452,7 +456,7 @@ public class Driver {
 		 System.out.print("Please enter the renter's username." + "\n>");
 		 String renterName = input.nextLine();
 
-		// Add Unit Rentor
+		// Add Unit Renter
 		 system.addUnitRenter(propertyTitle, addressModifier, renterName);
 		 return system;
 	}
@@ -510,7 +514,7 @@ public class Driver {
 		// Inputting information
 		System.out.print("Please enter property name." + "\n>");
 		String propertyName = input.nextLine();
-		System.out.print("Please enter rentor's username." + "\n>");
+		System.out.print("Please enter renter's username." + "\n>");
 		String renterName = input.nextLine();
 
 		// Removes renter from property listings.
@@ -637,6 +641,92 @@ public class Driver {
 		else{
 			system.generateLease(title);
 		}
+		return system;
+	}
+
+	private static PSystem editManager(PSystem system){
+		Scanner input = new Scanner(System.in);
+		System.out.print("Would you like to edit your account or one of your properties? " +
+				"(account/property)" + "\n>");
+		String editChoice = input.next();
+
+		if(editChoice.equalsIgnoreCase("property")){
+			System.out.print("What property would you like to edit?" + "\n>");
+			input = new Scanner(System.in);
+			String propertyTitle = input.nextLine();
+
+			System.out.print("What attribute of " + propertyTitle + " would you like to edit? " +
+					"(title/description/address/capacity/rent/unit)" + "\n>");
+			editChoice = input.next();
+
+			if(editChoice.equalsIgnoreCase("title")){
+				System.out.print("What would you like the new title to be?" + "\n>");
+				input = new Scanner(System.in);
+				String change = input.nextLine();
+				system.editProperty(propertyTitle, change, EditType.TITLE);
+			}
+			else if(editChoice.equalsIgnoreCase("description")){
+				System.out.print("What would you like the new description to be?" + "\n>");
+				input = new Scanner(System.in);
+				String change = input.nextLine();
+				system.editProperty(propertyTitle, change, EditType.DESCRIPTION);
+			}
+			else if(editChoice.equalsIgnoreCase("address")){
+				System.out.print("What would you like the new address to be?" + "\n>");
+				input = new Scanner(System.in);
+				String change = input.nextLine();
+				system.editProperty(propertyTitle, change, EditType.ADDRESS);
+			}
+			else if(editChoice.equalsIgnoreCase("capacity")){
+				System.out.print("What would you like the new maximum capacity to be?" + "\n>");
+				input = new Scanner(System.in);
+				String change = input.nextLine();
+				system.editProperty(propertyTitle, change, EditType.CAPACITY);
+			}
+			else if(editChoice.equalsIgnoreCase("rent")){
+				System.out.print("What would you like the new base rent to be?" + "\n>$");
+				input = new Scanner(System.in);
+				String change = input.nextLine();
+				system.editProperty(propertyTitle, change, EditType.RENT);
+			}
+			else if(editChoice.equalsIgnoreCase("Unit")){
+				System.out.print("What is the address modifier of the Unit you would like to " +
+						"edit?" + "\n>");
+				input = new Scanner(System.in);
+				String addressModifier = input.nextLine();
+				input = new Scanner(System.in);
+
+				System.out.print("What attribute of this unit would you like to change? " +
+						"(address/capacity)" + "\n>");
+				editChoice = input.next();
+
+				if(editChoice.equalsIgnoreCase("address")){
+					System.out.print("What would you like the new address modifier to be?" + "\n>");
+					input = new Scanner(System.in);
+					String change = input.nextLine();
+					system.editUnit(propertyTitle, addressModifier, change, EditType.ADDRESS);
+				}
+				else if(editChoice.equalsIgnoreCase("capacity")){
+					System.out.print("What would you like the new maximum capacity to be?" + "\n>");
+					input = new Scanner(System.in);
+					String change = input.nextLine();
+					system.editUnit(propertyTitle, addressModifier, change, EditType.CAPACITY);
+				}
+				else{
+					System.out.println("ERROR: Invalid edit type!");
+				}
+			}
+			else{
+				System.out.println("ERROR: Invalid edit type!");
+			}
+		}
+		else if(editChoice.equalsIgnoreCase("account")){
+			//TODO Add account editing
+		}
+		else{
+			System.out.println("Error: Invalid input!");
+		}
+
 		return system;
 	}
 }
