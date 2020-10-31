@@ -21,13 +21,13 @@ public class Account {
 	/**
 	 * Parameterized constructor for Account
 	 * 
-	 * @param username    -> The username for the User
-	 * @param password    -> The password for the User
-	 * @param name        -> The name of the User
-	 * @param dateOfBirth -> The date of birth of the User
-	 * @param homeAddress -> The home address of the User
-	 * @param email       -> The email of the User
-	 * @param phoneNumber -> The phone number of the User
+	 * @param username    The username for the User
+	 * @param password    The password for the User
+	 * @param name        The name of the User
+	 * @param dateOfBirth The date of birth of the User
+	 * @param homeAddress The home address of the User
+	 * @param email       The email of the User
+	 * @param phoneNumber The phone number of the User
 	 */
 	public Account(String username, String password, String name, String dateOfBirth, String homeAddress, String email,
 			String phoneNumber) {
@@ -45,7 +45,7 @@ public class Account {
 	/**
 	 * Authenticates the User's account.
 	 * 
-	 * @param currentAccount -> The account being authenticated
+	 * @param currentAccount The account being authenticated
 	 * @return Whether or not currentAccount matches username
 	 */
 	public boolean authenticate(String currentAccount) {
@@ -61,80 +61,94 @@ public class Account {
 	/**
 	 * Updates the name of User
 	 * 
-	 * @param currentAccount -> The account of the User
-	 * @param name           -> The name of the User
+	 * @param currentAccount The account of the User
+	 * @param name           The name of the User
 	 */
 	public void updateName(String currentAccount, String name) {
-
+		if (currentAccount.equals(username)) {
+			this.name = name;
+		}
 	}
 
 	/**
 	 * Updates the date of birth of the User
 	 * 
-	 * @param currentAccount -> The account of the User
-	 * @param dateOfBirth    -> The date of birth of the User
+	 * @param currentAccount The account of the User
+	 * @param dateOfBirth    The date of birth of the User
 	 */
 	public void updateDateOfBirth(String currentAccount, String dateOfBirth) {
-
+		if (currentAccount.equals(username)) {
+			this.dateOfBirth = dateOfBirth;
+		}
 	}
 
 	/**
 	 * Updates the home address of the User
 	 * 
-	 * @param currentAccount -> The account of the User
-	 * @param homeAddress    -> The home address of the User
+	 * @param currentAccount The account of the User
+	 * @param homeAddress    The home address of the User
 	 */
 	public void updateHomeAddress(String currentAccount, String homeAddress) {
-
+		if (currentAccount.equals(username)) {
+			this.homeAddress = homeAddress;
+		}
 	}
 
 	/**
 	 * Updates the email of the User
 	 * 
-	 * @param currentAccount -> The account of the User
-	 * @param email          -> The email of the User
+	 * @param currentAccount The account of the User
+	 * @param email          The email of the User
 	 */
 	public void updateEmail(String currentAccount, String email) {
-
+		if (currentAccount.equals(username)) {
+			this.email = email;
+		}
 	}
 
 	/**
 	 * Updates the phone number of the User
 	 * 
-	 * @param currentAccount -> The account of the User
-	 * @param phoneNumber    -> The phone number of the User
+	 * @param currentAccount The account of the User
+	 * @param phoneNumber    The phone number of the User
 	 */
 	public void updatePhoneNumber(String currentAccount, String phoneNumber) {
-
+		if (currentAccount.equals(username)) {
+			this.phoneNumber = phoneNumber;
+		}
 	}
 
 	/**
 	 * Updates the username of the User
 	 * 
-	 * @param currentAccount -> The account of the User
-	 * @param username       -> The username of the User
+	 * @param currentAccount The account of the User
+	 * @param username       The username of the User
 	 */
 	public void updateUsername(String currentAccount, String username) {
-
+		if (currentAccount.equals(username)) {
+			this.username = username;
+		}
 	}
 
 	/**
 	 * Updates the password of the User
 	 * 
-	 * @param currentAccount -> The account of the User
-	 * @param password       -> The password of the User
+	 * @param currentAccount The account of the User
+	 * @param password       The password of the User
 	 */
 	public void updatePassword(String currentAccount, String password) {
-
+		if (currentAccount.equals(username)) {
+			this.password = password;
+		}
 	}
 
 	/**
 	 * Creates and adds a Review to reviews.
 	 * 
-	 * @param rating      -> Rating of the Review (out of 10)
-	 * @param title       -> The title of the Review
-	 * @param description -> The description of the Review
-	 * @param author      -> The author of the Review
+	 * @param rating      Rating of the Review (out of 10)
+	 * @param title       The title of the Review
+	 * @param description The description of the Review
+	 * @param author      The author of the Review
 	 */
 	public void addReview(int rating, String title, String description, String author) {
 		reviews.add(new Review(rating, title, description, author));
@@ -147,10 +161,10 @@ public class Account {
 	 */
 	public int getAverageRating() {
 		int averageRating = 0;
-		for(Review review : reviews){
+		for (Review review : reviews) {
 			averageRating += review.getRating();
 		}
-		if(reviews.size() > 0){
+		if (reviews.size() > 0) {
 			averageRating /= reviews.size();
 		}
 		return averageRating;
@@ -159,7 +173,7 @@ public class Account {
 	/**
 	 * Returns a String interpretation of the Account.
 	 * 
-	 * @param currentAccount -> The account of the user
+	 * @param currentAccount The account of the user
 	 * @return String interpretation of the account of the User.
 	 */
 	public String toString(String currentAccount) {
@@ -187,8 +201,8 @@ public class Account {
 	/**
 	 * Creates and adds a Message to messages
 	 * 
-	 * @param currentAccount -> The account of the user
-	 * @param description    -> The description of the message
+	 * @param currentAccount The account of the user
+	 * @param description    The description of the message
 	 */
 	public void addMessage(String currentAccount, String description) {
 		messages.add(new Message(currentAccount, description));
@@ -197,12 +211,12 @@ public class Account {
 	/**
 	 * Returns a String representation of all Messages in messages
 	 * 
-	 * @param currentAccount -> The account of the user
+	 * @param currentAccount The account of the user
 	 * @return String representation of the messages of the User.
 	 */
 	public String getMessages(String currentAccount) {
 		String output = "";
-		for(Message message : messages){
+		for (Message message : messages) {
 			output = output.concat(message.toString() + "\n");
 		}
 		return output;
