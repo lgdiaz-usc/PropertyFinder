@@ -223,7 +223,7 @@ public class Account {
 	}
 
 	/**
-	 * Returns the contents of Account in JSON format
+	 * Returns the contents of Account in JSON format 
 	 * 
 	 * @return The JSON interpretation of the Account content
 	 */
