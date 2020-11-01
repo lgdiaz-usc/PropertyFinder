@@ -1040,7 +1040,6 @@ public class PSystem {
 
 	/**
 	 * Adds disability to user's account
-	 * @param currentAccount  The user logged in
 	 * @param disability      The disability to be removed
 	 */
 	public void addDisability(String disability) {
@@ -1053,7 +1052,6 @@ public class PSystem {
 	
 	/**
 	 * Removes disability from user's account
-	 * @param currentAccount  The user logged in
 	 * @param disability      The disability to be removed
 	 */
 	public void removeDisability(String disability) {
@@ -1066,7 +1064,6 @@ public class PSystem {
 	
 	/**
 	 * Replaces a User in users with newUser
-	 * 
 	 * @param newUser
 	 */
 	public void updateAccount(User newUser) {
@@ -1299,6 +1296,7 @@ public class PSystem {
 		for(String coRenter : coRenterTemp){
 			contactUser(coRenter, lease);
 		}
+		DataWriter.writeLease(lease);
 	}
 
 	/**
