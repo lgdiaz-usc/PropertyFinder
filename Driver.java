@@ -325,7 +325,7 @@ public class Driver {
 
 				// Display User results
 				for (User user : results) {
-					System.out.println(user.toString(null));
+					System.out.println(user.toString(null) + "\n");
 				}
 			} else if (searchType.equalsIgnoreCase("manager")) {
 				ArrayList<PropertyManager> results = system.searchManager(query);
@@ -350,7 +350,7 @@ public class Driver {
 
 				// Display Property Manager results
 				for (PropertyManager manager : results) {
-					System.out.println(manager.toString(null));
+					System.out.println(manager.toString(null) + "\n");
 				}
 			} else {
 				ArrayList<Property> results = system.searchProperty(query);
@@ -377,7 +377,7 @@ public class Driver {
 
 				// Display Property Manager results
 				for (Property property : results) {
-					System.out.println(property.toString());
+					System.out.println(property.toString() + "\n");
 				}
 			}
 		} else {
