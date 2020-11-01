@@ -777,8 +777,8 @@ public class PSystem {
 		for (PropertyManager manager : propertyManagers) {
 			// Add property for current account;
 			if (currentAccount.equals(manager.username)) {
-				String name = manager.name;
-				properties.add(new Property(name, title, description, address, capacity, baseRent));
+				//String name = manager.name;
+				properties.add(new Property(manager.username, title, description, address, capacity, baseRent));
 				System.out.println("Property Added");
 			}
 		}
@@ -1040,6 +1040,7 @@ public class PSystem {
 
 	/**
 	 * Adds disability to user's account
+	 * @param currentAccount  The user logged in
 	 * @param disability      The disability to be removed
 	 */
 	public void addDisability(String disability) {
@@ -1052,6 +1053,7 @@ public class PSystem {
 	
 	/**
 	 * Removes disability from user's account
+	 * @param currentAccount  The user logged in
 	 * @param disability      The disability to be removed
 	 */
 	public void removeDisability(String disability) {
@@ -1068,18 +1070,38 @@ public class PSystem {
 	 * @param newUser
 	 */
 	public void updateAccount(User newUser) {
-		
+		int userIndex = users.indexOf(newUser);
+		for(int i = 0; i < users.size(); i++) {	
+			if(i == userIndex) {
+				users.set(userIndex, newUser);
+				for(Property property: properties) {
+					if(property.isRenter(currentAccount)) {
+						property.updateRenterUsername(currentAccount, newUser.username);
+					}
+				}
+			}
+		}
 	}
-
+	
 	/**
-	 * Replaces a PropertyManager in propertyManagers with newManager
+	 * Replaces a PropertPyManager in propertyManagers with newManager
 	 * 
 	 * @param newManager
 	 */
 	public void updateAccount(PropertyManager newManager) {
-
+		int managerIndex = propertyManagers.indexOf(newManager);
+		for(int i = 0; i < propertyManagers.size(); i++) {	
+			if(i == managerIndex) {
+				propertyManagers.set(managerIndex, newManager);
+				for(Property property: properties) {
+					if(property.isManager(currentAccount)) {
+						property.updateManagerUsername(currentAccount, newManager.username);
+					}
+				}
+			}
+		}
 	}
-
+	
 	/**
 	 * Generates a lease agreement for a specified Property
 	 * @param propertyTitle The title of the property having a lease generated
@@ -1277,7 +1299,6 @@ public class PSystem {
 		for(String coRenter : coRenterTemp){
 			contactUser(coRenter, lease);
 		}
-		DataWriter.writeLease(lease);
 	}
 
 	/**

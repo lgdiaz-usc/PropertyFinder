@@ -39,7 +39,7 @@ public class User extends Account {
 	 * @param creditScore     The credit score of the student
 	 */
 	public void updateCreditScore(String currentAccount, int creditScore) {
-		if(authenticate(username)) {
+		if(currentAccount.equals(username)) {
 			this.creditScore = creditScore;
 		}
 	}
@@ -51,9 +51,7 @@ public class User extends Account {
 	 * @param disability      The disability of the student
 	 */
 	public void addDisability(String currentAccount, String disability) {
-		if(authenticate(currentAccount)){
-			disablities.add(disability);
-		}
+		disablities.add(disability);
 	}
 	 
 	/**
@@ -63,20 +61,18 @@ public class User extends Account {
 	 * @param disability      The disability of the student
 	 */
 	public void removeDisability(String currentAccount, String disability) {
-		if(authenticate(currentAccount)) {
-			boolean exist = false;
-			for (String d : disablities) {
-				if (d.equals(disability)) {
-					disablities.remove(disability);
-					exist = true;
-					break;
-				}
+		boolean exist = false;
+		for(String d: disablities) {
+			if(d.equals(disability)) {
+				disablities.remove(disability);
+				exist = true;
+				break;
 			}
-			if (exist)
-				System.out.println("Disability Removed.");
-			else {
-				System.out.println("ERROR: The disability does not exist.");
-			}
+		}
+		if(exist)
+			System.out.println("Disability Removed.");
+		else{
+			System.out.println("ERROR: The disability does not exist.");
 		}
 	}
 
