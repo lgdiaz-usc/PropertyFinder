@@ -7,7 +7,7 @@ import org.json.simple.JSONArray;
 /**
  * Contains data and methods related to the User's account
  */
-public class Account {
+public abstract class Account {
 	protected String name;
 	protected String dateOfBirth;
 	protected String homeAddress;
