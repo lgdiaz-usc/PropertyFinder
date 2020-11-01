@@ -1277,6 +1277,7 @@ public class PSystem {
 		for(String coRenter : coRenterTemp){
 			contactUser(coRenter, lease);
 		}
+		DataWriter.writeLease(lease);
 	}
 
 	/**

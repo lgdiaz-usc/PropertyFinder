@@ -59,7 +59,8 @@ public class Driver {
 							+ "\nquit -     Quits the program"
 							+ "\nlogin -    Login into account"
 							+ "\nregister - Creates a new account"
-							+ "\nsearch -   Searches for accounts and property listings");
+							+ "\nsearch -   Searches for accounts and property listings"
+							+ "\nrent -		Generates a lease agreement for a property listing");
 					break;
 				case "quit":
 					done = true;
@@ -79,6 +80,10 @@ public class Driver {
 					break;
 				case "search":
 					search(system);
+					break;
+				case "rent":
+					System.out.println("Error: Yiu need to create an account before you can start" +
+							" renting properties!");
 					break;
 				default:
 					System.out.println(
@@ -117,7 +122,7 @@ public class Driver {
 							+ "\ncontact  - Sends a message to another account"
 							+ "\nmessages - Displays all of your messages"
 							+ "\nreview   - Writes a review for an account or a property listing"
-							+ "\nrent     - generates a lease agreement for a property listing");
+							+ "\nrent     - Generates a lease agreement for a property listing");
 					break;
 				case "logout":
 					system = logout(system);
