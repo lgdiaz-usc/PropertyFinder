@@ -7,6 +7,11 @@ import java.util.Scanner;
  * Allows the user to interact with the system
  */
 public class Driver {
+	/**
+	 * The starting point of the program. Lets the user choose which JSON to read from  and has
+	 * the main UI loop
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
 		boolean done = false;
@@ -87,6 +92,11 @@ public class Driver {
 		System.out.println("Goodbye!");
 	}
 
+	/**
+	 * Contains the UI loop for when a student is logged in
+	 * @param system The main PSystem object
+	 * @return The main PSystem object
+	 */
 	private static PSystem displayUserMenu(PSystem system) {
 		boolean done = false;
 		Scanner input = new Scanner(System.in);
@@ -135,6 +145,11 @@ public class Driver {
 		return system;
 	}
 
+	/**
+	 * Contains the UI Loop for when a property manager is logged in
+	 * @param system The main PSystem object
+	 * @return The main PSystem object
+	 */
 	private static PSystem displayPMMenu(PSystem system) {
 		boolean done = false;
 		Scanner input = new Scanner(System.in);
@@ -191,6 +206,11 @@ public class Driver {
 		return system;
 	}
 
+	/**
+	 * Allows the user to create a new Account
+	 * @param system The main PSystem object
+	 * @return The main PSystem object
+	 */
 	private static PSystem createAccount(PSystem system) {
 		Scanner input = new Scanner(System.in);
 		String accountType;
@@ -250,6 +270,11 @@ public class Driver {
 		return system;
 	}
 
+	/**
+	 * Allows the user to login to an existing Account
+	 * @param system The main PSystem object
+	 * @return The main PSystem object
+	 */
 	private static int login(PSystem system) {
 		Scanner input = new Scanner(System.in);
 
@@ -265,6 +290,11 @@ public class Driver {
 		return system.login(username, password);
 	}
 
+	/**
+	 * Allows the user to log out of their account
+	 * @param system The main PSystem object
+	 * @return The main PSystem object
+	 */
 	private static PSystem logout(PSystem system) {
 		// Logout of Account
 		system.logout();
@@ -274,6 +304,10 @@ public class Driver {
 		return system;
 	}
 
+	/**
+	 * Searches for property listings, student accounts, and property manager accounts
+	 * @param system The main PSystem object
+	 */
 	private static void search(PSystem system) {
 		Scanner input = new Scanner(System.in);
 		String searchType;
@@ -374,6 +408,11 @@ public class Driver {
 		}
 	}
 
+	/**
+	 * Allows property managers to add property listings, units, and renters
+	 * @param system The main PSystem object
+	 * @return The main PSystem object
+	 */
 	private static PSystem add(PSystem system) {
 		Scanner input = new Scanner(System.in);
 		int choice;
@@ -395,6 +434,11 @@ public class Driver {
 		return system;
 	}
 
+	/**
+	 * Adds a new property listing
+	 * @param system The main PSystem object
+	 * @return The main PSystem object
+	 */
 	private static PSystem addProperty(PSystem system) {
 		Scanner input = new Scanner(System.in);
 
@@ -415,6 +459,11 @@ public class Driver {
 		return system;
 	}
 
+	/**
+	 * Adds a new unit to an existing property listing
+	 * @param system The main PSystem object
+	 * @return The main PSystem object
+	 */
 	private static PSystem addUnit(PSystem system) {
 		Scanner input = new Scanner(System.in);
 
@@ -431,6 +480,11 @@ public class Driver {
 		return system;
 	}
 
+	/**
+	 * Adds a renter to an existing property listing
+	 * @param system The main PSystem object
+	 * @return The main PSystem object
+	 */
 	private static PSystem addRenter(PSystem system) {
 		Scanner input = new Scanner(System.in);
 
@@ -445,6 +499,11 @@ public class Driver {
 		return system;
 	}
 
+	/**
+	 * Adds a renter to an existing unit in an existing property listing
+	 * @param system The main PSystem object
+	 * @return The main PSystem object
+	 */
 	private static PSystem addUnitRenter(PSystem system) {
 		Scanner input = new Scanner(System.in);
 
@@ -461,6 +520,11 @@ public class Driver {
 		 return system;
 	}
 
+	/**
+	 * Allows a property manager to remove an existing property listing, unit, or renter
+	 * @param system The main PSystem object
+	 * @return The main PSystem object
+	 */
 	private static PSystem remove(PSystem system) {
 		Scanner input = new Scanner(System.in);
 		int choice;
@@ -482,6 +546,11 @@ public class Driver {
 		return system;
 	}
 
+	/**
+	 * Removes an existing property listing
+	 * @param system The main PSystem object
+	 * @return The main PSystem object
+	 */
 	private static PSystem removeProperty(PSystem system) {
 		Scanner input = new Scanner(System.in);
 
@@ -494,6 +563,11 @@ public class Driver {
 		return system;
 	}
 
+	/**
+	 * Removes an existing unit from an existing property listing
+	 * @param system The main PSystem object
+	 * @return The main PSystem object
+	 */
 	private static PSystem removeUnit(PSystem system) {
 		Scanner input = new Scanner(System.in);
 
@@ -508,6 +582,11 @@ public class Driver {
 		return system;
 	}
 
+	/**
+	 * Removes a renter from an existing property listing
+	 * @param system The main PSystem object
+	 * @return The main PSystem object
+	 */
 	private static PSystem removeRenter(PSystem system) {
 		Scanner input = new Scanner(System.in);
 
@@ -522,6 +601,11 @@ public class Driver {
 		return system;
 	}
 
+	/**
+	 * Removes a renter from an existing unit from an existing property listing
+	 * @param system The main PSystem object
+	 * @return The main PSystem object
+	 */
 	private static PSystem removeUnitRenter(PSystem system) {
 		Scanner input = new Scanner(System.in);
 
@@ -538,6 +622,11 @@ public class Driver {
 		 return system;
 	}
 
+	/**
+	 * Sends a message to an existing Account
+	 * @param system The main PSystem object
+	 * @return The main PSystem object
+	 */
 	private static PSystem contact(PSystem system) {
 		Scanner input = new Scanner(System.in);
 		String recipientType;
@@ -569,6 +658,12 @@ public class Driver {
 		return system;
 	}
 
+	/**
+	 * Makes a review for an existing property listing, unit, student account, or property
+	 * manager account
+	 * @param system The main PSystem object
+	 * @return The main PSystem object
+	 */
 	private static PSystem review(PSystem system) {
 		Scanner input = new Scanner(System.in);
 		String reviewType;
@@ -620,6 +715,11 @@ public class Driver {
 		return system;
 	}
 
+	/**
+	 * Generates a lease agreement for 1 or more student accounts and an existing property listing
+	 * @param system The main PSystem object
+	 * @return The main PSystem object
+	 */
 	private static PSystem rent(PSystem system){
 		Scanner input = new Scanner(System.in);
 
@@ -644,6 +744,11 @@ public class Driver {
 		return system;
 	}
 
+	/**
+	 * Allows a  property manager account to edit a property listing they own, or their account
+	 * @param system The main PSystem object
+	 * @return The main PSystem object
+	 */
 	private static PSystem editManager(PSystem system){
 		Scanner input = new Scanner(System.in);
 		System.out.print("Would you like to edit your account or one of your properties? " +
