@@ -55,11 +55,11 @@ public class Driver {
 			switch (command) {
 				case "help":
 					System.out.println("The available commands are:"
-							+ "\nhelp - Displays available commands"
-							+ "\nquit - Quits the program"
-							+ "\nlogin - Login into account"
+							+ "\nhelp -     Displays available commands"
+							+ "\nquit -     Quits the program"
+							+ "\nlogin -    Login into account"
 							+ "\nregister - Creates a new account"
-							+ "\nsearch - Searches for accounts and property listings");
+							+ "\nsearch -   Searches for accounts and property listings");
 					break;
 				case "quit":
 					done = true;
@@ -110,16 +110,24 @@ public class Driver {
 			switch (command) {
 				case "help":
 					System.out.println("The available commands are:" + "\nhelp - Displays available commands"
-							+ "\nlogout - Log out of account"
-							+ "\nsearch - Searches for accounts and property listings"
-							+ "\ncontact - Sends a message to another account"
+							+ "\nlogout   - Log out of account"
+							+ "\nadd      - Adds a disability"
+							+ "\nremove   - Removes a disability"
+							+ "\nsearch   - Searches for accounts and property listings"
+							+ "\ncontact  - Sends a message to another account"
 							+ "\nmessages - Displays all of your messages"
-							+ "\nreview - Writes a review for an account or a property listing"
-							+ "\nrent - generates a lease agreement for a property listing");
+							+ "\nreview   - Writes a review for an account or a property listing"
+							+ "\nrent     - generates a lease agreement for a property listing");
 					break;
 				case "logout":
 					system = logout(system);
 					done = true;
+					break;
+				case "add":
+					system = addDisability(system);
+					break;
+				case "remove":
+					system = removeDisability(system);
 					break;
 				case "search":
 					search(system);
@@ -141,7 +149,6 @@ public class Driver {
 							"\"" + command + "\" is not a valid command! Please type " + "\"help\" for a list of commands");
 			}
 		}
-
 		return system;
 	}
 
@@ -163,14 +170,14 @@ public class Driver {
 			switch (command) {
 				case "help":
 					System.out.println("The available commands are:" + "\nhelp - Displays available commands"
-							+ "\nlogout - Log out of account"
-							+ "\nadd - Adds a property, unit, renter or unit renter"
-							+ "\nremove - Removes a property, unit, renter, or unit renter"
-							+ "\nsearch - Searches for accounts and property listings"
-							+ "\ncontact - Sends a message to another account"
+							+ "\nlogout -   Log out of account"
+							+ "\nadd -      Adds a property, unit, renter or unit renter"
+							+ "\nremove -   Removes a property, unit, renter, or unit renter"
+							+ "\nsearch -   Searches for accounts and property listings"
+							+ "\ncontact -  Sends a message to another account"
 							+ "\nmessages - Displays the contents of all of your messages"
-							+ "\nreview - Write a review for an account or property listing"
-							+ "\nedit - Edits your account or a property listing you own");
+							+ "\nreview -   Write a review for an account or property listing"
+							+ "\nedit -     Edits your account or a property listing you own");
 					break;
 				case "logout":
 					system = logout(system);
@@ -832,6 +839,30 @@ public class Driver {
 			System.out.println("Error: Invalid input!");
 		}
 
+		return system;
+	}
+	
+	private static PSystem addDisability(PSystem system) {
+		Scanner input = new Scanner(System.in);
+		
+		// Inputting information
+		System.out.print("Please enter a disability to add." + "\n>");		
+		String disibiilty = input.nextLine();
+		
+		//Removes disability
+		system.addDisability(disibiilty);
+		return system;
+	}
+	
+	private static PSystem removeDisability(PSystem system) {
+		Scanner input = new Scanner(System.in);
+		
+		// Inputting information
+		System.out.print("Please enter a disability to remove." + "\n>");
+		String disibiilty = input.nextLine();
+		
+		//Removes disability
+		system.removeDisability(disibiilty);
 		return system;
 	}
 }
