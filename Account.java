@@ -65,7 +65,7 @@ public class Account {
 	 * @param name           The name of the User
 	 */
 	public void updateName(String currentAccount, String name) {
-		if (currentAccount.equals(username)) {
+		if (authenticate(currentAccount)) {
 			this.name = name;
 		}
 	}
@@ -77,7 +77,7 @@ public class Account {
 	 * @param dateOfBirth    The date of birth of the User
 	 */
 	public void updateDateOfBirth(String currentAccount, String dateOfBirth) {
-		if (currentAccount.equals(username)) {
+		if (authenticate(currentAccount)) {
 			this.dateOfBirth = dateOfBirth;
 		}
 	}
@@ -89,7 +89,7 @@ public class Account {
 	 * @param homeAddress    The home address of the User
 	 */
 	public void updateHomeAddress(String currentAccount, String homeAddress) {
-		if (currentAccount.equals(username)) {
+		if (authenticate(currentAccount)) {
 			this.homeAddress = homeAddress;
 		}
 	}
@@ -101,7 +101,7 @@ public class Account {
 	 * @param email          The email of the User
 	 */
 	public void updateEmail(String currentAccount, String email) {
-		if (currentAccount.equals(username)) {
+		if (authenticate(currentAccount)) {
 			this.email = email;
 		}
 	}
@@ -113,7 +113,7 @@ public class Account {
 	 * @param phoneNumber    The phone number of the User
 	 */
 	public void updatePhoneNumber(String currentAccount, String phoneNumber) {
-		if (currentAccount.equals(username)) {
+		if (authenticate(currentAccount)) {
 			this.phoneNumber = phoneNumber;
 		}
 	}
@@ -125,7 +125,7 @@ public class Account {
 	 * @param username       The username of the User
 	 */
 	public void updateUsername(String currentAccount, String username) {
-		if (currentAccount.equals(username)) {
+		if (authenticate(currentAccount)) {
 			this.username = username;
 		}
 	}
@@ -137,7 +137,7 @@ public class Account {
 	 * @param password       The password of the User
 	 */
 	public void updatePassword(String currentAccount, String password) {
-		if (currentAccount.equals(username)) {
+		if (authenticate(currentAccount)) {
 			this.password = password;
 		}
 	}
