@@ -1064,8 +1064,7 @@ public class PSystem {
 	
 	/**
 	 * Replaces a User in users with newUser
-	 * 
-	 * @param newUser the new User object
+	 * @param newUser
 	 */
 	public void updateAccount(User newUser) {
 		int userIndex = users.indexOf(newUser);
@@ -1084,7 +1083,7 @@ public class PSystem {
 	/**
 	 * Replaces a PropertPyManager in propertyManagers with newManager
 	 * 
-	 * @param newManager the new PropertyManager object
+	 * @param newManager
 	 */
 	public void updateAccount(PropertyManager newManager) {
 		int managerIndex = propertyManagers.indexOf(newManager);
@@ -1182,7 +1181,6 @@ public class PSystem {
 		System.out.println(lease);
 		contactManager(toManager, lease);
 		contactUser(currentAccount, lease);
-		DataWriter.writeLease(lease);
 	}
 
 	/**

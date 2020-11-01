@@ -24,7 +24,7 @@ public class DataWriter {
             e.printStackTrace();
         }
     }
-
+    
     public static void writeLease(String lease){
         try{
             FileWriter writer = new FileWriter("lease.txt");

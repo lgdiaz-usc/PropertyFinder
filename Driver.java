@@ -4,14 +4,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * Allows the user to interact with the system
+ * The starting point of the program. Lets the user choose which JSON to read from  and has
+ * the main UI loop
+ * @param args
  */
 public class Driver {
-	/**
-	 * The starting point of the program. Lets the user choose which JSON to read from  and has
-	 * the main UI loop
-	 * @param args
-	 */
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
 		boolean done = false;
@@ -96,7 +93,7 @@ public class Driver {
 		DataWriter.write(system);
 		System.out.println("Goodbye!");
 	}
-
+	
 	/**
 	 * Contains the UI loop for when a student is logged in
 	 * @param system The main PSystem object
@@ -114,7 +111,8 @@ public class Driver {
 
 			switch (command) {
 				case "help":
-					System.out.println("The available commands are:" + "\nhelp - Displays available commands"
+					System.out.println("The available commands are:" 
+							+ "\nhelp - Displays available commands"
 							+ "\nlogout   - Log out of account"
 							+ "\nadd      - Adds a disability"
 							+ "\nremove   - Removes a disability"
@@ -122,7 +120,7 @@ public class Driver {
 							+ "\ncontact  - Sends a message to another account"
 							+ "\nmessages - Displays all of your messages"
 							+ "\nreview   - Writes a review for an account or a property listing"
-							+ "\nrent     - Generates a lease agreement for a property listing"
+							+ "\nrent     - generates a lease agreement for a property listing"
 							+ "\nedit     - Edits your account");
 					break;
 				case "logout":
@@ -160,7 +158,7 @@ public class Driver {
 		}
 		return system;
 	}
-
+	
 	/**
 	 * Contains the UI Loop for when a property manager is logged in
 	 * @param system The main PSystem object
@@ -221,7 +219,7 @@ public class Driver {
 
 		return system;
 	}
-
+	
 	/**
 	 * Allows the user to create a new Account
 	 * @param system The main PSystem object
@@ -305,7 +303,7 @@ public class Driver {
 		// Login to Account
 		return system.login(username, password);
 	}
-
+	
 	/**
 	 * Allows the user to log out of their account
 	 * @param system The main PSystem object
@@ -319,7 +317,7 @@ public class Driver {
 		// Return to the main menu
 		return system;
 	}
-
+	
 	/**
 	 * Searches for property listings, student accounts, and property manager accounts
 	 * @param system The main PSystem object
@@ -578,12 +576,13 @@ public class Driver {
 		system.removeProperty(propertyName);
 		return system;
 	}
-
+	
 	/**
 	 * Removes an existing unit from an existing property listing
 	 * @param system The main PSystem object
 	 * @return The main PSystem object
 	 */
+
 	private static PSystem removeUnit(PSystem system) {
 		Scanner input = new Scanner(System.in);
 
@@ -597,12 +596,13 @@ public class Driver {
 		system.removeUnit(propertyName, addressModifier);
 		return system;
 	}
-
+	
 	/**
 	 * Removes a renter from an existing property listing
 	 * @param system The main PSystem object
 	 * @return The main PSystem object
 	 */
+
 	private static PSystem removeRenter(PSystem system) {
 		Scanner input = new Scanner(System.in);
 
@@ -616,12 +616,13 @@ public class Driver {
 		system.removeRenter(propertyName, renterName);
 		return system;
 	}
-
+	
 	/**
 	 * Removes a renter from an existing unit from an existing property listing
 	 * @param system The main PSystem object
 	 * @return The main PSystem object
 	 */
+
 	private static PSystem removeUnitRenter(PSystem system) {
 		Scanner input = new Scanner(System.in);
 
@@ -637,12 +638,13 @@ public class Driver {
 		 system.removeUnitRenter(propertyTitle, addressModifier, renterName);
 		 return system;
 	}
-
+	
 	/**
 	 * Sends a message to an existing Account
 	 * @param system The main PSystem object
 	 * @return The main PSystem object
 	 */
+
 	private static PSystem contact(PSystem system) {
 		Scanner input = new Scanner(System.in);
 		String recipientType;
@@ -673,13 +675,14 @@ public class Driver {
 
 		return system;
 	}
-
+	
 	/**
 	 * Makes a review for an existing property listing, unit, student account, or property
 	 * manager account
 	 * @param system The main PSystem object
 	 * @return The main PSystem object
 	 */
+
 	private static PSystem review(PSystem system) {
 		Scanner input = new Scanner(System.in);
 		String reviewType;
@@ -730,12 +733,13 @@ public class Driver {
 
 		return system;
 	}
-
+	
 	/**
 	 * Generates a lease agreement for 1 or more student accounts and an existing property listing
 	 * @param system The main PSystem object
 	 * @return The main PSystem object
 	 */
+
 	private static PSystem rent(PSystem system){
 		Scanner input = new Scanner(System.in);
 
@@ -759,12 +763,13 @@ public class Driver {
 		}
 		return system;
 	}
-
+	
 	/**
-	 * Allows a User to edit their account
+	 * Allows a student account to edit their account
 	 * @param system The main PSystem object
 	 * @return The main PSystem object
 	 */
+
 	private static PSystem editUser(PSystem system){
 	Scanner input = new Scanner(System.in);
 	System.out.print("What would you like to edit? " +
@@ -823,12 +828,13 @@ public class Driver {
 	system.updateAccount(newUser);
 	return system;
 	}
-
+	
 	/**
 	 * Allows a  property manager account to edit a property listing they own, or their account
 	 * @param system The main PSystem object
 	 * @return The main PSystem object
 	 */
+	
 	private static PSystem editManager(PSystem system){
 		Scanner input = new Scanner(System.in);
 		System.out.print("Would you like to edit your account or one of your properties? " +
@@ -964,12 +970,13 @@ public class Driver {
 
 		return system;
 	}
-
+	
 	/**
 	 * Adds a disability to an existing student account
 	 * @param system The main PSystem object
 	 * @return The main PSystem object
 	 */
+	
 	private static PSystem addDisability(PSystem system) {
 		Scanner input = new Scanner(System.in);
 		
@@ -981,12 +988,13 @@ public class Driver {
 		system.addDisability(disability);
 		return system;
 	}
-
+	
 	/**
 	 * Removes a disability from an existing student account
 	 * @param system The main PSystem object
 	 * @return The main PSystem object
 	 */
+	
 	private static PSystem removeDisability(PSystem system) {
 		Scanner input = new Scanner(System.in);
 		
