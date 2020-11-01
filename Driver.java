@@ -841,28 +841,38 @@ public class Driver {
 
 		return system;
 	}
-	
+
+	/**
+	 * Adds a disability to an existing student account
+	 * @param system The main PSystem object
+	 * @return The main PSystem object
+	 */
 	private static PSystem addDisability(PSystem system) {
 		Scanner input = new Scanner(System.in);
 		
 		// Inputting information
 		System.out.print("Please enter a disability to add." + "\n>");		
-		String disibiilty = input.nextLine();
+		String disability = input.nextLine();
 		
 		//Removes disability
-		system.addDisability(disibiilty);
+		system.addDisability(disability);
 		return system;
 	}
-	
+
+	/**
+	 * Removes a disability from an existing student account
+	 * @param system The main PSystem object
+	 * @return The main PSystem object
+	 */
 	private static PSystem removeDisability(PSystem system) {
 		Scanner input = new Scanner(System.in);
 		
 		// Inputting information
 		System.out.print("Please enter a disability to remove." + "\n>");
-		String disibiilty = input.nextLine();
+		String disability = input.nextLine();
 		
 		//Removes disability
-		system.removeDisability(disibiilty);
+		system.removeDisability(disability);
 		return system;
 	}
 }
