@@ -1040,7 +1040,6 @@ public class PSystem {
 
 	/**
 	 * Adds disability to user's account
-	 * @param currentAccount  The user logged in
 	 * @param disability      The disability to be removed
 	 */
 	public void addDisability(String disability) {
@@ -1053,7 +1052,6 @@ public class PSystem {
 	
 	/**
 	 * Removes disability from user's account
-	 * @param currentAccount  The user logged in
 	 * @param disability      The disability to be removed
 	 */
 	public void removeDisability(String disability) {
@@ -1067,7 +1065,7 @@ public class PSystem {
 	/**
 	 * Replaces a User in users with newUser
 	 * 
-	 * @param newUser
+	 * @param newUser the new User object
 	 */
 	public void updateAccount(User newUser) {
 		int userIndex = users.indexOf(newUser);
@@ -1086,7 +1084,7 @@ public class PSystem {
 	/**
 	 * Replaces a PropertPyManager in propertyManagers with newManager
 	 * 
-	 * @param newManager
+	 * @param newManager the new PropertyManager object
 	 */
 	public void updateAccount(PropertyManager newManager) {
 		int managerIndex = propertyManagers.indexOf(newManager);
@@ -1184,6 +1182,7 @@ public class PSystem {
 		System.out.println(lease);
 		contactManager(toManager, lease);
 		contactUser(currentAccount, lease);
+		DataWriter.writeLease(lease);
 	}
 
 	/**
@@ -1299,6 +1298,7 @@ public class PSystem {
 		for(String coRenter : coRenterTemp){
 			contactUser(coRenter, lease);
 		}
+		DataWriter.writeLease(lease);
 	}
 
 	/**

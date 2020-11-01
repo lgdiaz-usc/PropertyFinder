@@ -215,11 +215,14 @@ public class Account {
 	 * @return String representation of the messages of the User.
 	 */
 	public String getMessages(String currentAccount) {
-		String output = "";
-		for (Message message : messages) {
-			output = output.concat(message.toString() + "\n");
+		if(authenticate(currentAccount)) {
+			String output = "";
+			for (Message message : messages) {
+				output = output.concat(message.toString() + "\n");
+			}
+			return output;
 		}
-		return output;
+		return "ERROR: This is not your account!";
 	}
 
 	/**
