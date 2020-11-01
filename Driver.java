@@ -3,12 +3,13 @@ package PropertyFinder;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-/**
- * The starting point of the program. Lets the user choose which JSON to read from  and has
- * the main UI loop
- * @param args
- */
+
 public class Driver {
+	/**
+	 * The starting point of the program. Lets the user choose which JSON to read from  and has
+	 * the main UI loop
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
 		boolean done = false;
