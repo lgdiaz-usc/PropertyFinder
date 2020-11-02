@@ -6,6 +6,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 /**
+ * @author Team Dolphin (Liam Diaz and Sincere Dixon)
  * Contains the information for an account for a student.
  */
 public class User extends Account {
