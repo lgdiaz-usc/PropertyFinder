@@ -6,6 +6,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 /**
+ *  @author Team Dolphin (Liam Diaz and Sincere Dixon)
  * Contains data and methods relating to an individual unit listing
  */
 public class Unit {
