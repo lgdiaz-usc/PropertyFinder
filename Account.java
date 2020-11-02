@@ -5,6 +5,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
 
 /**
+ * @author Team Dolphin (Liam Diaz and Sincere Dixon)
  * Contains data and methods related to the User's account
  */
 public class Account {
