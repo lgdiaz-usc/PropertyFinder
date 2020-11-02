@@ -9,6 +9,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 /**
+ * @author Team Dolphin (Liam Diaz and Sincere Dixon)
  * Reads JSON data from a JSON file and converts it into a PSystem object
  */
 public class DataReader {
