@@ -3,7 +3,10 @@ package PropertyFinder;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
+/** 
+ * @author Team Dolphin (Liam Diaz and Sincere Dixon)
+ * The driver allows our program to run
+ */
 public class Driver {
 	/**
 	 * The starting point of the program. Lets the user choose which JSON to read from  and has

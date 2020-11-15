@@ -5,6 +5,7 @@ import org.json.simple.JSONObject;
 import java.util.ArrayList;
 
 /**
+ * @author Team Dolphin (Liam Diaz and Sincere Dixon)
  * Contains data and methods related to Property listings
  */
 public class Property {

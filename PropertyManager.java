@@ -1,6 +1,7 @@
 package PropertyFinder;
 
 /**
+ * @author Team Dolphin (Liam Diaz and Sincere Dixon)
  * Contains methods and data for property manager accounts
  */
 public class PropertyManager extends Account{

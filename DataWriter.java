@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 /**
+ * @author Team Dolphin (Liam Diaz and Sincere Dixon)
  * Collects the JSON data of a PSystem object and writes it to a file
  */
 public class DataWriter {

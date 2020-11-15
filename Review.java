@@ -3,6 +3,7 @@ package PropertyFinder;
 import org.json.simple.JSONObject;
 
 /**
+ * @author Team Dolphin (Liam Diaz and Sincere Dixon)
  * Contains data and methods related to reviews
  */
 public class Review {

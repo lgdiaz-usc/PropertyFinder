@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.util.regex.Matcher;
 
 /**
+ * @author Team Dolphin (Liam Diaz and Sincere Dixon)
  * Contains the methods and data used by the driver to interact with user
  * accounts and property listings.
  */
