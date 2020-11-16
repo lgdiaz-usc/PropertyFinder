@@ -21,7 +21,7 @@ public class Unit {
 	 * @param addressModifier The addressModifier for Unit (e.g. apartment number)
 	 * @param capacity        The maximum capacity of the Unit
 	 */
-	Unit(String addressModifier, int capacity) {
+	public Unit(String addressModifier, int capacity) {
 		this.addressModifier = addressModifier;
 		this.capacity = capacity;
 		renters = new ArrayList<String>();
