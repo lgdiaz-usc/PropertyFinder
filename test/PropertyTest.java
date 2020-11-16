@@ -15,20 +15,29 @@ class PropertyTest {
         property = new Property("bill", "bill\'s house", "its bill\'s house", "123 street st.", 2, 5);
     }
 
-    @Test
-    void testAverageRatingOF0(){
+   @Test
+    void testAverageRatingOfZero() {
         int average = property.getAverageRating();
         Assertions.assertTrue(average == 0);
     }
 
     @Test
-    void testAverageRatingOf5(){
+    void testAverageRatingOfPositiveNumbers() {
         property.addReview(10, "is good", "very good", "manguy");
         property.addReview(2, "not so good", "is bad", "guyman");
         property.addReview(3, "slightly ok", "not good", "ganmuy");
         int average = property.getAverageRating();
         Assertions.assertTrue(average == 5);
     }
+    
+    @Test
+	void testAverageRatingOfNegativeNumbers() {
+		property.addReview(-6, "Cool place ot live.", "Great. Great", "steverogers");
+		property.addReview(-7, "Cool place ot live.", "Great. Great", "tonystark");
+		property.addReview(-8, "Cool place ot live.", "Great. Great", "thorodinson");
+		int average = property.getAverageRating();
+		Assertions.assertTrue(average == -7);
+	}
 
     @Test
     void isAvailable() {
