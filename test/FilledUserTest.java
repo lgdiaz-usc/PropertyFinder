@@ -45,7 +45,7 @@ class FilledUserTest
     	user.addReview(-6, "really ok", "just ok", "jill");
         user.addReview(-7, "terrible", "is bad", "jake");
         user.addReview(-8, "alright", "alright", "james");
-		int average = user.getAverageRating();
-		Assertions.assertTrue(average == -7);
+	int average = user.getAverageRating();
+	Assertions.assertTrue(average == -7);
     }
 }
