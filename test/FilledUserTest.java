@@ -3,7 +3,8 @@ package PropertyFinder.test;
 import PropertyFinder.User;
 import org.junit.jupiter.api.*;
 
-class AccountTest {
+class FilledUserTest
+{
     private User user;
 
     @BeforeEach
