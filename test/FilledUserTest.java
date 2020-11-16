@@ -24,19 +24,28 @@ class FilledUserTest
         boolean usernameCorrect = user.authenticate("not Jboy");
         Assertions.assertFalse(usernameCorrect);
     }
-
+    
     @Test
-    void testAverageRatingOF0(){
+    void testAverageRatingOfZero(){
         int average = user.getAverageRating();
         Assertions.assertTrue(average == 0);
     }
 
     @Test
-    void testAverageRatingOf5(){
+    void testAverageRatingOfPositiveNumbers(){
         user.addReview(10, "is good", "very good", "manguy");
         user.addReview(2, "not so good", "is bad", "guyman");
         user.addReview(3, "slightly ok", "not good", "ganmuy");
-        int average =user.getAverageRating();
+        int average = user.getAverageRating();
         Assertions.assertTrue(average == 5);
+    }
+    
+    @Test
+    void testAverageRatingOfNegativeNumbers() {
+    	user.addReview(-6, "really ok", "just ok", "jill");
+        user.addReview(-7, "terrible", "is bad", "jake");
+        user.addReview(-8, "alright", "alright", "james");
+		int average = user.getAverageRating();
+		Assertions.assertTrue(average == -7);
     }
 }
