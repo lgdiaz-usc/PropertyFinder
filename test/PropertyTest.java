@@ -32,9 +32,9 @@ class PropertyTest {
     
     @Test
 	void testAverageRatingOfNegativeNumbers() {
-		property.addReview(-6, "Cool place ot live.", "Great. Great", "steverogers");
-		property.addReview(-7, "Cool place ot live.", "Great. Great", "tonystark");
-		property.addReview(-8, "Cool place ot live.", "Great. Great", "thorodinson");
+		property.addReview(-6, "Cool place to live.", "Great. Great", "steverogers");
+		property.addReview(-7, "Cool place to live.", "Great. Great", "tonystark");
+		property.addReview(-8, "Cool place to live.", "Great. Great", "thorodinson");
 		int average = property.getAverageRating();
 		Assertions.assertTrue(average == -7);
 	}
